@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125192238) do
+ActiveRecord::Schema.define(version: 20141125213225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
-    t.string   "fname",         null: false
-    t.string   "lname",         null: false
     t.string   "email",         null: false
     t.string   "pwdigest",      null: false
     t.string   "session_token", null: false
@@ -28,6 +26,8 @@ ActiveRecord::Schema.define(version: 20141125192238) do
     t.integer  "numdives"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fname"
+    t.string   "lname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

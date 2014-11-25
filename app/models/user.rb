@@ -17,14 +17,15 @@
 #
 
 class User < ActiveRecord::Base
-  validates :fname, :lname, :email, :pwdigest, :session_token, presence: true
+  validates :email, :pwdigest, :session_token, presence: true
   validates :email, :session_token, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }
   
-  attr_reader: password
+  attr_reader :password
   
   after_initialize :ensure_token
   
-  def self.find_by_params(email, pwdigest)
+  def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
     return nil if user.nil?
     user.valid_password?(password) ? user : nil
@@ -42,12 +43,12 @@ class User < ActiveRecord::Base
   end
   
   def valid_password?(password)
-    BCrypt::Password.new(self.pwdigest).is_password(password)
+    BCrypt::Password.new(self.pwdigest).is_password?(password)
   end
   
   private
   
   def ensure_token
-    self.session_token ||= RandomSecure::urlsafe_base64
+    self.session_token ||= SecureRandom::urlsafe_base64
   end
 end

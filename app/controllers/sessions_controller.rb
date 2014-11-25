@@ -11,10 +11,18 @@ class SessionsController < ApplicationController
     )
     
     if @user
-      
+      login!(@user)
+      redirect_to "http://www.google.com"
     else
+      @user = User.new
+      flash.now[:errors] = ["Invalid Username or Password"]
+      render :new
     end
   end
   
+  def destroy
+    logout!
+    redirect_to new_session_url
+  end
   
 end

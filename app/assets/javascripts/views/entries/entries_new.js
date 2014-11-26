@@ -1,5 +1,6 @@
-Diveloggr.Views.EntriesNew = Backbone.CompositeView.extend({
+Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	template: JST['entries/new_form'],
+	className: "new_entry_form"
 	events: {
 		"submit": "submitForm"
 	},
@@ -10,6 +11,22 @@ Diveloggr.Views.EntriesNew = Backbone.CompositeView.extend({
 	},
 	submitForm: function (event) {
 		this.$form = $("#entry_input")
+		var formInput = this.$form.serializeJSON();
 		
+		var entry = new Diveloggr.Models.Entry(formInput);
+		
+		function success () {
+			Backbone.history.navigate("/entries", { trigger: true});
+		}
+		
+		if (entry.isNew()) {
+			this.collection.create(entry, {
+				success: success
+			});
+		} else {
+			entry.save({}, {
+				success: success
+			});
+		}
 	}
 });

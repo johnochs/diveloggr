@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   
-  def new
-    @user = User.new
-  end
+  def new ;end
   
   def create
     @user = User.find_by_credentials(
@@ -12,7 +10,7 @@ class SessionsController < ApplicationController
     
     if @user
       login!(@user)
-      redirect_to "http://www.google.com"
+      redirect_to root_url
     else
       @user = User.new
       flash.now[:errors] = ["Invalid Username or Password"]

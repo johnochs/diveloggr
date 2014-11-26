@@ -26,8 +26,19 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 	},
 	entriesNew: function () {
 		var entry = new Diveloggr.Models.Entry;
-		var entryForm = new Diveloggr.Views.EntriesNew({ model: entry });
+		var entryForm = new Diveloggr.Views.EntriesForm({ model: entry, collection: Diveloggr.Collections.entries });
 		this._swapView(entryForm);
+	},
+	entriesEdit: function (id) {
+		var entry = Diveloggr.Collections.entries.getOrFetch(id);
+		var entryForm = new Diveloggr.Views.EntriesForm({ model: entry });
+		this._swapView(entryForm);
+	},
+	entriesShow: function (id) {
+		var entry = Diveloggr.Collections.entries.getOrFetch(id);
+		debugger
+		var showView = new Diveloggr.Views.EntriesShow({ model: entry });
+		this._swapView(showView);
 	},
 	_swapView: function (view) {
 		this._currentView && this._currentView.remove();

@@ -8,11 +8,11 @@ Diveloggr.Collections.Users = Backbone.Collection.extend({
 		var user = this.get(id) || new Diveloggr.Models.User({ id: id });
 		
 		user.fetch({
-			success: function { users.add(user)}
+			success: function () { users.add(user) }
 		});
 		return user;
 	}
 
 });
 
-Diveloggr.Collections.users = new Diveloggr.Collections.Users();
+Diveloggr.Collections.users = new Diveloggr.Collections.Users;

@@ -1,0 +1,20 @@
+<h2>Log a dive!</h2>
+<p>Most of the information is optional, but please be sure to fill out the title, body, and date<p>
+
+<form id="entry_input">
+	<label>Date
+		<input type="datetime-local" name="entry[logdate]" value="<%= Date.now() %>">
+	</label>
+	<label>Dive Number
+		<input type="text" name="entry[divenum]">
+	</label>
+	<label>Location
+		<input type="text" name="entry[location_name]">
+	</label>
+	<label>Visibility
+		<input type="range" name="entry[vis]" min="0" max="200" step="2" value="30">
+	</label>
+	<label>Water Temp
+		<input type="range" name="entry[vis]" min="0" max="200" step="2" value="30">
+	</label>
+</form>

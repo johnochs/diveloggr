@@ -1,0 +1,8 @@
+<h2>All the Entries!</h2>
+<ul id="entries_list">
+<% entries.each( function(entry) { %>
+	<li>
+		<%= entry.get("title") %>
+	</li>
+<% }); %>
+</ul>

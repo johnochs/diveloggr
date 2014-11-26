@@ -4,7 +4,7 @@ window.Diveloggr = {
   Views: {},
   Routers: {},
   initialize: function() {
-	  new Diveloggr.Routers.Router();
+	  new Diveloggr.Routers.Router({ $rootEl: $("#content")});
 	  Backbone.history.start();
   }
 };

@@ -1,4 +1,6 @@
 Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
+	initialize: function () {
+	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form",
 	events: {

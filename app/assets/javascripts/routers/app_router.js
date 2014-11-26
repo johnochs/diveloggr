@@ -7,10 +7,10 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		"users": "usersIndex",
 		"users/:id/edit": "userEdit",
 		"users/:id": "userShow",
+		"entries/new": "entriesNew",
 		"entries": "entriesIndex",
 		"entries/:id/edit": "entriesEdit",
 		"entries/:id": "entriesShow",
-		"entries/new": "entriesNew"
 	},
 	home: function () {
 	},
@@ -35,8 +35,8 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(entryForm);
 	},
 	entriesShow: function (id) {
+		alert(id);
 		var entry = Diveloggr.Collections.entries.getOrFetch(id);
-		debugger
 		var showView = new Diveloggr.Views.EntriesShow({ model: entry });
 		this._swapView(showView);
 	},

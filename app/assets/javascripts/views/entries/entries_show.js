@@ -9,4 +9,4 @@ Diveloggr.Views.EntriesShow = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		return this;
 	}
-})
+});

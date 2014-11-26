@@ -1,0 +1,22 @@
+<div id="title_header">
+	<h2><%= entry.get("title") %></h2>
+</div>
+<div id="dive_attrs">
+	<ul id="dive_attr_list">
+		<li><strong>Dive Number: </strong><%= entry.get("divenum") %></li>
+		<li>Date: <%= entry.get("logdate") %></li>
+		<li>Location: <%= entry.get("location_name") %></li>
+		<li>Vis: <%= entry.get("vis") %>ft.</li>
+		<li>Water Temp: <%= entry.get("watertemp") %>F</li>
+		<li>Air Temp: <%= entry.get("watertemp") %>F</li>
+	</ul>
+</div>
+<div id="dive_profile_attrs">
+	<ul id="dive_profile_attr_list">
+		<li>Max Depth: <%= entry.get("maxdepth")ft. %></li>
+		<li>Dive Time: <%= entry.get("divetime")mins. %></li>
+	</ul>
+</div>
+<div id="entry_body">
+	<%= entry.get("body") %>
+</div>

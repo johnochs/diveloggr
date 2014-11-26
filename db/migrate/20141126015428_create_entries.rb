@@ -22,6 +22,6 @@ class CreateEntries < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :posts, :user_id, unique: true
+    add_index :entries, :user_id
   end
 end

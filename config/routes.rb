@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   
   namespace :api do
-    resources :posts, only: [:create, :index, :show, :destroy]
+    resources :entries, only: [:create, :index, :show, :destroy]
   end
   
 end

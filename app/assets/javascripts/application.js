@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require diveloggr
+//= require jquery.serializejson.min
 //= require_tree ./utils
 //= require_tree ../templates
 //= require_tree ./models

@@ -12,9 +12,11 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		return this;
 	},
 	submitForm: function (event) {
+		alert("here");
+		event.preventDefault();
 		this.$form = $("#entry_input")
 		var formInput = this.$form.serializeJSON();
-		
+		debugger
 		var entry = new Diveloggr.Models.Entry(formInput);
 		
 		function success () {

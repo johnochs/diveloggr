@@ -7,6 +7,7 @@ class Api::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     
     if @post.save
       render json: @post
@@ -18,6 +19,14 @@ class Api::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     render json: @post
+  end
+  
+  private
+  
+  def post_params
+    params.require(:entry).permit(
+      :title, :body, :airtemp, :divenum, :location_name, :logdate, :maxdepth, :vis, :watertemp
+    )
   end
   
 end

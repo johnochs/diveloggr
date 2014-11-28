@@ -15,7 +15,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'figaro'
 gem 'bootstrap-sass'
-gem 'gritter'
 
 group :development do
   gem 'better_errors'

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 
 gem 'rails', '4.1.7'
@@ -23,7 +24,9 @@ group :development do
   gem 'annotate'
 end
 
-
+group :production do
+  gem 'rails_12factor'
+end
 
 
 

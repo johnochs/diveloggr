@@ -28,10 +28,3 @@ group :production do
   gem 'rails_12factor'
 end
 
-
-
-
-# gem 'capistrano-rails', group: :development
-
-# gem 'debugger', group: [:development, :test]
-

@@ -10,9 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require gritter
  *= require_tree .
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body, html {
+  background-image: url(/assets/greyzz.png);
+  height: 100%;
+  letter-spacing: 1px;
+  font-family:  "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}

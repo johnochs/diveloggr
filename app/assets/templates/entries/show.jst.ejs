@@ -1,22 +1,57 @@
-<div id="title_header">
+
+<div class="row" id="show_header">
+	<div class="col-xs-3">IMG</div>
+	<div class="col-xs-9">NAME</div>
+</div>
+<div class="row" id="show_title">
 	<h2><%= entry.get("title") %></h2>
 </div>
-<div id="dive_attrs">
-	<ul id="dive_attr_list">
-		<li><strong>Dive Number: </strong><%= entry.get("divenum") %></li>
-		<li>Date: <%= entry.get("logdate") %></li>
-		<li>Location: <%= entry.get("location_name") %></li>
-		<li>Vis: <%= entry.get("vis") %>ft.</li>
-		<li>Water Temp: <%= entry.get("watertemp") %>F</li>
-		<li>Air Temp: <%= entry.get("watertemp") %>F</li>
-	</ul>
+<div class="row" id="show_body">
+	<textarea><%= entry.get("body") %></textarea>
 </div>
-<div id="dive_profile_attrs">
-	<ul id="dive_profile_attr_list">
-		<li>Max Depth: <%= entry.get("maxdepth") %>ft.</li>
-		<li>Dive Time: <%= entry.get("divetime") %>mins</li>
-	</ul>
+<div class="row" id="dive_base_info">
+	<div class="col-xs-3">
+		<h1><%= entry.get("divenum") %></h1>
+	</div>
+	<div class="col-xs-9">
+		<ul>
+			<li>Entry Date: <%= entry.get("entrydate") %></li>
+			<li>Entry Time: <%= entry.get("entrytime") %></</li>
+			<li>Location Name: <%= entry.get("location_name") %></</li>
+			<li>Dive Type: <%= entry.get("divetype") %></</li>
+		</ul>
+	</div>
 </div>
-<div id="entry_body">
-	<%= entry.get("body") %>
+<div class="row">
+	<h2>Conditions</h2>
+</div>
+<div class="row" id="entry_conditions">
+	<div class="col-xs-9">
+		<h3>Surface Conditions</h3>
+		<ul>
+			<li>Weather: <%= entry.get("weather") %></li>
+			<li>Air Temp: <%= entry.get("airtemp") %></li>
+			<li>Surface: <%= entry.get("surface") %></li>
+		</ul>
+	</div>
+	<div class="col-xs-3">
+		<h3>Underwater Conditions</h3>
+		<ul>
+			<li>Visibility: <%= entry.get("vis") %></li>
+			<li>Current: <%= entry.get("current") %></li>
+			<li>Water Temp: <%= entry.get("watertemp") %></li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<h2>Dive Profile</h2>
+	<div class="col-xs-4" id="max_depth_box">
+		<h1><%= entry.get("maxdepth") %></h1>
+	</div>
+	<div class="col-xs-4" id="avg_depth_box">
+		<h1><%= entry.get("avgdepth") %></h1>
+	</div>
+	<div class="col-xs-4" id="divetime_depth_box">
+		<h1><%= entry.get("divetime") %></h1>
+	</div>
 </div>

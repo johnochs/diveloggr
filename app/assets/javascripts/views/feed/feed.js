@@ -18,5 +18,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
 	},
+	
 
 });

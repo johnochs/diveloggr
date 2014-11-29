@@ -1,3 +1,4 @@
+
 window.Diveloggr = {
   Models: {},
   Collections: {},
@@ -8,6 +9,8 @@ window.Diveloggr = {
 	  Backbone.history.start();
   }
 };
+
+
 
 $(document).ready(function(){
   Diveloggr.initialize();

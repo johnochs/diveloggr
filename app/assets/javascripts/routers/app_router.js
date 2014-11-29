@@ -45,7 +45,6 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(entryForm);
 	},
 	entriesShow: function (id) {
-		alert(id);
 		var entry = Diveloggr.Collections.entries.getOrFetch(id);
 		var showView = new Diveloggr.Views.EntriesShow({ model: entry });
 		this._swapView(showView);

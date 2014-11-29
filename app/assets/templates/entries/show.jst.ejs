@@ -1,13 +1,15 @@
-
-<div class="row" id="show_header">
+<div class="row entdiv" id="show_header">
 	<div class="col-xs-3">IMG</div>
 	<div class="col-xs-9">NAME</div>
 </div>
-<div class="row" id="show_title">
+<div class="row entdiv" id="show_title">
 	<h2><%= entry.get("title") %></h2>
 </div>
 <div class="row" id="show_body">
-	<textarea><%= entry.get("body") %></textarea>
+	<h3>Dive Notes:</h3>
+	<div class="interior_text_area">
+		<%= entry.get("body") %>
+	</div>
 </div>
 <div class="row" id="dive_base_info">
 	<div class="col-xs-3">
@@ -22,7 +24,7 @@
 		</ul>
 	</div>
 </div>
-<div class="row">
+<div class="row entdiv">
 	<h2>Conditions</h2>
 </div>
 <div class="row" id="entry_conditions">
@@ -43,8 +45,10 @@
 		</ul>
 	</div>
 </div>
-<div class="row">
+<div class="row entdiv">
 	<h2>Dive Profile</h2>
+</div>
+<div class="row">
 	<div class="col-xs-4" id="max_depth_box">
 		<h1><%= entry.get("maxdepth") %></h1>
 	</div>

@@ -25,7 +25,9 @@ class Api::EntriesController < ApplicationController
   
   def entry_params
     params.require(:entry).permit(
-      :title, :body, :airtemp, :divenum, :location_name, :logdate, :maxdepth, :vis, :watertemp
+      :title, :body, :divenum, :location_name, :longitude, :latitude, :vis,
+      :watertemp, :airtemp, :divetime, :maxdepth, :divetype, :current, :weather,
+      :avgdepth, :entrytime, :entrydate
     )
   end
   

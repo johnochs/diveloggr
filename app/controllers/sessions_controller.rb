@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     
     if @user
       login!(@user)
-      redirect_to root_url
+      redirect_to "#/feed"
     else
       @user = User.new
       flash.now[:errors] = ["Invalid Username or Password"]

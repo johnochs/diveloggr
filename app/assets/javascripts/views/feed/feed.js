@@ -1,9 +1,14 @@
 Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
+	initialize: function () {
+		this.listenTo(this.collection, "sync", this.render)
+		this.listenTo(this.collection, "add", this.addFeedEntryView);
+	},
 	render: function () {
-		var renderedContent = this.template();
-		this.$el.html(renderedContent);
+		// this.remove();
+		this.$el.html(this.template());
+		this.attachSubviews();
 		this.renderMap();
 		return this;
 	},
@@ -18,6 +23,9 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
 	},
-	
+	addFeedEntryView: function (entry) {
+		var entrySubview = new Diveloggr.Views.FeedEntry({ model: entry });
+		this.addSubview("#entry-table-elements", entrySubview);
+	},
 
 });

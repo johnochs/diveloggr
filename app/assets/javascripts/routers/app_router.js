@@ -3,7 +3,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this.$rootEl = options.$rootEl
 	},
 	routes: {
-		"" : "home",
+		"" : "splashPage",
 		"users": "usersIndex",
 		"users/:id/edit": "userEdit",
 		"users/:id": "userShow",
@@ -12,7 +12,9 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		"entries/:id/edit": "entriesEdit",
 		"entries/:id": "entriesShow",
 	},
-	home: function () {
+	splashPage: function () {
+		var splashView = new Diveloggr.Views.SplashPage();
+		this._swapView(splashView);
 	},
 	usersIndex: function () {
 		var users = Diveloggr.Collections.users.fetch();

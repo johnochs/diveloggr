@@ -1,7 +1,146 @@
-<h2>Log a dive!</h2>
+<h1>Log a dive!</h1>
 <p>Most of the information is optional, but please be sure to fill out the title, body, and date<p>
 
-<form id="entry_input">
+<form role="form">
+  <div class="form-group">
+    <label for="divenum">Dive Number</label>
+    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No.">
+  </div>
+  <div class="form-group">
+    <label for="divedate">Date</label>
+    <input type="date" class="form-control" id="divedate" name="entry[divedate]">
+  </div>
+  <div class="form-group">
+    <label for="entrytime">Entry Time</label>
+    <input type="time" id="entrytime" name="entry[entrytime]">
+  </div>
+  <div class="form-group">
+	  <label for="maxdepth">Max Depth</label>
+	  <input type="text" id="maxdepth" name="entry[maxdepth]">
+  </div>
+  <div class="form-group">
+	  <label for="avgdepth">Average Depth</label>
+	  <input type="text" id="avgdepth" name="entry[avgdepth]">
+  </div>
+  <div class="form-group">
+	  <label for="divetime">Dive Time</label>
+	  <input type="text" id="divetime" name="entry[divetime]" placeholder="mins">
+  </div>
+  <div class="form-group">
+	  <label for="location">Location</label>
+	  <input type="text" id="location" name="entry[location]">
+  </div>
+  <div class="form-group">
+	<h3>Weather</h3>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio2" value="Clear"> Clear
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio2" value="Cloudy"> Cloudy
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio3" value="Mist"> Mist
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio4" value="Rain"> Rain
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio5" value="Snow"> Snow
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[weather]" id="inlineRadio6" value="Stormy"> Stormy
+	</label>
+  </div>
+  <h3>Surface Conditions</h3>
+  <div class="form-group">
+	<label class="radio-inline">
+	  <input type="radio" name="entry[surface]" id="inlineRadio2" value="Big Waves"> Big Waves
+	</label>                                 
+	<label class="radio-inline">             
+	  <input type="radio" name="entry[surface]" id="inlineRadio2" value="Choppy"> Choppy
+	</label>                                 
+	<label class="radio-inline">             
+	  <input type="radio" name="entry[surface]" id="inlineRadio3" value="Small Waves"> Small Waves
+	</label>                                 
+	<label class="radio-inline">             
+	  <input type="radio" name="entry[surface]" id="inlineRadio4" value="Calm"> Calm
+	</label>
+  </div>
+  <h3>Underwater Conditions</h3>
+  <div class="form-group">
+	<h3>Current</h3>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[current]" id="inlineRadio2" value="Strong"> Strong
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[current]" id="inlineRadio2" value="Medium"> Medium
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[current]" id="inlineRadio3" value="Light"> Light
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="entry[current]" id="inlineRadio4" value="None"> None
+	</label>
+  </div>
+  <div class="form-group">
+  	<label class="form-slider" id="vis">Visibility
+  		<input type="range" id="vis" name="entry[vis]" min="0" max="200" step="2" value="30">
+  	</label>
+	<label class="form-slider" id="watertemp">Water Temp
+		<input type="range" id="watertemp" name="entry[watertemp]" min="0" max="100" step="1" value="55">
+	</label>
+  </div>
+  <h3>Dive Type</h3>
+  <div class="form-group">
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox1" name="entry[divetype]" value="Fun"> Fun
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox2" name="entry[divetype]" value="Night"> Night
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox3" name="entry[divetype]" value="Drift"> Drift
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox1" name="entry[divetype]" value="Cave"> Cave
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox2" name="entry[divetype]" value="Photography"> Photography
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox3" name="entry[divetype]" value="Ice"> Ice
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox1" name="entry[divetype]" value="Research"> Research
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox2" name="entry[divetype]" value="Rescue"> Rescue
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox3" name="entry[divetype]" value="Search"> Search
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox1" name="entry[divetype]" value="Retrieval"> Retrieval
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox2" name="entry[divetype]" value="Instruction"> Instruction
+	  </label>
+	  <label class="checkbox-inline">
+	    <input type="checkbox" id="inlineCheckbox3" name="entry[divetype]" value="Exploration"> Exploration
+	  </label>
+  </div>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="entry[title]" placeholder="Title">
+  </div>
+  <textarea class="form-control" name="entry[body]" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+
+<!-- <form id="entry_input">
 	<label>Date
 		<input type="datetime-local" name="entry[logdate]" value="<%= Date.now() %>">
 	</label>
@@ -30,4 +169,4 @@
 		<textarea name="entry[body]"></textarea>
 	</label>
 	<input type="submit" id="entry_submit_button" value="Log Dive">
-</form>
+</form> -->

@@ -1,3 +1,3 @@
 Diveloggr.Models.Entry = Backbone.Model.extend({
-	urlRoot: "api/entries"
+	urlRoot: "api/entries",
 });

@@ -7,7 +7,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		"submit": "submitForm"
 	},
 	render: function () {
-		var renderedContent = this.template({ model: this.model });
+		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
 		return this;
 	},

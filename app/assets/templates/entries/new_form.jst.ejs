@@ -1,60 +1,79 @@
-<h1>Log a dive!</h1>
-<p>Most of the information is optional, but please be sure to fill out the title, body, and date<p>
+<h1>
+<% if (entry.isNew()) { %>
+	New Dive
+<% } else { %>
+	Update Dive
+<% } %>
+</h1>
+
+<p>Required: title, body, and date.<p>
 
 <form role="form" id="entry_form_el">
   <div class="form-group">
     <label for="divenum">Dive Number</label>
-    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No.">
+    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No." value="<%= entry.escape('divenum') %>">
   </div>
   <div class="form-group">
     <label for="divedate">Entry Date</label>
-    <input type="date" class="form-control" id="divedate" name="entry[entrydate]">
+    <input type="date" class="form-control" id="divedate" name="entry[entrydate]" value="<%= entry.escape('entrydate') %>">
   </div>
   <div class="form-group">
     <label for="entrytime">Entry Time</label>
-    <input type="time" id="entrytime" name="entry[entrytime]">
+    <input type="time" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
   </div>
   <div class="form-group">
 	  <label for="maxdepth">Max Depth</label>
-	  <input type="text" id="maxdepth" name="entry[maxdepth]">
+	  <input type="text" id="maxdepth" name="entry[maxdepth]" value="<%= entry.escape('maxdepth') %>">
   </div>
   <div class="form-group">
 	  <label for="avgdepth">Average Depth</label>
-	  <input type="text" id="avgdepth" name="entry[avgdepth]">
+	  <input type="text" id="avgdepth" name="entry[avgdepth]" value="<%= entry.escape('avgdepth') %>">
   </div>
   <div class="form-group">
 	  <label for="divetime">Dive Time</label>
-	  <input type="text" id="divetime" name="entry[divetime]" placeholder="mins">
+	  <input type="text" id="divetime" name="entry[divetime]" placeholder="mins"  value="<%= entry.escape('divetime') %>">
   </div>
   <div class="form-group">
 	  <label for="location">Location</label>
-	  <input type="text" id="location" name="entry[location_name]">
+	  <input type="text" id="location" name="entry[location_name]" value="<%= entry.escape('location_name') %>">
   </div>
   <div class="form-group">
-	  <label for="longitude">Longitude</label>
-	  <input type="text" id="longitude" name="entry[longitude]">
 	  <label for="latitude">Latitude</label>
-	  <input type="text" id="latitude" name="entry[latitude]">
+	  <input type="text" id="latitude" name="entry[latitude]" value="<%= entry.escape('latitude') %>">
+	  <label for="longitude">Longitude</label>
+	  <input type="text" id="longitude" name="entry[longitude]" value="<%= entry.escape('longitude') %>">
   </div>
   <div class="form-group">
 	<h3>Weather</h3>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio2" value="Clear"> Clear
+	  <input type="radio" name="entry[weather]" value="Clear"
+	    <%= if( entry.escape('weather') === "Clear") { return "checked"} %>
+	  > Clear
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio2" value="Cloudy"> Cloudy
+	  <input type="radio" name="entry[weather]" value="Cloudy"
+		<%= if( entry.escape('weather') === "Cloudy") { return "checked"} %>
+	  > Cloudy
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio3" value="Mist"> Mist
+	  <input type="radio" name="entry[weather]" value="Mist"
+	  	<%= if( entry.escape('weather') === "Mist") { return "checked"} %>
+	  > Mist
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio4" value="Rain"> Rain
+	  <input type="radio" name="entry[weather]" value="Rain"
+	  	<%= if( entry.escape('weather') === "Rain") { return "checked"} %>
+	  > Rain
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio5" value="Snow"> Snow
+	  <input type="radio" name="entry[weather]" value="Snow"
+	  	<%= if( entry.escape('weather') === "Snow") { return "checked"} %>
+	  > Snow
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="inlineRadio6" value="Stormy"> Stormy
+	  <input type="radio" name="entry[weather]" value="Stormy"
+	  	<%= if( entry.escape('weather') === "Stormy") { return "checked"} %>
+	  > Stormy
 	</label>
 	<label class="form-slider" id="airtemp">Air Temp
 		<input type="range" id="airtemp" name="entry[airtemp]" min="-40" max="120" step="1" value="55">

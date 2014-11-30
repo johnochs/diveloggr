@@ -20,6 +20,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.placeMarkers();
 	},
 	addFeedEntryView: function (entry) {
+		var user = entry.user({wait: true});
 		var entrySubview = new Diveloggr.Views.FeedEntry({ model: entry });
 		this.addSubview("#entry-table-elements", entrySubview);
 	},

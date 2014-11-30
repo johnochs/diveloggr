@@ -33,14 +33,25 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.removeSubview("#entry-table-elements", entrySubview);
 	},
 	placeMarkers: function () {
-		var map = Diveloggr.map;
-		var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-		  draggable:true,
-          title:"Drag me!",
-          map: map
-        });
+	    var map = Diveloggr.map;
+	    // var infowindow = App.infoWindow;
+	    this.collection.each(function(entry) {
+	      var lat = entry.get('latitude');
+	      var lng = entry.get('longitude');
+	      var marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(lat, lng),
+	        title: entry.get('title'),
+	        map: map
+	      });
+	  });
+		// var map = Diveloggr.map;
+		// var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+		//         var marker = new google.maps.Marker({
+		//           position: myLatlng,
+		//   draggable:true,
+		//           title:"Drag me!",
+		//           map: map
+        // });
 	},
 
 });

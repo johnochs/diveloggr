@@ -18,7 +18,7 @@ class Api::EntriesController < ApplicationController
   
   def show
     @entry = Entry.find(params[:id])
-    render json: @entry
+    render json: @entry, include: :user
   end
   
   private

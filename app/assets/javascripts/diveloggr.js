@@ -1,7 +1,7 @@
 var mapEl = $('<div id="map-viewport"></div>');
 var mapOptions = {
-      center: {lat: 37.7533, lng: -122.452},
-      zoom: 12
+      center: {lat: 32.837500, lng: -118.334333},
+	zoom: 12
     };
 
 

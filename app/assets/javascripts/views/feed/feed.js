@@ -15,8 +15,8 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	},
 	renderMap: function() {
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
-	    Diveloggr.map.setCenter(mapOptions.center);
-	    Diveloggr.map.setZoom(9);
+	    // Diveloggr.map.setCenter(mapOptions.center);
+	    Diveloggr.map.setZoom(5);
 		this.placeMarkers();
 	},
 	addFeedEntryView: function (entry) {

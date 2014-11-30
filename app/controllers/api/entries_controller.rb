@@ -16,6 +16,16 @@ class Api::EntriesController < ApplicationController
     end
   end
   
+  def update
+    @entry = Entry.find(params[:id])
+    
+    if @entry.update(entry_params)
+      render "show"
+    else
+      render json: @entry.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+  
   def show
     @entry = Entry.find(params[:id])
     @user = @entry.user

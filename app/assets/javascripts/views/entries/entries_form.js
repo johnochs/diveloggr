@@ -13,14 +13,14 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		return this;
 	},
 	submitForm: function (event) {
-		alert("here");
 		event.preventDefault();
 		var formInput = $('#entry_form_el').serializeJSON();
-		var entry = new Diveloggr.Models.Entry(formInput);
+		var entry = this.model.set(formInput);
 		
 		function success () {
-			Backbone.history.navigate("/entries", { trigger: true});
+			Backbone.history.navigate("/feed", { trigger: true});
 		}
+		
 		
 		if (entry.isNew()) {
 			this.collection.create(entry, {

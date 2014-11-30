@@ -1,6 +1,6 @@
-<!-- <div class="feed-entry-item" data-entry-id="<%= entry.get("id") %>"> -->
-	<td><%= entry.user().get("fname") %> <%= entry.user().get("lname") %></td>
-	<td><%= entry.get("title") %></td>
-	<td><%= entry.get("entrydate") %></td>
-	<td><%= entry.get("location_name") %></td>
-<!-- </div> -->
+<td class="ei-indicator" data-entry-id="<%= entry.get("id") %>">
+	<%= entry.user().get("fname") %> <%= entry.user().get("lname") %>
+</td>
+<td><%= entry.get("title") %></td>
+<td><%= entry.get("entrydate") %></td>
+<td><%= entry.get("location_name") %></td>

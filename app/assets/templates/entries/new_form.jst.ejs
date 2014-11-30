@@ -82,32 +82,48 @@
   <h3>Surface Conditions</h3>
   <div class="form-group">
 	<label class="radio-inline">
-	  <input type="radio" name="entry[surface]" id="inlineRadio2" value="Big Waves"> Big Waves
+	  <input type="radio" name="entry[surface]" value="Big Waves"
+	    <%= if( entry.escape('surface') === "Big Waves") { return "checked"} %>
+	  > Big Waves
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="inlineRadio2" value="Choppy"> Choppy
+	  <input type="radio" name="entry[surface]" value="Choppy"
+	    <%= if( entry.escape('surface') === "Choppy") { return "checked"} %>
+	  > Choppy
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="inlineRadio3" value="Small Waves"> Small Waves
+	  <input type="radio" name="entry[surface]" value="Small Waves"
+	    <%= if( entry.escape('surface') === "Small Waves") { return "checked"} %>
+	  > Small Waves
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="inlineRadio4" value="Calm"> Calm
+	  <input type="radio" name="entry[surface]" value="Calm"
+	    <%= if( entry.escape('surface') === "Calm") { return "checked"} %>
+	  > Calm
 	</label>
   </div>
   <h3>Underwater Conditions</h3>
   <div class="form-group">
 	<h3>Current</h3>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="inlineRadio2" value="Strong"> Strong
+	  <input type="radio" name="entry[current]" value="Strong"
+	    <%= if( entry.escape('current') === "Strong") { return "checked"} %>
+	  > Strong
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="inlineRadio2" value="Medium"> Medium
+	  <input type="radio" name="entry[current]" value="Medium"
+	    <%= if( entry.escape('current') === "Medium") { return "checked"} %>
+	  > Medium
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="inlineRadio3" value="Light"> Light
+	  <input type="radio" name="entry[current]" value="Light"
+	    <%= if( entry.escape('current') === "Light") { return "checked"} %>
+	  > Light
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="inlineRadio4" value="None"> None
+	  <input type="radio" name="entry[current]" value="None"
+	    <%= if( entry.escape('current') === "None") { return "checked"} %>
+	  > None
 	</label>
   </div>
   <div class="form-group">

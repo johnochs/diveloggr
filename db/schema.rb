@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129211133) do
+ActiveRecord::Schema.define(version: 20141130090232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20141129211133) do
     t.text     "body",          null: false
     t.integer  "divenum"
     t.string   "location_name"
-    t.decimal  "longitude"
-    t.decimal  "latitude"
+    t.string   "longitude"
+    t.string   "latitude"
     t.integer  "vis"
     t.integer  "watertemp"
     t.integer  "airtemp"

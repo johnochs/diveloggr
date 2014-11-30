@@ -18,6 +18,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
 	    Diveloggr.map.setCenter(mapOptions.center);
 	    Diveloggr.map.setZoom(9);
+		this.placeMarkers();
 	},
 	addFeedEntryView: function (entry) {
 		var entrySubview = new Diveloggr.Views.FeedEntry({ model: entry });
@@ -30,6 +31,16 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			}
 		);
 		this.removeSubview("#entry-table-elements", entrySubview);
+	},
+	placeMarkers: function () {
+		var map = Diveloggr.map;
+		var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+		  draggable:true,
+          title:"Drag me!",
+          map: map
+        });
 	},
 
 });

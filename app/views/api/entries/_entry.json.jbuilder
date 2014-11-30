@@ -2,5 +2,5 @@ json.(entry, :id, :title, :body, :divenum, :location_name, :longitude, :latitude
 
 user ||= nil
 unless user.nil?
-	json.user(user)
+	json.user(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname)
 end

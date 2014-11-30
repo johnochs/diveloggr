@@ -2,7 +2,7 @@ class Api::EntriesController < ApplicationController
   
   def index
     @entries = Entry.all
-    render json: @entries
+    render "index"
   end
   
   def create
@@ -18,7 +18,7 @@ class Api::EntriesController < ApplicationController
   
   def show
     @entry = Entry.find(params[:id])
-    render json: @entry, include: :user
+    render "show"
   end
   
   private

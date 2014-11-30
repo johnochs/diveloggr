@@ -11,7 +11,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.$el.html(this.template());
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
-		this.renderMap();
 		return this;
 	},
 	renderMap: function() {

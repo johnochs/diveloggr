@@ -15,7 +15,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		alert("here");
 		event.preventDefault();
 		var formInput = $('#entry_form_el').serializeJSON();
-		debugger
 		var entry = new Diveloggr.Models.Entry(formInput);
 		
 		function success () {

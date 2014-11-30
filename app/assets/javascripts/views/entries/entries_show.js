@@ -14,6 +14,7 @@ Diveloggr.Views.EntriesShow = Backbone.View.extend({
 		return this;
 	},
 	editEntry: function () {
-		// Backbone.history.navigate("#entries")
+		Backbone.history.navigate("#entries/" + this.model.get('id') +"/edit",
+		{ trigger: true });
 	}
 });

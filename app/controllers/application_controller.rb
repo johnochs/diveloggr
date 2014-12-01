@@ -26,4 +26,10 @@ class ApplicationController < ActionController::Base
   def ensure_logged_in
     redirect_to new_session_url unless logged_in?
   end
+  
+  def render_error_json
+    if !logged_in?
+      render json: ["Not Logged In"], status: :forbidden
+    end
+  end
 end

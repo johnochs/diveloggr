@@ -54,12 +54,24 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	  }, this);
 	},
 	getCurrentMapBounds: function () {
-		Diveloggr.currentBounds.nLat = Diveloggr.map.getBounds().getNorthEast().lat();
-		Diveloggr.currentBounds.eLng = Diveloggr.map.getBounds().getNorthEast().lng();
-		Diveloggr.currentBounds.sLat = Diveloggr.map.getBounds().getSouthWest().lat();
-		Diveloggr.currentBounds.wLng = Diveloggr.map.getBounds().getSouthWest().lng();
+		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat();)
+		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng();)
+		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat();)
+		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng();)
 	},
 	filterByMapZoom: function () {
+		this.zoomSorted = new Backbone.Collection;
+		
+		this.collection.each( function(entry) {
+			var entryLat = parseFloat( entry.get('latitude'); );
+			var entryLng = parseFloat( entry.get('longitude'); );
+			
+			if ( Diveloggr.currentBounds.sLat < entryLat && entryLat < Diveloggr.currentBounds.nLat ) {
+				if (Diveloggr.currentBounds.wLng < entryLng && entryLng < Diveloggr.currentBounds.eLng) {
+					this.zoomSorted.add(entry);
+				}
+			}
+		});
 	//
 	// 	var boundsHash = new Object();
 	//

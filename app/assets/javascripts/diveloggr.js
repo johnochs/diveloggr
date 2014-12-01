@@ -1,7 +1,7 @@
 var mapEl = $('<div id="map-viewport"></div>');
 var mapOptions = {
-    center: {lat: 32.837500, lng: -118.334333},
-	zoom: 12,
+    center: {lat: 33.567139, lng: -97.118325},
+	zoom: 6,
 	mapTypeId: google.maps.MapTypeId.TERRAIN,
     };
 

@@ -73,36 +73,87 @@
 	  </div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-6" id="cat-header">
+			<h3>Surface Conditions</h3>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-6" id="cat-header">
+			<h3>Underwater Conditions</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<div class="row">
+				<div class="col-xs-3">
+					<h4>Weather</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+			    <div class="form-group">
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
+			  	</label>
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
+			  	</label>
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
+			  	</label>
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
+			  	</label>
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
+			  	</label>
+			  	<label class="radio">
+			  	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
+			  	</label>
+			    </div>
+			</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+				  	<label class="form-slider" id="airtemp">Air Temp
+				  		<input type="range" id="airtemp" name="entry[airtemp]" min="-40" max="120" step="1" value="55">
+				  	</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-3">
+			<div class="row">
+				<div class="col-xs-3">
+					<h4>Surface Conditions</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+				    <div class="form-group">
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
+					  	</label>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
   <div class="form-group">
-	<h3>Weather</h3>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
-	</label>
-	<label class="form-slider" id="airtemp">Air Temp
-		<input type="range" id="airtemp" name="entry[airtemp]" min="-40" max="120" step="1" value="55">
-	</label>
   </div>
-  <h3>Surface Conditions</h3>
+  <h5>Surface Conditions</h5>
   <div class="form-group">
 	<label class="radio-inline">
 	  <input type="radio" name="entry[surface]" id="surface" value="Big Waves"> Big Waves
@@ -117,7 +168,7 @@
 	  <input type="radio" name="entry[surface]" id="surface" value="Calm"> Calm
 	</label>
   </div>
-  <h3>Underwater Conditions</h3>
+  <h5>Underwater Conditions</h5>
   <div class="form-group">
 	<h3>Current</h3>
 	<label class="radio-inline">

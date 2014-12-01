@@ -2,9 +2,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
 	initialize: function () {
+		this.zoomSorted = new Backbone.Collection;
 		this.listenTo(this.collection, "sync", this.render);
 		this.listenTo(this.collection, "add", this.addFeedEntryView);
 		this.listenTo(this.collection, "remove", this.removeFeedEntryView);
+		this.listenTo(this.zoomSorted, "sync", this.render)
 		this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
@@ -54,23 +56,24 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	  }, this);
 	},
 	getCurrentMapBounds: function () {
-		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat();)
-		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng();)
-		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat();)
-		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng();)
+		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
+		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
+		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())
+		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng())
 	},
 	filterByMapZoom: function () {
-		this.zoomSorted = new Backbone.Collection;
+		this.getCurrentMapBounds();
 		
 		this.collection.each( function(entry) {
-			var entryLat = parseFloat( entry.get('latitude'); );
-			var entryLng = parseFloat( entry.get('longitude'); );
+			var entryLat = parseFloat( entry.get('latitude') );
+			var entryLng = parseFloat( entry.get('longitude') );
 			
 			if ( Diveloggr.currentBounds.sLat < entryLat && entryLat < Diveloggr.currentBounds.nLat ) {
 				if (Diveloggr.currentBounds.wLng < entryLng && entryLng < Diveloggr.currentBounds.eLng) {
 					this.zoomSorted.add(entry);
 				}
 			}
+			debugger
 		});
 	//
 	// 	var boundsHash = new Object();

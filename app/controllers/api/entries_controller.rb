@@ -1,5 +1,7 @@
 class Api::EntriesController < ApplicationController
   
+  before_action :render_error_json
+  
   def index
     @entries = Entry.all
     render "index"

@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
   
+  before_action :render_error_json
+  
   def index
     @users = User.all
     render "index"

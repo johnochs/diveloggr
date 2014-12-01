@@ -2,9 +2,9 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
 	initialize: function () {
-		this.render()
+		this.renderMap();
 		this.zoomSorted = new Backbone.Collection;
-		this.listenTo(this.collection, "sync", this.filterByMapZoom);
+		// this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
 		this.listenTo(this.zoomSorted, "sync", this.placeMarkers)
@@ -15,12 +15,14 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.$el.html(this.template());
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
+		debugger
 		return this;
 	},
 	renderMap: function() {
-	    // google.maps.event.trigger(Diveloggr.map, 'resize');
-	    // Diveloggr.map.setCenter(mapOptions.center);
+	    google.maps.event.trigger(Diveloggr.map, 'resize');
+	    Diveloggr.map.setCenter(mapOptions.center);
 		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds);
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom);
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -43,6 +45,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	},
 	placeMarkers: function () {
 	    var map = Diveloggr.map;
+		debugger
 	    // var infowindow = App.infoWindow;
 	    this.zoomSorted.each(function(entry) {
 	      var lat = entry.get('latitude');
@@ -67,21 +70,18 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng())
 	},
 	filterByMapZoom: function () {
-		this.getCurrentMapBounds();
-		if (Diveloggr.map.getBounds() === undefined) {
-			return;
-		}
 		debugger
+		var that = this;
 		this.collection.each( function(entry) {
+			debugger
 			var entryLat = parseFloat( entry.get('latitude') );
 			var entryLng = parseFloat( entry.get('longitude') );
 			
 			if ( Diveloggr.currentBounds.sLat < entryLat && entryLat < Diveloggr.currentBounds.nLat ) {
 				if (Diveloggr.currentBounds.wLng < entryLng && entryLng < Diveloggr.currentBounds.eLng) {
-					this.zoomSorted.add(entry);
+					that.zoomSorted.add(entry);
 				}
 			}
-			debugger
 		});
 	//
 	// 	var boundsHash = new Object();

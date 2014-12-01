@@ -1,6 +1,7 @@
 Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	initialize: function () {
 		this.listenTo(this.model, "sync", this.render);
+		this.listenTo(this.model, "sync", this.updateSelected);
 	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
@@ -31,5 +32,18 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 				success: success
 			});
 		}
+	},
+	updateSelected: function () {
+		var that = this;
+		_(this.model.attributes).each( function (value, attribute) {
+			var searchId = "* #" + attribute;
+			console.log(searchId);
+			debugger
+			that.$el.find(searchId).each( function (){
+				if($(this).val() === value) {
+					$(this).prop("checked", true);
+				}
+			});
+		});
 	}
 });

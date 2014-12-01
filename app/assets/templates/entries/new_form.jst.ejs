@@ -46,34 +46,22 @@
   <div class="form-group">
 	<h3>Weather</h3>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Clear"
-	    <% if( entry.escape('weather') === "Clear") {  "checked" } %>
-	  > Clear
+	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Cloudy"
-		<% if( entry.escape('weather') === "Cloudy") {  "checked" } %>
-	  > Cloudy
+	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Mist"
-	  	<% if( entry.escape('weather') === "Mist") { "checked" } %>
-	  > Mist
+	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Rain"
-	  	<% if( entry.escape('weather') === "Rain") { "checked" } %>
-	  > Rain
+	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Snow"
-	  	<% if( entry.escape('weather') === "Snow") {  "checked" } %>
-	  > Snow
+	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[weather]" value="Stormy"
-	  	<% if( entry.escape('weather') === "Stormy") { "checked" } %>
-	  > Stormy
+	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
 	</label>
 	<label class="form-slider" id="airtemp">Air Temp
 		<input type="range" id="airtemp" name="entry[airtemp]" min="-40" max="120" step="1" value="55">
@@ -82,48 +70,32 @@
   <h3>Surface Conditions</h3>
   <div class="form-group">
 	<label class="radio-inline">
-	  <input type="radio" name="entry[surface]" value="Big Waves"
-	    <% if( entry.escape('surface') === "Big Waves") { "checked"} %>
-	  > Big Waves
+	  <input type="radio" name="entry[surface]" id="surface" value="Big Waves"> Big Waves
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" value="Choppy"
-	    <% if( entry.escape('surface') === "Choppy") { "checked"} %>
-	  > Choppy
+	  <input type="radio" name="entry[surface]" id="surface" value="Choppy"> Choppy
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" value="Small Waves"
-	    <% if( entry.escape('surface') === "Small Waves") { "checked"} %>
-	  > Small Waves
+	  <input type="radio" name="entry[surface]" id="surface" value="Small Waves"> Small Waves
 	</label>                                 
 	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" value="Calm"
-	    <% if( entry.escape('surface') === "Calm") { "checked"} %>
-	  > Calm
+	  <input type="radio" name="entry[surface]" id="surface" value="Calm"> Calm
 	</label>
   </div>
   <h3>Underwater Conditions</h3>
   <div class="form-group">
 	<h3>Current</h3>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" value="Strong"
-	    <% if( entry.escape('current') === "Strong") { "checked"} %>
-	  > Strong
+	  <input type="radio" name="entry[current]" id="current" value="Strong"> Strong
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" value="Medium"
-	    <% if( entry.escape('current') === "Medium") { "checked"} %>
-	  > Medium
+	  <input type="radio" name="entry[current]" id="current" value="Medium"> Medium
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" value="Light"
-	    <% if( entry.escape('currrent') === "Light") { "checked"} %>
-	  > Light
+	  <input type="radio" name="entry[current]" id="current" value="Light"> Light
 	</label>
 	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" value="None"
-	    <% if( entry.escape('current') === "None") { "checked"} %>
-	  > None
+	  <input type="radio" name="entry[current]" id="current" value="None"> None
 	</label>
   </div>
   <div class="form-group">
@@ -137,40 +109,40 @@
   <h3>Dive Type</h3>
   <div class="form-group">
 	  <label class="checkbox-inline">
-	    <input type="checkbox" id="inlineCheckbox1" name="entry[divetype]" value="Fun"> Fun
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Fun"> Fun
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" id="inlineCheckbox2" name="entry[divetype]" value="Night"> Night
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Night"> Night
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Drift"> Drift
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Drift"> Drift
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Cave"> Cave
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Cave"> Cave
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Photography"> Photography
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Photography"> Photography
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Ice"> Ice
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Ice"> Ice
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Research"> Research
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Research"> Research
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Rescue"> Rescue
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Rescue"> Rescue
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Search"> Search
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Search"> Search
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Retrieval"> Retrieval
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Retrieval"> Retrieval
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Instruction"> Instruction
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Instruction"> Instruction
 	  </label>
 	  <label class="checkbox-inline">
-	    <input type="checkbox" name="entry[divetype]" value="Exploration"> Exploration
+	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Exploration"> Exploration
 	  </label>
   </div>
   <div class="form-group">

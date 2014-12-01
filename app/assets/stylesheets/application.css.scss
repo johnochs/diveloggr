@@ -24,7 +24,6 @@
 }
 
 body, html {
-  background-image: url(/assets/greyzz.png);
   height: 100%;
   letter-spacing: 1px;
   font-family:  "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -32,9 +31,13 @@ body, html {
 
 .splash_background{
 	width: 100%;
+	max-width: 100%;
+	height: auto;
+	width: auto;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
+	overflow: hidden;
 }
 
 #overlay {

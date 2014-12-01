@@ -38,7 +38,7 @@ class Api::EntriesController < ApplicationController
     params.require(:entry).permit(
       :title, :body, :divenum, :location_name, :longitude, :latitude, :vis,
       :watertemp, :airtemp, :divetime, :maxdepth, :divetype, :current, :weather,
-      :avgdepth, :entrytime, :entrydate
+      :avgdepth, :entrytime, :entrydate, :surface
     )
   end
   

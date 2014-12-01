@@ -38,7 +38,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		_(this.model.attributes).each( function (value, attribute) {
 			var searchId = "* #" + attribute;
 			console.log(searchId);
-			debugger
 			that.$el.find(searchId).each( function (){
 				if($(this).val() === value) {
 					$(this).prop("checked", true);

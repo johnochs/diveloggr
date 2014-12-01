@@ -1,3 +1,4 @@
+<div class="row">
 <h1>
 <% if (entry.isNew()) { %>
 	New Dive
@@ -7,42 +8,76 @@
 </h1>
 
 <p>Required: title, body, and date.<p>
-
+</div>
 <form role="form" id="entry_form_el">
-  <div class="form-group">
-    <label for="divenum">Dive Number</label>
-    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No." value="<%= entry.escape('divenum') %>">
-  </div>
-  <div class="form-group">
-    <label for="divedate">Entry Date</label>
-    <input type="date" class="form-control" id="divedate" name="entry[entrydate]" value="<%= entry.escape('entrydate') %>">
-  </div>
-  <div class="form-group">
-    <label for="entrytime">Entry Time</label>
-    <input type="time" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
-  </div>
-  <div class="form-group">
-	  <label for="maxdepth">Max Depth</label>
-	  <input type="text" id="maxdepth" name="entry[maxdepth]" value="<%= entry.escape('maxdepth') %>">
-  </div>
-  <div class="form-group">
-	  <label for="avgdepth">Average Depth</label>
-	  <input type="text" id="avgdepth" name="entry[avgdepth]" value="<%= entry.escape('avgdepth') %>">
-  </div>
-  <div class="form-group">
-	  <label for="divetime">Dive Time</label>
-	  <input type="text" id="divetime" name="entry[divetime]" placeholder="mins"  value="<%= entry.escape('divetime') %>">
-  </div>
-  <div class="form-group">
-	  <label for="location">Location</label>
-	  <input type="text" id="location" name="entry[location_name]" value="<%= entry.escape('location_name') %>">
-  </div>
-  <div class="form-group">
-	  <label for="latitude">Latitude</label>
-	  <input type="text" id="latitude" name="entry[latitude]" value="<%= entry.escape('latitude') %>">
-	  <label for="longitude">Longitude</label>
-	  <input type="text" id="longitude" name="entry[longitude]" value="<%= entry.escape('longitude') %>">
-  </div>
+	<div class="row">
+		<div class="col-xs-6" id="cat-header">
+			<h3>Base Data</h3>
+		</div>
+		<div class="col-xs-6" id="cat-header">
+			<h3>Dive Profile</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+		  <div class="form-group">
+		    <label for="divenum">Dive Number</label>
+		    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No." value="<%= entry.escape('divenum') %>">
+		  </div>
+		  <div class="form-group">
+		    <label for="divedate">Entry Date</label>
+		    <input type="date" class="form-control" id="divedate" name="entry[entrydate]" value="<%= entry.escape('entrydate') %>">
+		  </div>
+		  <div class="form-group">
+		    <label for="entrytime">Entry Time</label>
+		    <input type="time" class="form-control" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
+		  </div>
+	  </div>
+	  <div class="col-xs-6">
+		  <div class="form-group">
+			  <label for="maxdepth">Max Depth</label>
+			  <input type="text" class="form-control" id="maxdepth" name="entry[maxdepth]" value="<%= entry.escape('maxdepth') %>">
+		  </div>
+		  <div class="form-group">
+			  <label for="avgdepth">Average Depth</label>
+			  <input type="text" class="form-control" id="avgdepth" name="entry[avgdepth]" value="<%= entry.escape('avgdepth') %>">
+		  </div>
+		  <div class="form-group">
+			  <label for="divetime">Dive Time</label>
+			  <input type="text" class="form-control" id="divetime" name="entry[divetime]" placeholder="mins"  value="<%= entry.escape('divetime') %>">
+		  </div>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12" id="cat-header">
+			<h3>Location Data</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4">
+		  <div class="form-group">
+			
+			  <label for="location">Location Name</label>
+			  <input type="text" class="form-control" id="location" name="entry[location_name]" value="<%= entry.escape('location_name') %>">
+		
+			  <label for="latitude">Latitude</label>
+			  <input type="text" class="form-control" id="latitude" name="entry[latitude]" value="<%= entry.escape('latitude') %>">
+		  
+			  <label for="longitude">Longitude</label>
+			  <input type="text" class="form-control" id="longitude" name="entry[longitude]" value="<%= entry.escape('longitude') %>">
+		
+		  </div>
+	  </div>
+	  <div class="col-xs-8">
+		  Google Maps HERE!
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+		</div>
+		<div class="col-xs-6">
+		</div>
+	</div>
   <div class="form-group">
 	<h3>Weather</h3>
 	<label class="radio-inline">

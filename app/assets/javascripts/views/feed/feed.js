@@ -17,9 +17,8 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	renderMap: function() {
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
 	    Diveloggr.map.setCenter(mapOptions.center);
-	    Diveloggr.map.setZoom(5);
 		this.placeMarkers();
-		google.maps.event.addListener(Diveloggr.map, 'zoom_changed', this.filterByMapZoom);
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom);
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -55,18 +54,29 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	  }, this);
 	},
 	filterByMapZoom: function () {
-		var bounds = Diveloggr.map.getBounds();
-		
-		var northLat = bounds.getNorthEast().lat();
-		var eastLng = bounds.getNorthEast().lng();
-		var southLat = bounds.getSouthWest().lat();
-		var westLng = bounds.getSouthWest().lng();
-		
-		// this.filteredCollection = newBackbone.Collection
-		// this.collection.each( function (entry) {
-			
-		})
-	}
+		Diveloggr.currentBounds.nLat = Diveloggr.map.getBounds().getNorthEast().lat();
+		Diveloggr.currentBounds.eLng = Diveloggr.map.getBounds().getNorthEast().lng();
+		Diveloggr.currentBounds.sLat = Diveloggr.map.getBounds().getSouthWest().lat();
+		Diveloggr.currentBounds.wLng = Diveloggr.map.getBounds().getSouthWest().lng();
+
+		// currentBounds = this.getCurrentMapBounds();
+		//
+		// context.filteredCollection = new Backbone.Collection;
+		// context.collection.each( function (entry) {
+		// })
+	},
+	getCurrentMapBounds: function () {
+	//
+	// 	var boundsHash = new Object();
+	//
+	// 	var bounds = Diveloggr.map.getBounds();
+	// 	bounds.getNorthEast().lat(); //northLat
+	// bounds.getNorthEast().lng();  //eastLng
+	// 	//southLat
+	// bounds.getSouthWest().lng();  //westLng
+	// 	//return an object with (key, val) = (current viewport bound, value)
+	// 	return boundsHash;
+	},
 });
 
 // var map = Diveloggr.map;

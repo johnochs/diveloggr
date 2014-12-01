@@ -29,6 +29,7 @@ body, html {
   font-family:  "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
 
+//Splash Formatting
 .splash_background{
 	width: 100%;
 	max-width: 100%;
@@ -48,7 +49,7 @@ body, html {
   width: 40%;
   display:inline;
   border-radius: 8px;
-  padding: 20px;
+  padding: 40px;
 }
 
 .splash_logo{
@@ -57,7 +58,18 @@ body, html {
 	margin-right: auto;
 	border-radius: 8px;
 	border: 4px solid black;
-	width: 60%;
+	width: 100%;
+}
+
+
+.main-sign-up {
+	float: left;
+	width: 50%;
+}
+
+.guest-log-in {
+	float: right;
+	width: 50%;
 }
 
 //Entry Page Specific

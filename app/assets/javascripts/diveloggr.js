@@ -9,6 +9,7 @@ var mapOptions = {
 window.Diveloggr = {
   $mapEl: mapEl,
   map: new google.maps.Map(mapEl[0], mapOptions),
+  markerHash: {},
   Models: {},
   Collections: {},
   Views: {},

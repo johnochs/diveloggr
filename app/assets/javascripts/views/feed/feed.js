@@ -6,6 +6,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.listenTo(this.collection, "add", this.addFeedEntryView);
 		this.listenTo(this.collection, "remove", this.removeFeedEntryView);
 		this.collection.once("sync", this.renderMap, this);
+		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
 		this.$el.html(this.template());
@@ -18,6 +19,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	    Diveloggr.map.setCenter(mapOptions.center);
 	    Diveloggr.map.setZoom(5);
 		this.placeMarkers();
+		google.maps.event.addListener(Diveloggr.map, 'zoom_changed', this.filterByMapZoom);
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -52,6 +54,19 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		  Diveloggr.markerHash[entry.get('id')] = marker;
 	  }, this);
 	},
+	filterByMapZoom: function () {
+		var bounds = Diveloggr.map.getBounds();
+		
+		var northLat = bounds.getNorthEast().lat();
+		var eastLng = bounds.getNorthEast().lng();
+		var southLat = bounds.getSouthWest().lat();
+		var westLng = bounds.getSouthWest().lng();
+		
+		// this.filteredCollection = newBackbone.Collection
+		// this.collection.each( function (entry) {
+			
+		})
+	}
 });
 
 // var map = Diveloggr.map;

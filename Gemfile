@@ -17,6 +17,8 @@ gem 'backbone-on-rails'
 gem 'figaro'
 gem 'bootstrap-sass'
 gem 'aws-sdk'
+gem 'foreman'
+gem 'paperclip'
 
 group :development do
   gem 'better_errors'

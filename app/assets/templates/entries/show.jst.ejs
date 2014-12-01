@@ -2,19 +2,19 @@
 	<div class="col-xs-3">IMG</div>
 	<div class="col-xs-9">NAME</div>
 </div>
-<% if (CURRENT_USER_ID === entry.get("user_id")) { %>
+<% if (CURRENT_USER_ID === entry.escape("user_id")) { %>
 	<div class="row">
 		<button class="entry-edit">Edit</button>
 		<button class="entry-delete">Delete</button>
 	</div>
 <% }; %>
 <div class="row entdiv" id="show_title">
-	<h2><%= entry.get("title") %></h2>
+	<h2><%= entry.escape("title") %></h2>
 </div>
 <div class="row" id="show_body">
 	<h5>Dive Notes:</h5>
 	<div class="interior_text_area">
-		<%= entry.get("body") %>
+		<%= entry.escape("body") %>
 	</div>
 </div>
 <div class="row entdiv">
@@ -24,15 +24,15 @@
 	<div class="col-xs-3">
 		<center>
 		<h5>Dive Number</h5>
-		<h1><%= entry.get("divenum") %></h1>
+		<h1><%= entry.escape("divenum") %></h1>
 		</center>
 	</div>
 	<div class="col-xs-9">
 		<ul>
-			<li>Entry Date: <%= entry.get("entrydate") %></li>
-			<li>Entry Time: <%= entry.get("entrytime") %></</li>
-			<li>Location Name: <%= entry.get("location_name") %></</li>
-			<li>Dive Type: <%= entry.get("divetype") %></</li>
+			<li>Entry Date: <%= entry.escape("entrydate") %></li>
+			<li>Entry Time: <%= entry.escape("entrytime") %></</li>
+			<li>Location Name: <%= entry.escape("location_name") %></</li>
+			<li>Dive Type: <%= entry.escape("divetype") %></</li>
 		</ul>
 	</div>
 </div>
@@ -43,17 +43,17 @@
 	<div class="col-xs-6">
 		<h3>Surface Conditions</h3>
 		<ul>
-			<li>Weather: <%= entry.get("weather") %></li>
-			<li>Air Temp: <%= entry.get("airtemp") %></li>
-			<li>Surface: <%= entry.get("surface") %></li>
+			<li>Weather: <%= entry.escape("weather") %></li>
+			<li>Air Temp: <%= entry.escape("airtemp") %></li>
+			<li>Surface: <%= entry.escape("surface") %></li>
 		</ul>
 	</div>
 	<div class="col-xs-6">
 		<h3>Underwater Conditions</h3>
 		<ul>
-			<li>Visibility: <%= entry.get("vis") %></li>
-			<li>Current: <%= entry.get("current") %></li>
-			<li>Water Temp: <%= entry.get("watertemp") %></li>
+			<li>Visibility: <%= entry.escape("vis") %></li>
+			<li>Current: <%= entry.escape("current") %></li>
+			<li>Water Temp: <%= entry.escape("watertemp") %></li>
 		</ul>
 	</div>
 </div>
@@ -63,14 +63,14 @@
 <div class="row">
 	<div class="col-xs-4" id="max_depth_box">
 		<h5>MAX DEPTH<h5>
-		<h1><%= entry.get("maxdepth") %></h1>
+		<h1><%= entry.escape("maxdepth") %></h1>
 	</div>
 	<div class="col-xs-4" id="avg_depth_box">
 		<h5>AVG DEPTH<h5>
-		<h1><%= entry.get("avgdepth") %></h1>
+		<h1><%= entry.escape("avgdepth") %></h1>
 	</div>
 	<div class="col-xs-4" id="divetime_depth_box">
 		<h5>DIVE TIME<h5>
-		<h1><%= entry.get("divetime") %></h1>
+		<h1><%= entry.escape("divetime") %></h1>
 	</div>
 </div>

@@ -20,7 +20,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.placeMarkers();
 	},
 	addFeedEntryView: function (entry) {
-		var user = entry.user({wait: true});
+		var user = entry.user();
 		var entrySubview = new Diveloggr.Views.FeedEntry({ model: entry });
 		this.addSubview("#entry-table-elements", entrySubview);
 	},
@@ -31,6 +31,12 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			}
 		);
 		this.removeSubview("#entry-table-elements", entrySubview);
+	},
+	markerHash: function () {
+		if (!this._markerHash) {
+			this._markerHash = {};
+		}
+		return this._markerHash;
 	},
 	placeMarkers: function () {
 	    var map = Diveloggr.map;
@@ -43,15 +49,16 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	        title: entry.get('title'),
 	        map: map
 	      });
-	  });
-		// var map = Diveloggr.map;
-		// var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-		//         var marker = new google.maps.Marker({
-		//           position: myLatlng,
-		//   draggable:true,
-		//           title:"Drag me!",
-		//           map: map
-        // });
+		  Diveloggr.markerHash[entry.get('id')] = marker;
+	  }, this);
 	},
-
 });
+
+// var map = Diveloggr.map;
+// var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+//         var marker = new google.maps.Marker({
+//           position: myLatlng,
+//   draggable:true,
+//           title:"Drag me!",
+//           map: map
+// });

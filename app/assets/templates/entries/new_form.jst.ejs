@@ -36,11 +36,11 @@
 	  <div class="col-xs-6">
 		  <div class="form-group">
 			  <label for="maxdepth">Max Depth</label>
-			  <input type="text" class="form-control" id="maxdepth" name="entry[maxdepth]" value="<%= entry.escape('maxdepth') %>">
+			  <input type="text" class="form-control" id="maxdepth" name="entry[maxdepth]" placeholder="fsw" value="<%= entry.escape('maxdepth') %>">
 		  </div>
 		  <div class="form-group">
 			  <label for="avgdepth">Average Depth</label>
-			  <input type="text" class="form-control" id="avgdepth" name="entry[avgdepth]" value="<%= entry.escape('avgdepth') %>">
+			  <input type="text" class="form-control" id="avgdepth" name="entry[avgdepth]" placeholder="fsw" value="<%= entry.escape('avgdepth') %>">
 		  </div>
 		  <div class="form-group">
 			  <label for="divetime">Dive Time</label>
@@ -73,44 +73,44 @@
 	  </div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6" id="cat-header">
+		<div class="col-xs-8" id="cat-header">
 			<h3>Surface Conditions</h3>
 		</div>
-		<div class="col-xs-6" id="cat-header">
+		<div class="col-xs-4" id="cat-header">
 			<h3>Underwater Conditions</h3>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-3">
+	</div> <!-- Row for Above/Below headers -->
+	<div class="row"> <!-- Row for Above/Below conditions including subheaders -->
+		<div class="col-xs-4">
 			<div class="row">
-				<div class="col-xs-3">
+				<div class="col-xs-4" id="cat-subheader">
 					<h4>Weather</h4>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3">
-			    <div class="form-group">
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
-			  	</label>
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
-			  	</label>
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
-			  	</label>
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
-			  	</label>
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
-			  	</label>
-			  	<label class="radio">
-			  	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
-			  	</label>
-			    </div>
-			</div>
-			</div>
+				<div class="col-xs-4">
+				    <div class="form-group">
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Cloudy"> Cloudy
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Mist"> Mist
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Rain"> Rain
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Snow"> Snow
+					  	</label>
+					  	<label class="radio">
+					  	  <input type="radio" name="entry[weather]" id="weather" value="Stormy"> Stormy
+					  	</label>
+				    </div>
+				</div>
+			</div> <!-- Radio Buttons for Weather -->
 			<div class="row">
 				<div class="form-group">
 				  	<label class="form-slider" id="airtemp">Air Temp
@@ -118,15 +118,15 @@
 				  	</label>
 				</div>
 			</div>
-		</div>
-		<div class="col-xs-3">
-			<div class="row">
-				<div class="col-xs-3">
+		</div> <!-- Col container for Weather including header -->
+		<div class="col-xs-4"><!-- Col container for Surface Conditions including header -->
+			<div class="row"> <!-- Row for Surface Conditions Header -->
+				<div class="col-xs-4" id="cat-subheader">
 					<h4>Surface Conditions</h4>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3">
+				<div class="col-xs-4">
 				    <div class="form-group">
 					  	<label class="radio">
 					  	  <input type="radio" name="entry[weather]" id="weather" value="Clear"> Clear
@@ -148,94 +148,111 @@
 					  	</label>
 					</div>
 				</div>
+			</div> <!-- Row for Surface Conditions Input -->
+		</div>
+		<div class="col-xs-4"> <!-- Col container for Current -->
+			<div class="row">
+				<div class="col-xs-4" id="cat-subheader">
+					<h4>Current</h4>
+				</div>
+			</div><!-- Row for Current Header -->
+			<div class="row"><!-- Row container for current radio inputs -->
+				<div class="col-xs-3">
+					<label class="radio">
+					  <input type="radio" name="entry[current]" id="current" value="Strong"> Strong
+					</label>
+					<label class="radio">
+					  <input type="radio" name="entry[current]" id="current" value="Medium"> Medium
+					</label>
+					<label class="radio">
+					  <input type="radio" name="entry[current]" id="current" value="Light"> Light
+					</label>
+					<label class="radio">
+					  <input type="radio" name="entry[current]" id="current" value="None"> None
+					</label>
+				</div>
+			</div>
+			<div class="row"><!-- Row container for vis and water temp -->
+				<div class="col-xs-4">
+				    <div class="form-group">
+				    	<label class="form-slider" id="vis">Visibility
+				    		<input type="range" id="vis" name="entry[vis]" min="0" max="200" step="2" value="30">
+				    	</label>
+				  	<label class="form-slider" id="watertemp">Water Temp
+				  		<input type="range" id="watertemp" name="entry[watertemp]" min="-2" max="100" step="1" value="55">
+				  	</label>
+				    </div>
+				</div>
 			</div>
 		</div>
 	</div>
-  <div class="form-group">
-  </div>
-  <h5>Surface Conditions</h5>
-  <div class="form-group">
-	<label class="radio-inline">
-	  <input type="radio" name="entry[surface]" id="surface" value="Big Waves"> Big Waves
-	</label>                                 
-	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="surface" value="Choppy"> Choppy
-	</label>                                 
-	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="surface" value="Small Waves"> Small Waves
-	</label>                                 
-	<label class="radio-inline">             
-	  <input type="radio" name="entry[surface]" id="surface" value="Calm"> Calm
-	</label>
-  </div>
-  <h5>Underwater Conditions</h5>
-  <div class="form-group">
-	<h3>Current</h3>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="current" value="Strong"> Strong
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="current" value="Medium"> Medium
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="current" value="Light"> Light
-	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="entry[current]" id="current" value="None"> None
-	</label>
-  </div>
-  <div class="form-group">
-  	<label class="form-slider" id="vis">Visibility
-  		<input type="range" id="vis" name="entry[vis]" min="0" max="200" step="2" value="30">
-  	</label>
-	<label class="form-slider" id="watertemp">Water Temp
-		<input type="range" id="watertemp" name="entry[watertemp]" min="-2" max="100" step="1" value="55">
-	</label>
-  </div>
-  <h3>Dive Type</h3>
-  <div class="form-group">
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Fun"> Fun
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Night"> Night
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Drift"> Drift
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Cave"> Cave
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Photography"> Photography
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Ice"> Ice
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Research"> Research
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Rescue"> Rescue
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Search"> Search
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Retrieval"> Retrieval
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Instruction"> Instruction
-	  </label>
-	  <label class="checkbox-inline">
-	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Exploration"> Exploration
-	  </label>
-  </div>
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="entry[title]" placeholder="Title" value="<%= entry.escape('title') %>">
-  </div>
-  <textarea class="form-control" name="entry[body]" rows="3"><%= entry.escape('body') %></textarea>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+	<div class="row"> <!-- Row for Dive Type header -->
+		<div class="col-xs-12" id="cat-header">
+			<h3>Dive Type</h3>
+		</div>
+	</div>
+	<div class="row"> <!-- Row for Dive type inputs -->
+		<div class="col-xs-12">
+		    <div class="form-group">
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Fun"> Fun
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Night"> Night
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Drift"> Drift
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Cave"> Cave
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Photography"> Photography
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Ice"> Ice
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Research"> Research
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Rescue"> Rescue
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Search"> Search
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Retrieval"> Retrieval
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Instruction"> Instruction
+		  	  </label>
+		  	  <label class="checkbox-inline">
+		  	    <input type="checkbox" id="divetype" name="entry[divetype]" value="Exploration"> Exploration
+		  	  </label>
+		    </div>
+		</div>
+	</div>
+	<div class="row"> <!-- Row for Entry input header -->
+		<div class="col-xs-12" id="cat-header">
+			<h3>Your Experience</h3>
+		</div>
+	</div>
+	<div class="row"> <!-- Row for Title/body -->
+		<div class="row">
+			<div class="col-xs-12">
+			    <div class="form-group">
+			      <input type="text" class="form-control" id="title" name="entry[title]" placeholder="Title" value="<%= entry.escape('title') %>">
+			    </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+			    <textarea class="form-control" name="entry[body]" rows="3" placeholder="Body"><%= entry.escape('body') %></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<button type="submit" class="btn btn-default">Submit</button>
+	</div>
 </form>

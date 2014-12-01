@@ -19,13 +19,25 @@ Diveloggr.Views.FeedEntry = Backbone.CompositeView.extend({
 	highliteItem: function(event) {
 		event.currentTarget.style.background = "black";
 		event.currentTarget.style.color = 'white';
+		this.toggleMarkerBounce();
 	},
 	backToNormal: function(event) {
 		event.currentTarget.style.background = "";
 		event.currentTarget.style.color = "";
+		this.toggleMarkerBounce();
 	},
 	goShow: function(event) {
 		var entryid = $(event.currentTarget).find(".ei-indicator").data('entry-id');
 		Backbone.history.navigate("#entries/" + entryid, { trigger: true });
-	}
+	},
+	toggleMarkerBounce: function () {
+		var marker = Diveloggr.markerHash[this.model.id]
+		if (marker != undefined) {
+		    if (marker.getAnimation() != null) {
+		      marker.setAnimation(null);
+		    } else {
+		      marker.setAnimation(google.maps.Animation.BOUNCE);
+		    }
+		}
+	},
 })

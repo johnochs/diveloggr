@@ -4,6 +4,7 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.7'
 gem 'pg'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'autoprefixer-rails'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -19,6 +20,7 @@ gem 'bootstrap-sass'
 gem 'aws-sdk'
 gem 'foreman'
 gem 'paperclip'
+
 
 group :development do
   gem 'better_errors'

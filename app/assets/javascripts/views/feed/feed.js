@@ -18,7 +18,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
 	    Diveloggr.map.setCenter(mapOptions.center);
 		this.placeMarkers();
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom);
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds);
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -53,19 +53,13 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		  Diveloggr.markerHash[entry.get('id')] = marker;
 	  }, this);
 	},
-	filterByMapZoom: function () {
+	getCurrentMapBounds: function () {
 		Diveloggr.currentBounds.nLat = Diveloggr.map.getBounds().getNorthEast().lat();
 		Diveloggr.currentBounds.eLng = Diveloggr.map.getBounds().getNorthEast().lng();
 		Diveloggr.currentBounds.sLat = Diveloggr.map.getBounds().getSouthWest().lat();
 		Diveloggr.currentBounds.wLng = Diveloggr.map.getBounds().getSouthWest().lng();
-
-		// currentBounds = this.getCurrentMapBounds();
-		//
-		// context.filteredCollection = new Backbone.Collection;
-		// context.collection.each( function (entry) {
-		// })
 	},
-	getCurrentMapBounds: function () {
+	filterByMapZoom: function () {
 	//
 	// 	var boundsHash = new Object();
 	//

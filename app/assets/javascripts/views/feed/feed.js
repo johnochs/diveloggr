@@ -2,12 +2,13 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
 	initialize: function () {
+		this.render()
 		this.zoomSorted = new Backbone.Collection;
-		this.listenTo(this.collection, "sync", this.render);
-		this.listenTo(this.collection, "add", this.addFeedEntryView);
-		this.listenTo(this.collection, "remove", this.removeFeedEntryView);
-		this.listenTo(this.zoomSorted, "sync", this.render)
-		this.collection.once("sync", this.renderMap, this);
+		this.listenTo(this.collection, "sync", this.filterByMapZoom);
+		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
+		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
+		this.listenTo(this.zoomSorted, "sync", this.placeMarkers)
+		// this.collection.once("sync", this.renderMap, this.filterByMapZoom);
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
@@ -17,9 +18,8 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		return this;
 	},
 	renderMap: function() {
-	    google.maps.event.trigger(Diveloggr.map, 'resize');
-	    Diveloggr.map.setCenter(mapOptions.center);
-		this.placeMarkers();
+	    // google.maps.event.trigger(Diveloggr.map, 'resize');
+	    // Diveloggr.map.setCenter(mapOptions.center);
 		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds);
 	},
 	addFeedEntryView: function (entry) {
@@ -44,7 +44,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	placeMarkers: function () {
 	    var map = Diveloggr.map;
 	    // var infowindow = App.infoWindow;
-	    this.collection.each(function(entry) {
+	    this.zoomSorted.each(function(entry) {
 	      var lat = entry.get('latitude');
 	      var lng = entry.get('longitude');
 	      var marker = new google.maps.Marker({
@@ -54,8 +54,13 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	      });
 		  Diveloggr.markerHash[entry.get('id')] = marker;
 	  }, this);
+	  this.render();
 	},
 	getCurrentMapBounds: function () {
+		if (Diveloggr.map.getBounds() === undefined) {
+			return;
+		}
+		debugger
 		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
 		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
 		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())
@@ -63,7 +68,10 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	},
 	filterByMapZoom: function () {
 		this.getCurrentMapBounds();
-		
+		if (Diveloggr.map.getBounds() === undefined) {
+			return;
+		}
+		debugger
 		this.collection.each( function(entry) {
 			var entryLat = parseFloat( entry.get('latitude') );
 			var entryLng = parseFloat( entry.get('longitude') );

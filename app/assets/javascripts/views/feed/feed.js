@@ -20,7 +20,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
 	    Diveloggr.map.setCenter(mapOptions.center);
 		this.placeMarkers();
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds);
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds.bind(this));
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -56,6 +56,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	  }, this);
 	},
 	getCurrentMapBounds: function () {
+		debugger
 		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
 		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
 		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())

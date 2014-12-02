@@ -5,7 +5,6 @@ var mapOptions = {
 	mapTypeId: google.maps.MapTypeId.TERRAIN,
     };
 
-
 window.Diveloggr = {
   $mapEl: mapEl,
   map: new google.maps.Map(mapEl[0], mapOptions),
@@ -20,8 +19,6 @@ window.Diveloggr = {
 	  Backbone.history.start();
   }
 };
-
-
 
 $(document).ready(function(){
   Diveloggr.initialize();

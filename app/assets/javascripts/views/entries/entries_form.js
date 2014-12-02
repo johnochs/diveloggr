@@ -4,6 +4,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		this.listenTo(this.model, "sync", this.updateSelected);
 		this.listenTo(this.model, "sync", this.updateMap);
 		this.updateMap();
+		google.maps.event.addListenerOnce(
+			Diveloggr.map, 'click', this.addDragMarker
+		);
 	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
@@ -62,5 +65,14 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			Diveloggr.map.panTo(lL);
 			Diveloggr.map.setZoom(15);
 		}
+	},
+	addDragMarker: function(event) {
+		var lL = event.latLng;  //stores google maps event latLng object where click occurred
+		var newMarker = new google.maps.Marker({
+			position: lL,
+			map: Diveloggr.map,
+			draggable: true,
+			annimation: google.maps.Animation.DROP
+		});
 	}
 });

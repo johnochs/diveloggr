@@ -16,7 +16,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
-		Diveloggr.map.setZoom(5);
 		return this;
 	},
 	addFeedEntryView: function (entry) {

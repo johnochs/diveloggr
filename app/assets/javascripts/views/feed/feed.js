@@ -2,27 +2,26 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
 	initialize: function () {
+		this.zoomSorted = new Backbone.Collection({ model: Diveloggr.Models.Entry });
 		this.renderMap();
-		this.zoomSorted = new Backbone.Collection;
-		// this.listenTo(this.collection, "sync", this.filterByMapZoom);
+		this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
-		this.listenTo(this.zoomSorted, "sync", this.placeMarkers)
-		// this.collection.once("sync", this.renderMap, this.filterByMapZoom);
+		this.listenTo(this.zoomSorted, "reset", this.placeMarkers)
+		this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
 		this.$el.html(this.template());
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
-		debugger
 		return this;
 	},
 	renderMap: function() {
 	    google.maps.event.trigger(Diveloggr.map, 'resize');
 	    Diveloggr.map.setCenter(mapOptions.center);
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds);
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom);
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds.bind(this));
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -43,56 +42,64 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		}
 		return this._markerHash;
 	},
-	placeMarkers: function () {
-	    var map = Diveloggr.map;
-		debugger
-	    // var infowindow = App.infoWindow;
-	    this.zoomSorted.each(function(entry) {
-	      var lat = entry.get('latitude');
-	      var lng = entry.get('longitude');
-	      var marker = new google.maps.Marker({
-	        position: new google.maps.LatLng(lat, lng),
-	        title: entry.get('title'),
-	        map: map
-	      });
-		  Diveloggr.markerHash[entry.get('id')] = marker;
-	  }, this);
-	  this.render();
+	addMarker: function (entry) {
+	  var map = Diveloggr.map;
+      var lat = entry.get('latitude');
+      var lng = entry.get('longitude');
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        title: entry.get('title'),
+        map: map
+      });
+	  Diveloggr.markerHash[entry.get('id')] = marker;
 	},
+	removeMarker: function (entry) {
+		delete Diveloggr.markerHash[entry.get('id')];
+	},
+	// placeMarkers: function () {
+	//     var map = Diveloggr.map;
+	// 	debugger
+	//     // var infowindow = App.infoWindow;
+	//     this.zoomSorted.each(function(entry) {
+	//       var lat = entry.get('latitude');
+	//       var lng = entry.get('longitude');
+	//       var marker = new google.maps.Marker({
+	//         position: new google.maps.LatLng(lat, lng),
+	//         title: entry.get('title'),
+	//         map: map
+	//       });
+	// 	  Diveloggr.markerHash[entry.get('id')] = marker;
+	//   }, this);
+	// },
 	getCurrentMapBounds: function () {
 		if (Diveloggr.map.getBounds() === undefined) {
 			return;
 		}
-		debugger
 		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
 		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
 		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())
 		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng())
 	},
 	filterByMapZoom: function () {
-		debugger
+		this.getCurrentMapBounds();
 		var that = this;
+		
+		this.zoomSorted.each( function (entry) {
+			that.zoomSorted.remove(entry);
+			that.removeMarker(entry);
+		});
+
 		this.collection.each( function(entry) {
-			debugger
 			var entryLat = parseFloat( entry.get('latitude') );
 			var entryLng = parseFloat( entry.get('longitude') );
 			
 			if ( Diveloggr.currentBounds.sLat < entryLat && entryLat < Diveloggr.currentBounds.nLat ) {
 				if (Diveloggr.currentBounds.wLng < entryLng && entryLng < Diveloggr.currentBounds.eLng) {
 					that.zoomSorted.add(entry);
+					that.addMarker(entry);
 				}
 			}
 		});
-	//
-	// 	var boundsHash = new Object();
-	//
-	// 	var bounds = Diveloggr.map.getBounds();
-	// 	bounds.getNorthEast().lat(); //northLat
-	// bounds.getNorthEast().lng();  //eastLng
-	// 	//southLat
-	// bounds.getSouthWest().lng();  //westLng
-	// 	//return an object with (key, val) = (current viewport bound, value)
-	// 	return boundsHash;
 	},
 });
 

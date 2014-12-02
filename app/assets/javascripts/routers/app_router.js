@@ -51,6 +51,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(showView);
 	},
 	_swapView: function (view) {
+		this._currentView && this._currentView.removeGoogELs();
 		this._currentView && this._currentView.remove();
 		this._currentView = view;
 		this.$rootEl.html(view.render().$el);

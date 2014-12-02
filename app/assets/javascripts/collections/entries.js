@@ -24,7 +24,8 @@ Diveloggr.Collections.entries.fetch({
 					parseFloat(entry.get('latitude')), parseFloat(entry.get('longitude'))
 				),
 				map: Diveloggr.map,
-				title: entry.escape('title')
+				title: entry.escape('title'),
+				icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 			});
 			Diveloggr.markerHash[entry.get('id')] = marker;
 		});

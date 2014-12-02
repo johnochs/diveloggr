@@ -37,7 +37,16 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			});
 		} else {
 			entry.save({}, {
-				success: success
+				success: function () {
+					success();
+					//On successful save, also remove the old marker from the map
+					//and replace it with a new one.
+					if (this.marker) {
+						var oldMarker = Diveloggr.markerHash[entry.get('id')];
+						Diveloggr.map.setMap(null)
+						Diveloggr.markerHash[entry.get('id')] = this.marker;
+					}
+				}
 			});
 		}
 		function success () {

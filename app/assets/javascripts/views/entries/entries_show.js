@@ -1,4 +1,4 @@
-Diveloggr.Views.EntriesShow = Backbone.View.extend({
+Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	initialize: function () {
 		this.listenTo(this.model, "sync", this.render)
 	},

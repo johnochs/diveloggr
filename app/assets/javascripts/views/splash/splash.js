@@ -1,4 +1,4 @@
-Diveloggr.Views.SplashPage = Backbone.View.extend({
+Diveloggr.Views.SplashPage = Backbone.CompositeView.extend({
 	template: JST['splash/splash'],
 	render: function () {
 		var splashView = this.template();

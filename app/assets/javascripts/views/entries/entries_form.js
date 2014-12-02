@@ -83,7 +83,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		this.marker = newMarker;
 		this.updateLatLng(newMarker.getPosition());
 			var wrapper = google.maps.event.addListener(
-					this.marker, 'position_changed', this.readLatLng.bind(this))
+					this.marker, 'position_changed', this.readLatLng.bind(this)
 				);
 			this.addGoogEL(wrapper);	
 	},

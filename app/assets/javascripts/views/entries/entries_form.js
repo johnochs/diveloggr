@@ -51,8 +51,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	updateMap: function () {
 		debugger
 		if (!this.model.isNew()) {
-			// Diveloggr.map.panTo(latLng: { lat: this.model.get('latitude'), lng: this.model.get('longitude')});
-			Diveloggr.map.setZoom({ zoom: 15 });
+			new 
+			Diveloggr.map.panTo({lat: this.model.get('latitude'), lng: this.model.get('longitude')});
+			Diveloggr.map.setZoom(15);
 		}
 	}
 });

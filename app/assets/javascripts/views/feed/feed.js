@@ -24,7 +24,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.addSubview("#entry-table-elements", entrySubview);
 	},
 	removeFeedEntryView: function (entry) {
-		debugger
 		var entrySubview = _.find(
 			this.subviews("#entry-table-elements"), function(subview) {
 				return subview.model === entry;

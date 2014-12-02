@@ -1,18 +1,16 @@
 Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	initialize: function () {
-		this.googEL = [];
 		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.model, "sync", this.updateMap);
 		this.updateMap();
-		this.googEL.push(
-			google.maps.event.addListenerOnce(
+		var wrapper = google.maps.event.addListenerOnce(
 			Diveloggr.map, 'click', this.addDragMarker.bind(this)
-			)
 		);
-		debugger
-		this.googEL.push(
-			google.maps.event.addListener(Diveloggr.map, 'idle', this.render.bind(this))
-		)
+		this.addGoogEL(wrapper);
+		var wrapper = google.maps.event.addListener(
+			Diveloggr.map, 'idle', this.render.bind(this)
+		);
+		this.addGoogEL(wrapper);
 	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
@@ -45,10 +43,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		function success () {
 			Backbone.history.navigate("/feed", { trigger: true});
 		}
-		
-		_(this.googEL).each( function (eventlistener) {
-			google.maps.event.removeListener(eventlistener);
-		});
 	},
 	updateSelected: function () {
 		var that = this;
@@ -88,9 +82,10 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		
 		this.marker = newMarker;
 		this.updateLatLng(newMarker.getPosition());
-		this.googEL.push(
-			google.maps.event.addListener(this.marker, 'position_changed', this.readLatLng.bind(this))
-		);
+			var wrapper = google.maps.event.addListener(
+					this.marker, 'position_changed', this.readLatLng.bind(this))
+				);
+			this.addGoogEL(wrapper);	
 	},
 	readLatLng: function () {
 		var lL = this.marker.getPosition();

@@ -3,10 +3,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	template: JST['feed/feed'],
 	initialize: function () {
 		this.zoomSorted = new Backbone.Collection({ model: Diveloggr.Models.Entry });
-		google.maps.event.addListener(Diveloggr.map, 'tilesloaded', this.filterByMapZoom.bind(this));
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
 		this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
+		this.listenTo(this.zoomSorted, "sync", this.render);
 		// this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
@@ -14,6 +15,8 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.$el.html(this.template());
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
+		google.maps.event.trigger(Diveloggr.map, 'resize');
+		Diveloggr.map.setZoom(5);
 		return this;
 	},
 	addFeedEntryView: function (entry) {
@@ -29,35 +32,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		);
 		this.removeSubview("#entry-table-elements", entrySubview);
 	},
-	// addMarker: function (entry) {
-	//   var map = Diveloggr.map;
-	//       var lat = entry.get('latitude');
-	//       var lng = entry.get('longitude');
-	//       var marker = new google.maps.Marker({
-	//         position: new google.maps.LatLng(lat, lng),
-	//         title: entry.get('title'),
-	//         map: map
-	//       });
-	//   Diveloggr.markerHash()[entry.get('id')] = marker;
-	// },
-	// removeMarker: function (entry) {
-	// 	delete Diveloggr.markerHash()[entry.get('id')];
-	// },
-	// placeMarkers: function () {
-	//     var map = Diveloggr.map;
-	// 	debugger
-	//     // var infowindow = App.infoWindow;
-	//     this.zoomSorted.each(function(entry) {
-	//       var lat = entry.get('latitude');
-	//       var lng = entry.get('longitude');
-	//       var marker = new google.maps.Marker({
-	//         position: new google.maps.LatLng(lat, lng),
-	//         title: entry.get('title'),
-	//         map: map
-	//       });
-	// 	  Diveloggr.markerHash[entry.get('id')] = marker;
-	//   }, this);
-	// },
 	getCurrentMapBounds: function () {
 
 		if (Diveloggr.map.getBounds() === undefined) {
@@ -87,14 +61,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 				}
 			}
 		});
+		this.zoomSorted.trigger('sync');
 	},
 });
-
-// var map = Diveloggr.map;
-// var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-//         var marker = new google.maps.Marker({
-//           position: myLatlng,
-//   draggable:true,
-//           title:"Drag me!",
-//           map: map
-// });

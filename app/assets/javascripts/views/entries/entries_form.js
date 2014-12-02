@@ -1,9 +1,9 @@
 Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	initialize: function () {
-		this.model.fetch();
 		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.model, "sync", this.updateSelected);
 		this.listenTo(this.model, "sync", this.updateMap);
+		this.updateMap();
 	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
@@ -11,6 +11,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		"submit": "submitForm"
 	},
 	render: function () {
+		google.maps.event.trigger( Diveloggr.map, 'resize');
 		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
 		this.$('#map-container').html(Diveloggr.$mapEl);
@@ -49,10 +50,16 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		});
 	},
 	updateMap: function () {
-		debugger
 		if (!this.model.isNew()) {
-			new 
-			Diveloggr.map.panTo({lat: this.model.get('latitude'), lng: this.model.get('longitude')});
+			var lL = new google.maps.LatLng(
+						parseFloat(this.model.get('latitude')),
+						parseFloat(this.model.get('longitude'))
+					 );
+			Diveloggr.map.panTo(lL);
+			Diveloggr.map.setZoom(15);
+		} else {
+			var lL = new google.maps.LatLng(37.781083, -122.411542)
+			Diveloggr.map.panTo(lL);
 			Diveloggr.map.setZoom(15);
 		}
 	}

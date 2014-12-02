@@ -3,6 +3,12 @@ Backbone.CompositeView = Backbone.View.extend({
     this.subviews(selector).push(subview);
     this.attachSubview(selector, subview.render());
   },
+  
+  // #addGoogEL takes the wrapper returned by creating an Google event listener
+  // and stores it in the googELs() array.
+  addGoogEL: function (wrapper) {
+	  this.googELs().push(wrapper);
+  },
 
   attachSubview: function (selector, subview) {
     this.$(selector).append(subview.$el);
@@ -40,6 +46,14 @@ Backbone.CompositeView = Backbone.View.extend({
     var subviews = this.subviews(selector);
     subviews.splice(subviews.indexOf(subview), 1);
   },
+  
+  //Iterates over the array of google event listeners for the current
+  //view/subview and removes them all.
+  removeGoogELs: function () {
+  	_(this.GoogEL()).each( function (googEL) {
+  		googEL.removeListener();
+  	})
+  },
 
   subviews: function (selector) {
 
@@ -51,5 +65,11 @@ Backbone.CompositeView = Backbone.View.extend({
       this._subviews[selector] = this._subviews[selector] || [];
       return this._subviews[selector];
     }
+  },
+  
+  // #googELs will return and array of event listeners attached to this view.
+  googELs: function () {
+	  this._googELs = this._googELs || [];
+	  return this._googELs;
   }
 });

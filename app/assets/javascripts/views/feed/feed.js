@@ -3,11 +3,10 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	template: JST['feed/feed'],
 	initialize: function () {
 		this.zoomSorted = new Backbone.Collection({ model: Diveloggr.Models.Entry });
-		this.renderMap();
+		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
 		this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
-		this.listenTo(this.zoomSorted, "reset", this.placeMarkers)
 		this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
@@ -16,12 +15,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		return this;
-	},
-	renderMap: function() {
-	    google.maps.event.trigger(Diveloggr.map, 'resize');
-	    Diveloggr.map.setCenter(mapOptions.center);
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.getCurrentMapBounds.bind(this));
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();

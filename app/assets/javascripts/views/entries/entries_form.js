@@ -5,7 +5,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		this.listenTo(this.model, "sync", this.updateMap);
 		this.updateMap();
 		google.maps.event.addListenerOnce(
-			Diveloggr.map, 'click', this.addDragMarker
+			Diveloggr.map, 'click', this.addDragMarker.bind(this)
 		);
 		google.maps.event.addListener(Diveloggr.map, 'idle', this.render.bind(this));
 	},
@@ -75,5 +75,25 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			draggable: true,
 			annimation: google.maps.Animation.DROP
 		});
+		
+		this.marker = newMarker;
+		this.updateLatLng(newMarker.getPosition());
+		google.maps.event.addListener(this.marker, 'position_changed', this.readLatLng.bind(this));
+	},
+	readLatLng: function () {
+		var lL = this.marker.getPosition();
+		
+		this.updateLatLng(lL);
+	},
+	updateLatLng: function (latLng) {  //Note that this method takes a google latLng object
+		if (!this.$lat && !this.$lng) {
+			this.$lat = this.$el.find('#latitude');
+			this.$lng = this.$el.find('#longitude');
+		}
+		
+		this.$lat.attr('value', latLng.lat());
+		this.$lng.attr('value', latLng.lng());
 	}
+	
+	
 });

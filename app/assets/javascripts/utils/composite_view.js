@@ -50,10 +50,9 @@ Backbone.CompositeView = Backbone.View.extend({
   //Iterates over the array of google event listeners for the current
   //view/subview and removes them all.
   removeGoogELs: function () {
-	  debugger
   	_(this.googELs()).each( function (googEL, i) {
-			debugger
-  		googEL.removeListener();
+  		// googEL.removeListener();
+		googEL.remove();
   	})
   },
 

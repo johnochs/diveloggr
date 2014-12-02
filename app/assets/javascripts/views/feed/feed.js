@@ -3,11 +3,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	template: JST['feed/feed'],
 	initialize: function () {
 		this.zoomSorted = new Backbone.Collection({ model: Diveloggr.Models.Entry });
-		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
+		google.maps.event.addListener(Diveloggr.map, 'tilesloaded', this.filterByMapZoom.bind(this));
 		this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
-		this.collection.once("sync", this.renderMap, this);
+		// this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
@@ -29,26 +29,20 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		);
 		this.removeSubview("#entry-table-elements", entrySubview);
 	},
-	markerHash: function () {
-		if (!this._markerHash) {
-			this._markerHash = {};
-		}
-		return this._markerHash;
-	},
-	addMarker: function (entry) {
-	  var map = Diveloggr.map;
-      var lat = entry.get('latitude');
-      var lng = entry.get('longitude');
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(lat, lng),
-        title: entry.get('title'),
-        map: map
-      });
-	  Diveloggr.markerHash[entry.get('id')] = marker;
-	},
-	removeMarker: function (entry) {
-		delete Diveloggr.markerHash[entry.get('id')];
-	},
+	// addMarker: function (entry) {
+	//   var map = Diveloggr.map;
+	//       var lat = entry.get('latitude');
+	//       var lng = entry.get('longitude');
+	//       var marker = new google.maps.Marker({
+	//         position: new google.maps.LatLng(lat, lng),
+	//         title: entry.get('title'),
+	//         map: map
+	//       });
+	//   Diveloggr.markerHash()[entry.get('id')] = marker;
+	// },
+	// removeMarker: function (entry) {
+	// 	delete Diveloggr.markerHash()[entry.get('id')];
+	// },
 	// placeMarkers: function () {
 	//     var map = Diveloggr.map;
 	// 	debugger
@@ -69,11 +63,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		if (Diveloggr.map.getBounds() === undefined) {
 			return;
 		}
-		
-		Diveloggr.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
-		Diveloggr.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
-		Diveloggr.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())
-		Diveloggr.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng())
+		this.currentBounds = {};
+		this.currentBounds.nLat = parseFloat(Diveloggr.map.getBounds().getNorthEast().lat())
+		this.currentBounds.eLng = parseFloat(Diveloggr.map.getBounds().getNorthEast().lng())
+		this.currentBounds.sLat = parseFloat(Diveloggr.map.getBounds().getSouthWest().lat())
+		this.currentBounds.wLng = parseFloat(Diveloggr.map.getBounds().getSouthWest().lng())
 	},
 	filterByMapZoom: function () {
 		this.getCurrentMapBounds();
@@ -81,17 +75,15 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		
 		this.zoomSorted.each( function (entry) {
 			that.zoomSorted.remove(entry);
-			that.removeMarker(entry);
 		});
 
 		this.collection.each( function(entry) {
 			var entryLat = parseFloat( entry.get('latitude') );
 			var entryLng = parseFloat( entry.get('longitude') );
 			
-			if ( Diveloggr.currentBounds.sLat < entryLat && entryLat < Diveloggr.currentBounds.nLat ) {
-				if (Diveloggr.currentBounds.wLng < entryLng && entryLng < Diveloggr.currentBounds.eLng) {
+			if ( that.currentBounds.sLat < entryLat && entryLat < that.currentBounds.nLat ) {
+				if (that.currentBounds.wLng < entryLng && entryLng < that.currentBounds.eLng) {
 					that.zoomSorted.add(entry);
-					that.addMarker(entry);
 				}
 			}
 		});

@@ -28,6 +28,11 @@ Diveloggr.Views.FeedEntry = Backbone.CompositeView.extend({
 	},
 	goShow: function(event) {
 		var entryid = $(event.currentTarget).find(".ei-indicator").data('entry-id');
+		var marker = Diveloggr.markerHash[this.model.id]
+		if (marker != undefined) {
+		      marker.setAnimation(null);
+		}
+		
 		Backbone.history.navigate("#entries/" + entryid, { trigger: true });
 	},
 	toggleMarkerBounce: function () {

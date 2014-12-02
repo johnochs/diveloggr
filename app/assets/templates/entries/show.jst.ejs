@@ -2,7 +2,7 @@
 	<div class="col-xs-3">IMG</div>
 	<div class="col-xs-9">NAME</div>
 </div>
-<% if (CURRENT_USER_ID === entry.escape("user_id")) { %>
+<% if (CURRENT_USER_ID === entry.get("user_id")) { %>
 	<div class="row">
 		<button class="entry-edit">Edit</button>
 		<button class="entry-delete">Delete</button>

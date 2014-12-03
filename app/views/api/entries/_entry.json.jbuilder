@@ -4,3 +4,5 @@ user ||= nil
 unless user.nil?
 	json.user(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname)
 end
+
+json.images entry.images, :filename :url

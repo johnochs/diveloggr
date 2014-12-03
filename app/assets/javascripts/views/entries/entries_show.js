@@ -1,6 +1,8 @@
 Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	initialize: function () {
 		this.listenTo(this.model, "sync", this.render)
+		var wrapper = google.maps.event.addListenerOnce(Diveloggr.map, 'tilesloaded', this.panMap.bind(this));
+		this.addGoogEL(wrapper);
 	},
 	events: {
 		"click .entry-edit": "editEntry",
@@ -11,10 +13,19 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	render: function () {
 		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
+		this.$('#map-container').html(Diveloggr.$mapEl);
+		google.maps.event.trigger(Diveloggr.map, 'resize');
 		return this;
 	},
 	editEntry: function () {
 		Backbone.history.navigate("#entries/" + this.model.get('id') +"/edit",
 		{ trigger: true });
+	},
+	panMap: function() {
+		var lL = new google.maps.LatLng(
+			parseFloat(this.model.get('latitude')), 
+			parseFloat(this.model.get('longitude'))
+		);
+		Diveloggr.map.panTo(lL);
 	}
 });

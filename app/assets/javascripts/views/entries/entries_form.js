@@ -120,6 +120,11 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	},
 	uploadPhotos: function (event) {
 		event.preventDefault();
-		alert("uplaod!");
+		
+		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
+
+		filepicker.pickAndStore({},{},function(Blobs){
+		  console.log(JSON.stringify(Blobs));
+		});
 	},
 });

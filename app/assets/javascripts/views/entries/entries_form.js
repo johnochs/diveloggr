@@ -131,6 +131,23 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 								 openTo: 'COMPUTER'},
 								{location: 'S3'},
 								function(Blobs){
+									//saves the 
+									var sBlobs = JSON.stringify(Blobs);
+									sBlobs.forEach( function (imageObj) {
+										var image = new Diveloggr.Models.Image;
+										_.each(imageObj, function(value, attr) {
+											//since we are uploading the large version, it is important to store the filepicker response for the attribute "url" under "l_url", which is in the schema.
+											if(attr == "url"){
+												image.set('l_url', attr);
+											} else {
+												image.set(attr, value);
+											}
+										})
+										image.save;
+										
+										//input the callbacks for saving medium and small here later
+									})
+									
 									console.log(JSON.stringify(Blobs));
 								});
 	},

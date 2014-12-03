@@ -15,7 +15,8 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
 	events: {
-		"submit": "submitForm"
+		"submit": "submitForm",
+		"click #form-upload-photos": "uploadPhotos"
 	},
 	render: function () {
 		var renderedContent = this.template({ entry: this.model });
@@ -116,5 +117,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			var parsedTime = timeStr.match(/:\d+:\d+/)[0].slice(1);
 			this.$el.find('#entrytime').attr('value', parsedTime);
 		}
-	}
+	},
+	uploadPhotos: function (event) {
+		event.preventDefault();
+		alert("uplaod!");
+	},
 });

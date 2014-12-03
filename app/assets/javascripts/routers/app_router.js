@@ -18,7 +18,8 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(splashView);
 	},
 	feedPage: function () {
-		Diveloggr.Collections.entries.fetch({wait: true});
+		Diveloggr.Collections.entries.fetch();
+		Diveloggr.Collections.users.fetch();
 		var feedView = new Diveloggr.Views.FeedView({
 			collection: Diveloggr.Collections.entries
 		});

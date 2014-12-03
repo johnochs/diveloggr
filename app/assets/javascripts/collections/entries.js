@@ -9,7 +9,10 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 			success: function () { entries.add(entry); }
 		});
 		return entry;
-	}
+	},
+	comparator: function (entry) {
+		return entry.get('user_id')
+	},
 });
 
 Diveloggr.Collections.entries = new Diveloggr.Collections.Entries;

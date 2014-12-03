@@ -43,10 +43,10 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 					//and replace it with a new one.
 					if (this.marker) {
 						var oldMarker = Diveloggr.markerHash[entry.get('id')];
-						Diveloggr.map.setMap(null)
+						oldMarker.setMap(null)
 						Diveloggr.markerHash[entry.get('id')] = this.marker;
 					}
-				}
+				}.bind(this)
 			});
 		}
 		function success () {

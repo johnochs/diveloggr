@@ -1,6 +1,27 @@
 <div class="row entdiv" id="show_header">
-	<div class="col-xs-3">IMG</div>
-	<div class="col-xs-9">NAME</div>
+	<div class="col-xs-3">
+		<% if (entry.user().has('image_url')) { %>
+				<img id="entry-user-show-image" src="<%= entry.user().get('image_url') %>">
+		<% } else { %>
+				<img id="entry-user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
+		<% } %>
+	</div>
+	<div class="col-xs-9">
+		<h1 id="entry-title"><%= entry.escape("title") %></h1>
+	</div>
+</div>
+<div class ="row entdiv">
+	<div class="col-xs-3">
+		<h3><%= entry.user().escape('fname') %> <%= entry.user().escape('lname') %></h3>
+	</div>
+	<div class="col-xs-3">
+		<h3><%= entry.user().escape('exp') %></h3>
+	</div>
+	<div class="col-xs-3">
+		<% if(entry.user().has('numdives')) { %>
+			<h3><%= entry.user().escape('numdives') %></h3> Dives
+		<% } %>
+	</div>
 </div>
 <% if (CURRENT_USER_ID === entry.get("user_id")) { %>
 	<div class="row">
@@ -8,9 +29,6 @@
 		<button class="entry-delete">Delete</button>
 	</div>
 <% }; %>
-<div class="row entdiv" id="show_title">
-	<h2>"<%= entry.escape("title") %>"</h2>
-</div>
 <div class="row" id="show_body">
 	<h5>Dive Notes:</h5>
 	<div class="interior_text_area">
@@ -27,13 +45,15 @@
 		<h1><%= entry.escape("divenum") %></h1>
 		</center>
 	</div>
-	<div class="col-xs-9">
+	<div class="col-xs-3">
 		<ul>
 			<li>Entry Date: <%= entry.escape("entrydate") %></li>
 			<li>Entry Time: <%= entry.escape("entrytime") %></</li>
 			<li>Location Name: <%= entry.escape("location_name") %></</li>
 			<li>Dive Type: <%= entry.escape("divetype") %></</li>
 		</ul>
+	</div>
+	<div class="col-xs-6" id="map-container">
 	</div>
 </div>
 <div class="row entdiv">

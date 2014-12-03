@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203181531) do
+ActiveRecord::Schema.define(version: 20141203231040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20141203181531) do
     t.string   "filename"
     t.integer  "imageable_id"
     t.string   "imageable_type"
-    t.string   "url"
     t.string   "mimetype"
     t.integer  "size"
     t.string   "key"
@@ -54,6 +53,9 @@ ActiveRecord::Schema.define(version: 20141203181531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "primary",        default: false
+    t.string   "l_url"
+    t.string   "m_url"
+    t.string   "s_url"
   end
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree

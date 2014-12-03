@@ -5,20 +5,21 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.googleELAdded = false;
 		this.googleResized = false;
 		this.zoomSorted = new Diveloggr.Collections.ZoomSortedEntries;
-		this.listenToOnce(this.collection, "sync", this.filterByMapZoom);
+		// this.listenToOnce(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
 		this.listenTo(this.zoomSorted, "sort", this.render);
-		// this.collection.once("sync", this.renderMap, this);
+		this.collection.once("sync", this.renderMap, this);
+		// this.collection.once("sync", this.filterByMapZoom, this)
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
 		this.$el.html(this.template());
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
+		google.maps.event.trigger(Diveloggr.map, 'resize');
 		if (!this.googleResized) {
-			google.maps.event.trigger(Diveloggr.map, 'resize');
-			this.googleResized = true;
+			this.filterByMapZoom();
 		}
 		return this;
 	},
@@ -46,33 +47,38 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.currentBounds.eLng = Diveloggr.map.getBounds().getNorthEast().lng()
 		this.currentBounds.sLat = Diveloggr.map.getBounds().getSouthWest().lat()
 		this.currentBounds.wLng = Diveloggr.map.getBounds().getSouthWest().lng()
+		this.hasBounds = true;
 	},
 	filterByMapZoom: function () {
-		this.getCurrentMapBounds();
+		// alert('ding!')
+		this.getCurrentMapBounds({wait: true});
 		var that = this;
 		
-		this.zoomSorted.each( function (entry) {
-			that.zoomSorted.remove(entry);
-		});
+		if (this.currentBounds.nLat) {
+			this.zoomSorted.each( function (entry) {
+				that.zoomSorted.remove(entry);
+			});
 
-		this.collection.each( function(entry) {
-			var entryLat = parseFloat( entry.get('latitude') );
-			var entryLng = parseFloat( entry.get('longitude') );
+			this.collection.each( function(entry) {
+				var entryLat = parseFloat( entry.get('latitude') );
+				var entryLng = parseFloat( entry.get('longitude') );
 			
-			if ( that.currentBounds.sLat < entryLat && entryLat < that.currentBounds.nLat ) {
-				if (that.currentBounds.wLng < entryLng && entryLng < that.currentBounds.eLng) {
-					that.zoomSorted.add(entry);
+				if ( that.currentBounds.sLat < entryLat && entryLat < that.currentBounds.nLat ) {
+					if (that.currentBounds.wLng < entryLng && entryLng < that.currentBounds.eLng) {
+						that.zoomSorted.add(entry);
+					}
 				}
-			}
-		});
+			});
+		}
 		
 		if (!this.googleELAdded) {
+			google.maps.event.trigger(Diveloggr.map, 'resize');
+			// alert('adding listener')
 			var wrapper = google.maps.event.addListener(
 				Diveloggr.map, 'idle', this.filterByMapZoom.bind(this)
 			);
 			this.addGoogEL(wrapper);
-			this.googleElAdded = true;
+			this.googleELAdded = true;
 		}
-		this.zoomSorted.trigger('sync');
 	},
 });

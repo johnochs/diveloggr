@@ -11,6 +11,17 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		// this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
+	events: {
+		"click #upload" : "upload"
+	},
+	upload: function () {
+		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
+		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
+
+		filepicker.pickAndStore({},{},function(Blobs){
+		  console.log(JSON.stringify(Blobs));
+		});
+	},
 	render: function () {
 		this.$el.html(this.template());
 		this.removeSubviews();

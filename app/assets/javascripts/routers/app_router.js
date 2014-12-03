@@ -18,7 +18,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(splashView);
 	},
 	feedPage: function () {
-		Diveloggr.Collections.entries.fetch();
+		Diveloggr.Collections.entries.mfetch();
 		Diveloggr.Collections.users.fetch();
 		var feedView = new Diveloggr.Views.FeedView({
 			collection: Diveloggr.Collections.entries
@@ -30,7 +30,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		var userIndexView = new Diveloggr.Views.UsersIndex({ collection: users });
 	},
 	entriesIndex: function () {
-		Diveloggr.Collections.entries.fetch();
+		Diveloggr.Collections.entries.mfetch();
 		var entriesIndex = new Diveloggr.Views.EntriesIndex({ collection:  Diveloggr.Collections.entries });
 		this._swapView(entriesIndex);
 		

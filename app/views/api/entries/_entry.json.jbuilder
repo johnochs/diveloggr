@@ -2,7 +2,9 @@ json.(entry, :id, :user_id, :title, :body, :divenum, :location_name, :longitude,
 
 user ||= nil
 unless user.nil?
-	json.user(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname)
+	json.user do
+		json.partial!("api/users/user", :user => user)
+	end
 end
 
 json.images entry.images, :id, :filename, :url, :imageable_id, :primary

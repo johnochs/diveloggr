@@ -19,7 +19,7 @@ gem 'figaro'
 gem 'bootstrap-sass'
 gem 'aws-sdk'
 gem 'foreman'
-gem 'paperclip'
+gem 'filepicker-rails'
 
 
 group :development do

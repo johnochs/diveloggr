@@ -5,4 +5,4 @@ unless user.nil?
 	json.user(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname)
 end
 
-json.images entry.images, :id, :filename, :url, :imageable_id
+json.images entry.images, :id, :filename, :url, :imageable_id, :primary

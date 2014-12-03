@@ -43,10 +43,14 @@ ActiveRecord::Schema.define(version: 20141203070121) do
   add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
-    t.string   "name"
+    t.string   "filename"
     t.integer  "imagable_id"
     t.string   "imageable_type"
-    t.string   "image_url"
+    t.string   "url"
+    t.string   "mimetype"
+    t.integer  "size"
+    t.string   "key"
+    t.boolean  "isWritable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

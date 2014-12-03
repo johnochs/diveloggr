@@ -10,6 +10,7 @@ window.Diveloggr = {
   map: new google.maps.Map(mapEl[0], mapOptions),
   markerHash: {},
   currentBounds: {},
+  defaultProfileImg: "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg",
   Models: {},
   Collections: {},
   Views: {},

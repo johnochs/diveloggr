@@ -7,4 +7,4 @@ unless user.nil?
 	end
 end
 
-json.images entry.images, :id, :filename, :url, :imageable_id, :primary
+json.images entry.images, :id, :filename, :s_url, :m_url, :l_url, :imageable_id, :primary

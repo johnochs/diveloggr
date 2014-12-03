@@ -27,5 +27,6 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 			parseFloat(this.model.get('longitude'))
 		);
 		Diveloggr.map.panTo(lL);
+		Diveloggr.map.setZoom(12);
 	}
 });

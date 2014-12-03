@@ -123,8 +123,15 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		
 		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
 
-		filepicker.pickAndStore({},{},function(Blobs){
-		  console.log(JSON.stringify(Blobs));
-		});
+		filepicker.pickAndStore({maxFiles: 10,
+								 multiple: true,
+								 maxSize: 10485760,
+								 mimetype: 'image/*',
+								 services: ['COMPUTER', 'FACEBOOK', 'BOX', 'GMAIL', 'FTP', 'GOOGLE_DRIVE', 'URL', 'FLICKR'],
+								 openTo: 'COMPUTER'},
+								{location: 'S3'},
+								function(Blobs){
+									console.log(JSON.stringify(Blobs));
+								});
 	},
 });

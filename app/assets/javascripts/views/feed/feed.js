@@ -2,21 +2,30 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
 	initialize: function () {
-		this.zoomSorted = new Backbone.Collection({ model: Diveloggr.Models.Entry });
+		this.zoomSorted = new Backbone.Collection({ 
+   					 model: Diveloggr.Models.Entry,
+			comparator: function(entry) {
+				return entry.get('user_id');
+			}
+				});
 		google.maps.event.addListener(Diveloggr.map, 'idle', this.filterByMapZoom.bind(this));
 		this.listenTo(this.collection, "sync", this.filterByMapZoom);
 		this.listenTo(this.zoomSorted, "add", this.addFeedEntryView);
 		this.listenTo(this.zoomSorted, "remove", this.removeFeedEntryView);
-		this.listenTo(this.zoomSorted, "sync", this.render);
+		this.listenTo(this.zoomSorted, "sort", this.render);
 		// this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
 		this.$el.html(this.template());
+		this.removeSubviews();
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
 		return this;
+	},
+	comparator: function (entry) {
+		return entry.get('user_id')
 	},
 	addFeedEntryView: function (entry) {
 		var user = entry.user();
@@ -62,6 +71,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 				}
 			}
 		});
-		this.zoomSorted.trigger('sync');
+		this.zoomSorted.sort();
 	},
 });

@@ -36,7 +36,6 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 		var that = this;
 		if (this.model.images()) {
 			this.model.images().forEach( function (image) {
-				debugger
 				var imageView = new Diveloggr.Views.EntryImage({ model: image });
 				that.addSubview("#images-container", imageView);
 			});

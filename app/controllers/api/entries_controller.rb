@@ -28,6 +28,12 @@ class Api::EntriesController < ApplicationController
     end
   end
   
+  def destroy
+    @entry = Entry.find(params[:id])
+    @entry.destroy!
+    render json: @entry, status: :ok
+  end
+  
   def show
     @entry = Entry.find(params[:id])
     @user = @entry.user

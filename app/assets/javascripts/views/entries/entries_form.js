@@ -119,8 +119,8 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		}
 	},
 	uploadPhotos: function (event) {
-		var that = this;
 		event.preventDefault();
+		var that = this;
 		
 		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
 
@@ -149,15 +149,61 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 										})
 										image.set('imageable_type', 'Entry');
 										image.set('imageable_id', that.model.get('id'));
+										debugger
 										image.save({});
 										
+										//Calls FP conversion to medium sized image
+										filepicker.convert(imageObj, 
+											{
+											width: 200,
+											height: 200,
+											fit: 'clip',
+											align: 'faces',
+											format: 'jpg',
+											quality: 90,
+											},
+											{location: 'S3'},
+											function (new_Blob) {
+												image.set('m_url', new_Blob.url);
+												debugger
+												image.save({});
+											},
+											function (FPError) {
+												console.log(FPError.toJSON());
+											},
+											function (percent){
+											}
+										);
+										
+										//Calls FP conversion to small sized image
+										filepicker.convert(imageObj, 
+											{
+											width: 50,
+											height: 50,
+											fit: 'clip',
+											align: 'faces',
+											format: 'jpg',
+											quality: 90,
+											},
+											{location: 'S3'},
+											function (new_Blob) {
+												image.set('s_url', new_Blob.url);
+												debugger
+												image.save({});
+											},
+											function (FPError) {
+												console.log(FPError.toJSON());
+											},
+											function (percent){
+											}
+										);
 								
-										console.log(JSON.stringify(Blobs));
+										console.log(JSON.stringify(Blobs));  //TODO: RFP
 										//input the callbacks for saving medium and small here later
 									})
 								},
 								function(FPError){
-									console.log(FPError.toJSON());
+									console.log(FPError.toJSON());  //TODO: RFP
 								});
 	},
 });

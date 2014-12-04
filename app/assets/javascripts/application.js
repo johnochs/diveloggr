@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require jquery.serializejson.min
+//= require date.js
 	
 //= require diveloggr
 //= require_tree ./utils

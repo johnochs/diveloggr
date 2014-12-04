@@ -2,6 +2,10 @@ class Api::ImagesController < ApplicationController
   
   before_action :render_error_json
   
+  def index
+    @images = Image.all
+  end
+  
   def create
     @image = Image.new(image_params)
     if @image.save

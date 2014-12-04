@@ -1,15 +1,12 @@
 <div class="row entdiv" id="show_header">
-	<div class="col-xs-5">
-		<h1 id="entry-title"><%= entry.escape("fname") %></h1>
-	</div>
-	<div class="col-xs-2">
-			<% if (entry.user().has('image_url')) { %>
-					<img id="entry-user-show-image" src="<%= entry.user().get('image_url') %>">
+	<div class="col-xs-3">
+			<% if (user.has('image_url')) { %>
+					<img id="user-user-show-image" src="<%= user.user().get('image_url') %>">
 			<% } else { %>
-					<img id="entry-user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
+					<img id="user-user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
 			<% } %>
-		</div>
-	<div class="col-xs-5">
-		<h1 id="entry-title"><%= entry.escape("lname") %></h1>
+	</div>
+	<div class="col-xs-9">
+		<h1 id="user-title"><%= user.escape("lname") %> <%= user.escape("fname") %></</h1>
 	</div>
 </div>

@@ -150,7 +150,8 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 										image.set('imageable_type', 'Entry');
 										image.set('imageable_id', that.model.get('id'));
 										image.save({});
-										debugger
+										
+								
 										console.log(JSON.stringify(Blobs));
 										//input the callbacks for saving medium and small here later
 									})

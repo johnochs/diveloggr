@@ -56,4 +56,12 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._currentView = view;
 		this.$rootEl.html(view.render().$el);
 	},
+	userShow: function (id) {
+		alert('here!');
+		var content = Diveloggr.Collections.users.getOrFetch(id).toJSON().to_s;
+		this.$rootEl.html(content);
+	},
+	userEdit: function (id) {
+		
+	}
 })

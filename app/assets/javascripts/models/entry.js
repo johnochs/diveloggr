@@ -1,5 +1,11 @@
 Diveloggr.Models.Entry = Backbone.Model.extend({
 	urlRoot: "api/entries",
+	images: function () {
+		if (!this._images) {
+			this._images = new Diveloggr.Collections.Images;
+		}
+		return this._images;
+	},
 	user: function () {
 		if (!this._user) {
 			this._user = new Diveloggr.Models.User({ id: this.attributes.user_id });

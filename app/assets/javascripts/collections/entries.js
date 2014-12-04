@@ -11,6 +11,7 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 		return entry;
 	},
 	mfetch: function() {
+		debugger
 		this.fetch({
 		success: function() {
 			Diveloggr.Collections.entries.each( function(entry) {
@@ -26,8 +27,9 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 					icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 				});
 				Diveloggr.markerHash[entry.get('id')] = marker;
-			});
-		  }
+			})
+		  },
+		  error: function () { console.log('mFetch error'); }
 	  });
    }
 });

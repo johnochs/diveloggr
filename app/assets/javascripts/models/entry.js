@@ -2,7 +2,7 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 	urlRoot: "api/entries",
 	images: function () {
 		if (!this._images) {
-			this._images = new Diveloggr.Collections.Images;
+			this._images = new Diveloggr.Collections.Images([], {});
 		}
 		return this._images;
 	},
@@ -17,23 +17,21 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 			this.user().set(jsonResp.user, { parse: true });
 			delete jsonResp.user;
 		}
-		debugger
+		// debugger
 		var that = this;
-		if (jsonResp.images && (jsonResp.images.length > 0)) {
-			var toParse = toParse || [];
-			debugger
-			jsonResp.images.forEach( function (image) {
-				debugger
-				if (image.imageable_id === parseInt(that.id, 10)) {
-					toParse.push(image);
-					debugger
-				}
-			})
-			var parsed = this.images().parse(toParse);
-			this.images().add(parsed, { merge: true });
-			debugger
-			delete jsonResp.images
-			toParse = [];
+		if (jsonResp.images) {
+			// jsonResp.images.forEach( function (image) {
+			// 	var model = new Diveloggr.Models.Image;
+			// 	var trueModel = model.set(image);
+			// 	debugger
+			// 	if (trueModel.get('imageable_id') === parseInt(that.get('id'), 10)) {
+			// 		if (model.get('l_url')) {
+			// 			that.images().add(model);
+			// 		}
+			// 		// debugger
+			// 	}
+			// })
+			this.images().reset(jsonResp.images, { parse: true });
 		}
 		return jsonResp;
 	}

@@ -119,6 +119,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		}
 	},
 	uploadPhotos: function (event) {
+		var that = this;
 		event.preventDefault();
 		
 		filepicker.setKey("AadZ0oXR7q9wOPgssMM0gz");
@@ -146,8 +147,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 											}
 											
 										})
-										
-										image.save;
+										image.set('imageable_type', 'Entry');
+										image.set('imageable_id', that.model.get('id'));
+										image.save({});
 										debugger
 										console.log(JSON.stringify(Blobs));
 										//input the callbacks for saving medium and small here later

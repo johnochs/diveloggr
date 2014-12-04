@@ -4,7 +4,7 @@ class Api::ImagesController < ApplicationController
   
   def create
     @image = Image.new(image_params)
-    
+    fail
     if @image.save
       render json: @image
     else

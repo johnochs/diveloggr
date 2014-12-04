@@ -95,7 +95,7 @@
 	</div>
 </div>
 
-<% if (entry.images().findWhere({ imageable_id: entry.get('id'), imageable_type: 'Entry' })) { %>
+<% if (entry.images().length > 0) { %>
 <div class="row entdiv">
 	<h2>Images</h2>
 </div>

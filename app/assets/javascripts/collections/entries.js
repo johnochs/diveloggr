@@ -11,7 +11,6 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 		return entry;
 	},
 	mfetch: function() {
-		debugger
 		this.fetch({
 		success: function() {
 			Diveloggr.Collections.entries.each( function(entry) {

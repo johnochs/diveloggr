@@ -90,6 +90,8 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			annimation: google.maps.Animation.DROP
 		});
 		
+		Diveloggr.looseMarkers.push(newMarker);
+		
 		this.marker = newMarker;
 		this.updateLatLng(newMarker.getPosition());
 			var wrapper = google.maps.event.addListener(
@@ -149,7 +151,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 										})
 										image.set('imageable_type', 'Entry');
 										image.set('imageable_id', that.model.get('id'));
-										debugger
 										image.save({});
 										
 										//Calls FP conversion to medium sized image
@@ -165,7 +166,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 											{location: 'S3'},
 											function (new_Blob) {
 												image.set('m_url', new_Blob.url);
-												debugger
 												image.save({});
 											},
 											function (FPError) {
@@ -188,7 +188,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 											{location: 'S3'},
 											function (new_Blob) {
 												image.set('s_url', new_Blob.url);
-												debugger
 												image.save({});
 											},
 											function (FPError) {

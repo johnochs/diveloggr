@@ -14,7 +14,8 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
-		this.collection.trigger('sync');
+		// this.collection.trigger('sync');
+		this.removeLooseMarkers();
 		this.$el.html(this.template());
 		this.removeSubviews();
 		this.attachSubviews();
@@ -68,5 +69,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			}
 		});
 		this.zoomSorted.trigger('sync');
+	},
+	removeLooseMarkers: function () {
+		Diveloggr.looseMarkers.forEach( function (marker) {
+			marker.setMap(null);
+		});
+		Diveloggr.looseMarkers.pop();
 	},
 });

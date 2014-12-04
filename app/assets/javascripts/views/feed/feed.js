@@ -1,3 +1,5 @@
+//TODO: Have the map position itself over the users current location on render.
+
 Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	className: "container-fluid",
 	template: JST['feed/feed'],
@@ -12,7 +14,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		// this.filteredCollection = new Backbone.Collection;
 	},
 	render: function () {
-		this.collection.once('sync', this.collection.mfetch, this);
+		this.collection.trigger('sync');
 		this.$el.html(this.template());
 		this.removeSubviews();
 		this.attachSubviews();

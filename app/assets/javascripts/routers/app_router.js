@@ -50,18 +50,21 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		var showView = new Diveloggr.Views.EntriesShow({ model: entry });
 		this._swapView(showView);
 	},
+	userShow: function (id) {
+		var user = Diveloggr.Collections.users.getOrFetch(id);
+		var showView = new Diveloggr.Views.UserShow({ model: user });
+		this._swapView(showView);
+	},
+	userEdit: function (id) {
+		var user = Diveloggr.Collections.users.getOrFetch(id);
+		var editView = new Diveloggr.Views.UserEdit({ model: user });
+		this._swapView(editView);
+		
+	},
 	_swapView: function (view) {
 		this._currentView && this._currentView.removeGoogELs();
 		this._currentView && this._currentView.remove();
 		this._currentView = view;
 		this.$rootEl.html(view.render().$el);
 	},
-	userShow: function (id) {
-		alert('here!');
-		var content = Diveloggr.Collections.users.getOrFetch(id).toJSON().to_s;
-		this.$rootEl.html(content);
-	},
-	userEdit: function (id) {
-		
-	}
 })

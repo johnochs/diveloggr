@@ -20,9 +20,16 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 		this.addImages();
 		return this;
 	},
-	editEntry: function () {
+	editEntry: function (event) {
+		event.preventDefault();
 		Backbone.history.navigate("#entries/" + this.model.get('id') +"/edit",
 		{ trigger: true });
+	},
+	deleteEntry: function (event) {
+		event.preventDefault();
+		Backbone.history.navigate("#feed",
+		{ trigger: true });
+		this.model.destroy();
 	},
 	panMap: function() {
 		var lL = new google.maps.LatLng(
@@ -34,7 +41,7 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	},
 	addImages: function() {
 		var that = this;
-		debugger
+		// debugger
 		if (this.model.images()) {
 			this.model.images().forEach( function (image) {
 				var imageView = new Diveloggr.Views.EntriesImage({ model: image });

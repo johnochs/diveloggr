@@ -4,7 +4,6 @@ class Api::ImagesController < ApplicationController
   
   def create
     @image = Image.new(image_params)
-    p @image
     if @image.save
       render json: @image
     else
@@ -16,6 +15,16 @@ class Api::ImagesController < ApplicationController
   def show
     @image = Image.find(params[:id])
     render json: @image
+  end
+  
+  def update
+    @image = Image.find(params[:id])
+    if @image
+      @image.update(image_params)
+      render json: @image
+    else
+      render json: @image.errors.full_messages, status: :unprocessable_entity
+    end
   end
   
   def destroy

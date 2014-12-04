@@ -17,6 +17,7 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 		this.$el.html(renderedContent);
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
+		this.addImages();
 		return this;
 	},
 	editEntry: function () {
@@ -30,5 +31,15 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 		);
 		Diveloggr.map.panTo(lL);
 		Diveloggr.map.setZoom(12);
+	},
+	addImages: function() {
+		var that = this;
+		if (this.model.images()) {
+			this.model.images().forEach( function (image) {
+				debugger
+				var imageView = new Diveloggr.Views.EntryImage({ model: image });
+				that.addSubview("#images-container", imageView);
+			});
+		}
 	}
 });

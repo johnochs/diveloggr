@@ -17,6 +17,17 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 			this.user().set(jsonResp.user, { parse: true });
 			delete jsonResp.user;
 		}
+		if (jsonResp.images) {
+			var toParse = [];
+			_(this.images()).each( function (image) {
+				if (image.imageable_id === that.id) {
+					toParse.push(image);
+				}
+			})
+			var parsed = this.images().parse(toParse);
+			this.images().add(parsed, { merge: true });
+			delete jsonResp.images
+		}
 		return jsonResp;
 	}
 });

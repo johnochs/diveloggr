@@ -4,15 +4,15 @@ class Api::ImagesController < ApplicationController
   
   def index
     @images = Image.all
-    render json: @images
+    render json: @images, :status => :ok
   end
   
   def create
     @image = Image.new(image_params)
     if @image.save
-      render json: @image
+      render json: @image, :status => :ok
     else
-      render json: @image.errors.full_messages, status: :unprocessable_entity
+      render json: @image.errors.full_messages, :status => :unprocessable_entity
     end
   end
   
@@ -26,9 +26,9 @@ class Api::ImagesController < ApplicationController
     @image = Image.find(params[:id])
     if @image
       @image.update(image_params)
-      render json: @image
+      render json: @image, status: :ok
     else
-      render json: @image.errors.full_messages, status: :unprocessable_entity
+      render json: @image.errors.full_messages, :status => :unprocessable_entity
     end
   end
   

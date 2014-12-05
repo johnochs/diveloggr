@@ -19,7 +19,7 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 		}
 		var that = this;
 		if(jsonResp.images) {
-			this.images().reset(jsonResp.images, { parse: true });
+			this.images().set(jsonResp.images, { parse: true });
 			delete jsonResp.images
 		}
 		return jsonResp;

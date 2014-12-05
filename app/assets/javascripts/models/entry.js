@@ -13,13 +13,14 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 		return this._user;
 	},
 	parse: function (jsonResp) {
-		if (jsonResp.user) {
+		if(jsonResp.user) {
 			this.user().set(jsonResp.user, { parse: true });
 			delete jsonResp.user;
 		}
 		var that = this;
-		if (jsonResp.images) {
+		if(jsonResp.images) {
 			this.images().reset(jsonResp.images, { parse: true });
+			delete jsonResp.images
 		}
 		return jsonResp;
 	}

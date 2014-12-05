@@ -57,7 +57,18 @@
 			</center>
 		<% } else { %>
 		<!-- User logged entries gets injected into the table below -->
-		<div class="col-xs-12" id="user-logged-entries">
+		<div class="col-xs-12">
+			<table class="table">
+				<thead>
+					<th>No.</th>
+					<th>Title</th>
+					<th>Location</th>
+					<th>Date</th>
+					<th>Time</th>
+				</thead>
+				<tbody class="user-entry-subview-insertion">
+				</tbody>
+			</table>
 		</div>
 		<% } %>
 	</div>

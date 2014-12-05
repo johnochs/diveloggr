@@ -149,7 +149,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 											}
 											
 										})
-										// debugger
 										image.set('imageable_type', 'Entry');
 										image.set('imageable_id', that.model.get('id'));
 										image.save({});

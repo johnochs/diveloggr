@@ -2,7 +2,6 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 	template: JST['users/show'],
 	className: "container",
 	initialize: function () {
-		debugger
 		this.listenTo(this.model, "sync", this.render);
 		if (this.model.entries){
 			this.listenTo(this.model.entries(), "sync", this.render);
@@ -10,7 +9,6 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 		}
 	},
 	render: function () {
-		debugger
 		var entries = this.model.entries();
 		var renderedContent = this.template({ user: this.model, entries: entries });
 		this.$el.html(renderedContent);

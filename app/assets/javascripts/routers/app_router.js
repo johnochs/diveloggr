@@ -19,7 +19,6 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 	},
 	feedPage: function () {
 		Diveloggr.Collections.entries.mfetch();
-		debugger
 		Diveloggr.Collections.users.fetch();
 		var feedView = new Diveloggr.Views.FeedView({
 			collection: Diveloggr.Collections.entries

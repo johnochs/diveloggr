@@ -7,6 +7,7 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 		this.addGoogEL(wrapper);
 	},
 	events: {
+		"click #user-link-button": "goUser",
 		"click .entry-edit": "editEntry",
 		"click .entry-delete": "deleteEntry"
 	},
@@ -48,5 +49,8 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 				that.addSubview("#images-container", imageView);
 			});
 		}
+	},
+	goUser: function (event) {
+		Backbone.history.navigate('/users/' + this.model.get('user_id'), { trigger: true });
 	}
 });

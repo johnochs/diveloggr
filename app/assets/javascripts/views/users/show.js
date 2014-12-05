@@ -30,7 +30,7 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 		// this.render();
 	},
 	render: function () {
-		// Diveloggr.Collections.entries.fetch();
+		Diveloggr.Collections.entries.fetch();
 		var entries = this.model.entries();
 		var renderedContent = this.template({ user: this.model, numEntries: this.model.entries().length });
 		debugger
@@ -72,6 +72,6 @@ Diveloggr.Views.UserEntry = Backbone.CompositeView.extend({
 	},
 	goShow: function (event) {
 		event.preventDefault();
-		Backbone.history.navigate('#entries/' + this.model.id.toString());
+		Backbone.history.navigate('#entries/' + this.model.user_id.toString());
 	},
 })

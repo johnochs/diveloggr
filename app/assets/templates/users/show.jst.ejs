@@ -49,13 +49,12 @@
 		<% if(numEntries > 0) { %>
 			<center>
 				<div class="col-xs-12" id="no-dives-logged">
-				<h2>No logged dives yet!</h2>
-					<button type="button" class="btn btn-lg btn-primary">
+					<button type="button" class="log-a-dive-btn btn btn-lg btn-primary">
 						Log Your Dive
 					</button>
 				</div>
 			</center>
-		<% } else { %>
+		<% } %>
 		<!-- User logged entries gets injected into the table below -->
 		<div class="col-xs-12">
 			<table class="table">
@@ -66,11 +65,10 @@
 					<th>Date</th>
 					<th>Time</th>
 				</thead>
-				<tbody class="user-entry-subview-insertion">
+				<tbody id="user-entry-subview-insertion">
 				</tbody>
 			</table>
 		</div>
-		<% } %>
 	</div>
 	<div class="row entdiv" id="show-foot">
 		<div id="footer-spacer">

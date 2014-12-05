@@ -2,8 +2,9 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 	template: JST['users/show'],
 	className: "container",
 	initialize: function () {
+		debugger
 		this.listenTo(this.model, "change", this.render);
-		this.model.fetch();
+		this.listenTo(this.model.entries(), "reset", this.render);
 	},
 	// addUserEntry: function (entry) {
 	// 	var userEntryView = new Diveloggr.Views.UserEntry({ model: entry });
@@ -22,52 +23,53 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 		var that = this;
 		this.model.entries().each( function (entry) {
 			var entrySubView = new Diveloggr.Views.UserEntry({ model: entry });
-			that.addSubview("#user-entry-subview-insertion", entrySubView.render().$el);
+			that.addSubview("#user-entry-subview-insertion", entrySubView);
+			debugger
 		});
+		// this.render();
 	},
 	render: function () {
 		var entries = this.model.entries()
 		var renderedContent = this.template({ user: this.model, numEntries: this.model.entries().length });
+		debugger
 		this.$el.html(renderedContent);
-		this.removeSubviews();
 		this.addUserEntries();
-		this.attachSubviews()
+		this.attachSubviews();
 		return this;
 	}
 });
 
 Diveloggr.Views.UserEntry = Backbone.CompositeView.extend({
 	initialize: function () {
+		alert('UserEntry!');
 		this.listenTo(this.model, 'sync change', this.render);
 		this.listenTo(this.model, 'sync change', this.setAttributes);
 	},
 	template: JST['users/user_entry'],
 	tagName: 'tr',
-	setAttributes: function () {
-		if(this.model.get('id')){
-			this.attributes = {'data-entry-id': entry.get('id')};
-		}
-	},
 	events: {
 		'mouseenter': 'highliteItem',
 		'mouseleave': 'backToNormal',
 		'click': 'goShow' 
 	},
 	render: function () {
-		debugger
-		var renderedContent = this.template({ entry: this.model });
+		var renderedContent = this.template({ entry: this.model })
 		this.$el.html(renderedContent);
+		debugger
 		return this;
 	},
 	highliteItem: function (event) {
+		event.preventDefault();
 		event.currentTarget.style.background = "black";
 		event.currentTarget.style.color = "white"
 	},
 	backToNormal: function () {
+		event.preventDefault();
 		event.currentTarget.style.background = "";
 		event.currentTarget.style.color = "";
 	},
 	goShow: function (event) {
+		event.preventDefault();
 		Backbone.history.navigate('#entries/' + this.model.toString());
 	},
 })

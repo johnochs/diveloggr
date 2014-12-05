@@ -15,7 +15,7 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 		if (entry = this.get(id)) {
 			entry.fetch();
 		} else {
-			entry = new App.Models.Entry({ id: id });
+			entry = new Diveloggr.Models.Entry({ id: id });
 			entry.fetch({
 				success: function () { entries.add(entry); }
 			});

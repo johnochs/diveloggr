@@ -50,12 +50,12 @@ body, html {
 #overlay {
   position: absolute;
   background: rgba(100, 100, 100, 0.50);
-  top: 20%;
-  left: 30%;
-  width: 40%;
+  top: 10%;
+  left: 35%;
+  width: 30%;
   display:inline;
   border-radius: 8px;
-  padding: 40px;
+  padding: 20px;
 }
 
 .splash_logo{
@@ -66,17 +66,20 @@ body, html {
 	border-radius: 10px;
 	border: 4px solid black;
 	width: 100%;
+	opacity: 60%;
 }
 
 
 .main-sign-up {
-	float: left;
-	width: 50%;
+	margin: auto;
+	width: 40%;
+	
 }
 
 .guest-log-in {
 	float: right;
-	width: 50%;
+	margin: auto;
+	width: 40%;
 }
 
 //Entry Page Specific

@@ -5,7 +5,7 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 	template: JST['users/edit'],
 	className: 'container',
 	events: {
-		"click .change-profile-pic": 
+		"click .change-profile-pic": "uploadPhotos",
 		"click #update-user-button": "submitForm",
 		"click #rollback-form-button": "rollBack" 
 	},
@@ -18,11 +18,11 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 		var formInput = $('form').serializeJSON();
 		var user = this.model.set(formInput);
 		
-		this.model.save({},
+		this.model.save({},{
 			patch: true,
 			success: function(model, response, options) { Backbone.history.navigate('/entries/' + model.get('id'))},
-			error: function (model, response, options) { console.log(response) };
-		);
+			error: function (model, response, options) { console.log(response) }
+		});
 	},
 	rollBack: function (event) {
 		$('#roll-back-form-button').click( function () {

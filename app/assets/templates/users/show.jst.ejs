@@ -27,17 +27,43 @@
 	<div class="row entfield">
 		<div class="col-xs-12">
 			<div class="dl-horizontal" id="user-info-def">
-				<h3><dt>Location</dt></h3>
+				<h3><dt>Location: </dt></h3>
 				<dd><%= user.escape('location') %></dd>
-				<h3><dt>Age</dt></h3>
+				<h3><dt>Age: </dt></h3>
 				<dd><%= user.escape('age').to_s %></dd>
-				<h3><dt>Highest Certification</dt></h3>
+				<h3><dt>Highest Certification: </dt></h3>
 				<dd><%= user.escape('exp') %></dd>
-				<h3><dt>Total Dives</dt></h3>
+				<h3><dt>Total Dives: </dt></h3>
 				<dd><%= user.escape('numdives') %></dd>
-				<h3><dt>Diveloggr Entries</dt></h3>
+				<h3><dt>Diveloggr Entries: </dt></h3>
 				<dd><%= entries.length %></dd>
 			</div>
+		</div>
+	</div>
+	<div class="row entdiv">
+		<div class="col-xs-12">
+			<h1>Logged Dives</h1>
+		</div>
+	</div>
+	<div class="row">
+		<% if(entries.length === 0) { %>
+			<center>
+				<div class="col-xs-12" id="no-dives-logged">
+				<h2>No logged dives yet!</h2>
+					<button type="button" class="btn btn-lg btn-primary">
+						Log Your Dive
+					</button>
+				</div>
+			</center>
+		<% } else { %>
+		<!-- User logged entries gets injected into the table below -->
+		<div class="col-xs-12" id="user-logged-entries">
+		</div>
+		<% } %>
+	</div>
+	<div class="row entdiv" id="show-foot">
+		<div id="footer-spacer">
+			<h1><h1>
 		</div>
 	</div>
 </div>

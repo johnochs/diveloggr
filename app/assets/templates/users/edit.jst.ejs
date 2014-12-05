@@ -1,0 +1,64 @@
+<div class="user-show-container">	
+	<div class="row entdiv" id="show_header">
+		<div class="col-xs-4">
+			<center>
+			<div class="profile-pic-container">
+				<% if (!user.isNew()) { %>
+					<button class="change-profile-pic btn btn-default">Change Photo</button>
+				<% } %>
+				<% if (user.has('image_url')) { %>
+						<img id="user-show-image" src="<%= user.get('image_url') %>">
+				<% } else { %>
+						<img id="user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
+				<% } %>
+			</div>
+		</center>
+		</div>
+		<div class="col-xs-8">
+			<span id="user-title"><%= user.escape("fname") %> <%= user.escape("lname") %></span>
+		</div>
+	</div>
+	<div class="row">
+		<hr class="blackbreak">
+	</div>
+	<div class="row entdiv" id="user-information">
+		<div class="col-xs-12">
+			<h1><%= user.escape('fname') %>'s Details</h1>
+		</div>
+	</div>
+	<div class="row entfield">
+		<div class="col-xs-12">
+			<div class="dl-horizontal" id="user-info-def">
+				<form id="user-edit-form">
+					<h3><dt>First Name: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('location') %>" name="user[fname]" placeholder="First Name"></dd>
+					<h3><dt>Last Name: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('location') %>" name="user[lname]" placeholder="Last Name"></dd>
+					<h3><dt>Location: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('location') %>" name="user[location]" placeholder="Location (e.g. San Francisco, CA)"></dd>
+					<h3><dt>Age: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('age').to_s %>" name="user[age]" placeholder="Age"></dd>
+					<h3><dt>Highest Certifications: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('exp') %>" name="user[exp]" placeholder="Highest Certification Levels"></dd>
+					<h3><dt>Total Dives: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('numdives') %>" name="user[numdives]" placeholder="Total Number of Dives"></dd>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row entfield">
+		<div class="col-xs-3 col-xs-offset-2">
+			<button type="button" id="update-user-button" class="btn btn-lg btn-success">COMMIT</button>
+		</div>
+	</div>
+	<div class="row entfield">
+		<div class="col-xs-3 col-xs-offset-2">
+			<button type="button" id="update-user-button" class="btn btn-lg btn-danger">ROLLBACK</button>
+		</div>
+	</div>
+	<div class="row entdiv" id="show-foot">
+		<div id="footer-spacer">
+			<h1><h1>
+		</div>
+	</div>
+</div>

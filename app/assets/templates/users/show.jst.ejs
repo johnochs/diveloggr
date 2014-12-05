@@ -36,7 +36,7 @@
 				<h3><dt>Total Dives: </dt></h3>
 				<dd><%= user.escape('numdives') %></dd>
 				<h3><dt>Diveloggr Entries: </dt></h3>
-				<dd><%= entries.length %></dd>
+				<dd><%= numEntries %></dd>
 			</div>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<% if(entries.length === 0) { %>
+		<% if(numEntries > 0) { %>
 			<center>
 				<div class="col-xs-12" id="no-dives-logged">
 				<h2>No logged dives yet!</h2>

@@ -1,7 +1,7 @@
 <div class="row entdiv" id="show_header">
 	<div class="col-xs-3">
-		<% if (entry.user().has('image_url')) { %>
-				<img id="entry-user-show-image" src="<%= entry.user().get('image_url') %>">
+		<% if (entry.user().has('m_url')) { %>
+				<img id="entry-user-show-image" src="<%= entry.user().get('m_url') %>">
 		<% } else { %>
 				<img id="entry-user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
 		<% } %>

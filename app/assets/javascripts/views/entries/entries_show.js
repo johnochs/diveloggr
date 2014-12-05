@@ -1,8 +1,8 @@
 Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	initialize: function () {
-		this.model.fetch({ wait: true });
-		this.listenTo(this.model, "sync", this.render)
-		this.listenTo(this.model.images(), "add remove sync", this.render)
+		this.model.fetch();  //Deleted wait true
+		this.listenTo(this.model, "sync", this.render);
+		this.listenTo(this.model.images(), "add remove sync", this.render);
 		var wrapper = google.maps.event.addListenerOnce(Diveloggr.map, 'tilesloaded', this.panMap.bind(this));
 		this.addGoogEL(wrapper);
 	},

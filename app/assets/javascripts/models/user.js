@@ -5,6 +5,9 @@ Diveloggr.Models.User = Backbone.Model.extend({
 			this._entries = new Diveloggr.Collections.Entries;
 		}
 		//return this._entries.where({ user_id: parseInt(this.id) })
-		return this._entries
+		var filteredArray = this._entries.where({ user_id: parseInt(this.id) });
+		this._entries = new Diveloggr.Collections.Entries(filteredArray, { parse: true });
+		debugger
+		return this._entries;
 	},
 });

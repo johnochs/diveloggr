@@ -20,14 +20,14 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 	// 	}
 	addUserEntries: function() {
 		var that = this;
-		this.model.entries.each( function (entry) {
+		this.model.entries().each( function (entry) {
 			var entrySubView = new Diveloggr.Views.UserEntry({ model: entry });
-			that.addSubview("#user-entry-subview-insertion", entrySubView);
+			that.addSubview("#user-entry-subview-insertion", entrySubView.render().$el);
 		});
 	},
 	render: function () {
 		var entries = this.model.entries()
-		var renderedContent = this.template({ user: this.model, entry: this.model.entries(); });
+		var renderedContent = this.template({ user: this.model, numEntries: this.model.entries().length });
 		this.$el.html(renderedContent);
 		this.removeSubviews();
 		this.addUserEntries();
@@ -54,6 +54,7 @@ Diveloggr.Views.UserEntry = Backbone.CompositeView.extend({
 		'click': 'goShow' 
 	},
 	render: function () {
+		debugger
 		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
 		return this;

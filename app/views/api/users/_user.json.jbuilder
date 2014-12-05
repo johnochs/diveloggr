@@ -1,4 +1,4 @@
-json.(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname)
+json.(user, :id, :email, :location, :age, :exp, :numdives, :fname, :lname, :created_at)
 
 json.image user.images.last
 

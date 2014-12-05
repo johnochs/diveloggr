@@ -1,6 +1,7 @@
-Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
+Diveloggr.Views.UserEdit = Backbone.View.extend({
 	initialize: function () {
-		this.listenTo(this.model, '')
+		this.listenTo(this.model, 'sync', this.render);
+		// debugger
 	},
 	template: JST['users/edit'],
 	className: 'container',
@@ -12,6 +13,7 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 	render: function () {
 		var renderedContent = this.template({ user: this.model });
 		this.$el.html(renderedContent);
+		// debugger
 		return this;
 	},
 	submitForm: function (event) {
@@ -19,8 +21,7 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 		var user = this.model.set(formInput);
 		
 		this.model.save({},{
-			patch: true,
-			success: function(model, response, options) { Backbone.history.navigate('/entries/' + model.get('id'))},
+			success: function(model, response, options) { Backbone.history.navigate('/users/' + model.get('id'), { trigger: true }) },
 			error: function (model, response, options) { console.log(response) }
 		});
 	},
@@ -113,5 +114,5 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 								function(FPError){
 									console.log(FPError.toJSON());  //TODO: RFP
 								});
-	},
+	}
 });

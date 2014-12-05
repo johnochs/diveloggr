@@ -26,9 +26,47 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 		}
 	},
 	render: function () {
+		this.model.fetch();
 		var entries = this.model.entries();
 		var renderedContent = this.template({ user: this.model, entries: entries });
 		this.$el.html(renderedContent);
+		this.removeSubviews();
+		this.attachSubviews()
 		return this;
 	}
+});
+
+Diveloggr.Views.UserEntry = Backbone.CompositeView.extend({
+	initialize: function () {
+		this.listenTo(this.model, 'sync change', this.render);
+		this.listenTo(this.model, 'sync change', this.setAttributes);
+	},
+	template: JST['users/user_entry'],
+	tagName: 'tr',
+	setAttributes: function () {
+		if(this.model.get('id')){
+			this.attributes = {'data-entry-id': entry.get('id')};
+		}
+	},
+	events: {
+		'mouseenter': 'highliteItem',
+		'mouseleave': 'backToNormal',
+		'click': 'goShow' 
+	},
+	render: function () {
+		var renderedContent = this.template({ entry: this.model });
+		this.$el.html(renderedContent);
+		return this;
+	},
+	highliteItem: function (event) {
+		event.currentTarget.style.background = "black";
+		event.currentTarget.style.color = "white"
+	},
+	backToNormal: function () {
+		event.currentTarget.style.background = "";
+		event.currentTarget.style.color = "";
+	},
+	goShow: function (event) {
+		Backbone.history.navigate('#entries/' + this.model.toString());
+	},
 })

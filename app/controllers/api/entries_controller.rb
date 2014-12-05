@@ -9,7 +9,7 @@ class Api::EntriesController < ApplicationController
   
   def create
     @entry = Entry.new(entry_params)
-    @entry.user_id = current_user.id
+    @entry.user_id = current_user.id.to_i
     
     if @entry.save
       render json: @entry

@@ -53,7 +53,7 @@ body, html {
 }
 
 .splash_logo{
-	postion: absolute;
+	position: absolute;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 8px;
@@ -91,8 +91,59 @@ body {
 	border: 4px solid black;
 }
 
+//User Show Page Specific
 
-//Show Page Specific
+.user-show-container {
+	margin-top: 30px;
+}
+
+#user-info-def dt {
+	width: 300px;
+}
+
+#user-info-def dd {
+	margin-left: 300px;
+}
+
+.user-show-container .row {
+	border-right: 3px solid black;
+	border-left: 3px solid black;
+}
+
+#user-title {
+	font-size: -webkit-xxx-large;
+}
+
+
+.profile-pic-container {
+	height: 300px;
+	width: 300px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.change-profile-pic {
+	position: absolute;
+	margin: 20px;
+	opacity: 60%;
+	background-color: black;
+	color: white;
+	font-family: helvetica;
+	font-size: 150%;
+	
+}
+
+#user-show-image {
+	border-radius: 50px;
+}
+
+hr .blackbreak {
+	background-color: black;
+	border-top: 3px black;
+	margin: 0;
+}
+
+//Entry Show Page Specific
 
 #entry-user-show-image {
 	height: 150px;
@@ -101,6 +152,11 @@ body {
 
 .entry_show {
 	border: 2px solid black;
+}
+
+#show_header {
+	border-top-right-radius: 35px;
+	border-top-left-radius: 35px;
 }
 
 .interior_text_area {

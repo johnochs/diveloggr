@@ -1,13 +1,28 @@
 Diveloggr.Collections.Entries = Backbone.Collection.extend({
 	url: "api/entries",
+	initialize: function(options) {
+		debugger
+		if(options && options.user_id) {
+			debugger
+			this.user_id = options.user_id;
+			this.fetch({ success: function(data) {
+				debugger
+				this.models = data.where({ user_id: this.user_id });
+			}.bind(this)});
+		}
+	},
   model: Diveloggr.Models.Entry,
 	getOrFetch: function (id) {
 		var entries = this;
-		var entry = this.get(id) || new Diveloggr.Models.Entry({ id: id });
-	
-		entry.fetch({
-			success: function () { entries.add(entry); }
-		});
+		var entry;
+		if (entry = this.get(id)) {
+			entry.fetch();
+		} else {
+			entry = new App.Models.Entry({ id: id });
+			entry.fetch({
+				success: function () { entries.add(entry); }
+			});
+		}
 		return entry;
 	},
 	mfetch: function() {

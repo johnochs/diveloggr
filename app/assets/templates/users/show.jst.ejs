@@ -1,12 +1,43 @@
-<div class="row entdiv" id="show_header">
-	<div class="col-xs-3">
+<div class="user-show-container">	
+	<div class="row entdiv" id="show_header">
+		<div class="col-xs-4">
+			<center>
+			<div class="profile-pic-container">
+			<!-- <button class="change-profile-pic btn btn-default">Change Photo</button> -->
 			<% if (user.has('image_url')) { %>
-					<img id="user-user-show-image" src="<%= user.user().get('image_url') %>">
+					<img id="user-show-image" src="<%= user.get('image_url') %>">
 			<% } else { %>
-					<img id="user-user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
+					<img id="user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
 			<% } %>
+			</div>
+		</center>
+		</div>
+		<div class="col-xs-8">
+			<span id="user-title"><%= user.escape("fname") %> <%= user.escape("lname") %></span>
+		</div>
 	</div>
-	<div class="col-xs-9">
-		<h1 id="user-title"><%= user.escape("lname") %> <%= user.escape("fname") %></</h1>
+	<div class="row">
+		<hr class="blackbreak">
+	</div>
+	<div class="row entdiv" id="user-information">
+		<div class="col-xs-12">
+			<h1><%= user.escape('fname') %>'s Details</h1>
+		</div>
+	</div>
+	<div class="row entfield">
+		<div class="col-xs-12">
+			<div class="dl-horizontal" id="user-info-def">
+				<h3><dt>Location</dt></h3>
+				<dd><%= user.escape('location') %></dd>
+				<h3><dt>Age</dt></h3>
+				<dd><%= user.escape('age').to_s %></dd>
+				<h3><dt>Highest Certification</dt></h3>
+				<dd><%= user.escape('exp') %></dd>
+				<h3><dt>Total Dives</dt></h3>
+				<dd><%= user.escape('numdives') %></dd>
+				<h3><dt>Diveloggr Entries</dt></h3>
+				<dd><%= entries.length %></dd>
+			</div>
+		</div>
 	</div>
 </div>

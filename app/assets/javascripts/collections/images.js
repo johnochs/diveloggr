@@ -14,3 +14,6 @@ Diveloggr.Collections.Images = Backbone.Collection.extend({
 	}
 
 });
+
+Diveloggr.Collections.images = new Diveloggr.Collections.Images;
+Diveloggr.Collections.images.fetch();

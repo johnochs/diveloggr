@@ -1,6 +1,7 @@
 Diveloggr.Views.UserEdit = Backbone.View.extend({
 	initialize: function () {
 		this.listenTo(this.model, 'sync', this.render);
+		this.listenTo(this.model.image(), 'change', this.render);
 		// debugger
 	},
 	template: JST['users/edit'],
@@ -77,6 +78,7 @@ Diveloggr.Views.UserEdit = Backbone.View.extend({
 											function (new_Blob) {
 												image.set('m_url', new_Blob.url);
 												image.save({});
+												that.model.fetch();
 											},
 											function (FPError) {
 												console.log(FPError.toJSON());

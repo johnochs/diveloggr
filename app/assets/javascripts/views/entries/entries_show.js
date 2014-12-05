@@ -13,6 +13,7 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	className: "entry_show container",
 	template: JST['entries/show'],
 	render: function () {
+		debugger
 		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
 		this.$('#map-container').html(Diveloggr.$mapEl);

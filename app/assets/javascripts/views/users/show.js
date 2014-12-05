@@ -2,35 +2,35 @@ Diveloggr.Views.UserShow = Backbone.CompositeView.extend({
 	template: JST['users/show'],
 	className: "container",
 	initialize: function () {
-		this.listenTo(this.model, "sync", this.render);
-		if (this.model.entries){
-			this.listenTo(this.model.entries(), "add", this.addUserEntry);
-			this.listenTo(this.model.entries(), "remove", this.removeUserEntry);
-			this.listenTo(this.model.entries(), "sync", this.render);
-			this.model.entries().fetch({ async: false });
-		}
-		
+		this.listenTo(this.model, "change", this.render);
+		this.model.fetch();
 	},
-	addUserEntry: function (entry) {
-		var userEntryView = new Diveloggr.Views.UserEntry({ model: entry });
-		this.addSubview("#user-entry-subview-insertion", userEntryView);
-	},
-	removeUserEntry: function (entry) {
-		var userEntryView = _.find(
-			this.subviews("#user-entry-subview-insertion"), function (subview) {
-				return subview.model === entry;
-			}
-		);
-		if (userEntryView != undefined) {
-			this.removeSubview("#user-entry-subview-insertion", userEntryView);
-		}
+	// addUserEntry: function (entry) {
+	// 	var userEntryView = new Diveloggr.Views.UserEntry({ model: entry });
+	// 	this.addSubview("#user-entry-subview-insertion", userEntryView);
+	// },
+	// removeUserEntry: function (entry) {
+	// 	var userEntryView = _.find(
+	// 		this.subviews("#user-entry-subview-insertion"), function (subview) {
+	// 			return subview.model === entry;
+	// 		}
+	// 	);
+	// 	if (userEntryView != undefined) {
+	// 		this.removeSubview("#user-entry-subview-insertion", userEntryView);
+	// 	}
+	addUserEntries: function() {
+		var that = this;
+		this.model.entries.each( function (entry) {
+			var entrySubView = new Diveloggr.Views.UserEntry({ model: entry });
+			that.addSubview("#user-entry-subview-insertion", entrySubView);
+		});
 	},
 	render: function () {
-		this.model.fetch();
-		var entries = this.model.entries();
-		var renderedContent = this.template({ user: this.model, entries: entries });
+		var entries = this.model.entries()
+		var renderedContent = this.template({ user: this.model, entry: this.model.entries(); });
 		this.$el.html(renderedContent);
 		this.removeSubviews();
+		this.addUserEntries();
 		this.attachSubviews()
 		return this;
 	}

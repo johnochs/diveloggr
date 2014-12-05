@@ -72,6 +72,6 @@ Diveloggr.Views.UserEntry = Backbone.CompositeView.extend({
 	},
 	goShow: function (event) {
 		event.preventDefault();
-		Backbone.history.navigate('#entries/' + this.model.toString());
+		Backbone.history.navigate('#entries/' + this.model.id.toString());
 	},
 })

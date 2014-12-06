@@ -15,13 +15,47 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	},
 	render: function () {
 		// this.collection.trigger('sync');
+		var stats = this.doCalculations()
+			debugger
 		this.removeLooseMarkers();
-		this.$el.html(this.template({ filtered: this.zoomSorted.length }));
+		this.$el.html(this.template({ filtered: this.zoomSorted.length, stats: stats }));
 		this.removeSubviews();
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
 		return this;
+	},
+	doCalculations: function () {
+		var nVis = 0;
+		var nATemp = 0;
+		var nWTemp = 0;
+		var nDiveTime = 0;
+		var visTot = 0;
+		var nATempTot = 0;
+		var nWTempTot = 0;
+		var nDiveTimeTot = 0;
+		
+		this.zoomSorted.each( function(entry) {
+			if(entry.get('vis')){
+				nVis = nVis + 1;
+				visTot = visTot + entry.get('vis');
+			}
+			if(entry.get('airtemp')){
+				nATemp = nATemp + 1;
+				nATempTot = nATempTot + entry.get('airtemp');
+			}
+			if(entry.get('watertemp')){
+				nWTemp = nWTemp + 1;
+				nWTempTot = nWTempTot + entry.get('watertemp');
+			}
+			if(entry.get('divetime')){
+				nDiveTime = nDiveTime + 1;
+				nDiveTimeTot = nDiveTimeTot + entry.get('divetime');
+			}
+			// debugger
+		})
+		
+		return [(visTot/nVis),(nATempTot/nATemp),(nWTempTot/nWTemp),(nDiveTimeTot/nDiveTime)];
 	},
 
 	addFeedEntryView: function (entry) {

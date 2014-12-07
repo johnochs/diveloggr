@@ -8,19 +8,13 @@
 	</div>
 	<div class="col-xs-9">
 		<h1 id="entry-title"><%= entry.escape("title") %></h1>
+		<h3><%= entry.escape("location_name") %></h3>
 	</div>
 </div>
 <div class ="row entdiv">
 	<div class="col-xs-3" id="user-link-button">
 		<h3><%= entry.user().escape('fname') %> <%= entry.user().escape('lname') %></h3>
-	</div>
-	<div class="col-xs-3">
-		<h3><%= entry.user().escape('exp') %></h3>
-	</div>
-	<div class="col-xs-3">
-		<% if(entry.user().has('numdives')) { %>
-			<h3><%= entry.user().escape('numdives') %></h3> Dives
-		<% } %>
+		<%= entry.user().escape('numdives') %> Dives
 	</div>
 </div>
 <% if (CURRENT_USER_ID === entry.get("user_id")) { %>

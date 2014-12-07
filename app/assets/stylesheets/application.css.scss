@@ -22,7 +22,7 @@
 .table-responsive{
 	border: 3px solid black;
 	height: 300px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .navbar-default{
@@ -189,6 +189,9 @@ hr .blackbreak {
 #entry-user-show-image {
 	height: 150px;
 	width: 150px;
+	border-radius: 25px;
+	margin-top: 30px;
+	border: 2px solid white;
 }
 
 .entry_show {

@@ -23,7 +23,7 @@
 	</div>
 	<div class="row entdiv" id="user-information">
 		<div class="col-xs-12">
-			<h1><%= user.escape('fname') %>'s Details</h1>
+			<h1>Edit Your Details</h1>
 		</div>
 	</div>
 	<div class="row entfield">
@@ -37,7 +37,7 @@
 					<h3><dt>Location: </dt></h3>
 					<dd><input type="text" value="<%= user.escape('location') %>" name="user[location]" placeholder="Location (e.g. San Francisco, CA)"></dd>
 					<h3><dt>Age: </dt></h3>
-					<dd><input type="text" value="<%= user.escape('age').to_s %>" name="user[age]" placeholder="Age"></dd>
+					<dd><input type="text" value="<%= user.escape('age') %>" name="user[age]" placeholder="Age"></dd>
 					<h3><dt>Highest Certifications: </dt></h3>
 					<dd><input type="text" value="<%= user.escape('exp') %>" name="user[exp]" placeholder="Highest Certification Levels"></dd>
 					<h3><dt>Total Dives: </dt></h3>

@@ -1,4 +1,4 @@
-Diveloggr.Views.UserEdit = Backbone.View.extend({
+Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 	initialize: function () {
 		this.listenTo(this.model, 'sync', this.render);
 		this.listenTo(this.model.image(), 'change', this.render);
@@ -17,8 +17,8 @@ Diveloggr.Views.UserEdit = Backbone.View.extend({
 	},
 	submitForm: function (event) {
 		var formInput = $('form').serializeJSON();
-		var user = this.model.set(formInput);
-		
+		this.model.set(formInput.user);
+		debugger
 		this.model.save({},{
 			success: function(model, response, options) { Backbone.history.navigate('/users/' + model.get('id'), { trigger: true }) },
 			error: function (model, response, options) { console.log(response) }

@@ -50,6 +50,13 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.pwdigest).is_password?(password)
   end
   
+  def s_url
+    if self.images.last
+      return self.images.last.s_url
+    end
+    "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg"
+  end
+  
   private
   
   def ensure_token

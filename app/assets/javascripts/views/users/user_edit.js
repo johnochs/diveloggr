@@ -2,7 +2,6 @@ Diveloggr.Views.UserEdit = Backbone.View.extend({
 	initialize: function () {
 		this.listenTo(this.model, 'sync', this.render);
 		this.listenTo(this.model.image(), 'change', this.render);
-		// debugger
 	},
 	template: JST['users/edit'],
 	className: 'container',
@@ -14,7 +13,6 @@ Diveloggr.Views.UserEdit = Backbone.View.extend({
 	render: function () {
 		var renderedContent = this.template({ user: this.model });
 		this.$el.html(renderedContent);
-		// debugger
 		return this;
 	},
 	submitForm: function (event) {

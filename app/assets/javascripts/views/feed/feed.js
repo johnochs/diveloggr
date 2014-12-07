@@ -16,7 +16,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	render: function () {
 		// this.collection.trigger('sync');
 		var stats = this.doCalculations()
-			debugger
 		this.removeLooseMarkers();
 		this.$el.html(this.template({ filtered: this.zoomSorted.length, stats: stats }));
 		this.removeSubviews();
@@ -52,7 +51,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 				nDiveTime = nDiveTime + 1;
 				nDiveTimeTot = nDiveTimeTot + entry.get('divetime');
 			}
-			// debugger
 		})
 		
 		return [(visTot/nVis),(nATempTot/nATemp),(nWTempTot/nWTemp),(nDiveTimeTot/nDiveTime)];

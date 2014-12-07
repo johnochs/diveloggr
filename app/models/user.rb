@@ -57,6 +57,13 @@ class User < ActiveRecord::Base
     "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg"
   end
   
+  def m_url
+    if self.images.last
+      return self.images.last.m_url
+    end
+    "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg"
+  end
+  
   private
   
   def ensure_token

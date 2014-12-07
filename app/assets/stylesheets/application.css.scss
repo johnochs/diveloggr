@@ -186,6 +186,17 @@ hr .blackbreak {
 
 //Entry Show Page Specific
 
+.entry-edit, .entry-delete {
+	float: left;
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border: 2px solid black;
+	
+}
+
 #entry-user-show-image {
 	height: 150px;
 	width: 150px;
@@ -194,8 +205,10 @@ hr .blackbreak {
 	border: 2px solid white;
 }
 
-.entry_show {
-	border: 2px solid black;
+div.entry_show > div {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	
 }
 
 #show_header {

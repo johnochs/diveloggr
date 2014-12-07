@@ -19,8 +19,10 @@
 </div>
 <% if (CURRENT_USER_ID === entry.get("user_id")) { %>
 	<div class="row">
-		<button class="entry-edit btn btn-default">Edit</button>
-		<button class="entry-delete btn btn-default">Delete</button>
+		<div class="col-xs-12">
+			<button class="entry-edit btn btn-success">Edit</button>
+			<button class="entry-delete btn btn-danger">Delete</button>
+		</div>
 	</div>
 <% }; %>
 <div class="row" id="show_body">

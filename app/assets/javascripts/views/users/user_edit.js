@@ -67,7 +67,7 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 											{
 											width: 200,
 											height: 200,
-											fit: 'clip',
+											fit: 'crop',
 											align: 'faces',
 											format: 'jpg',
 											quality: 80,
@@ -90,7 +90,7 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 											{
 											width: 100,
 											height: 100,
-											fit: 'clip',
+											fit: 'crop',
 											align: 'faces',
 											format: 'jpg',
 											quality: 80,

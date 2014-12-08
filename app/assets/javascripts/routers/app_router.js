@@ -56,7 +56,6 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._swapView(showView);
 	},
 	userEdit: function (id) {
-		// alert("In the router!");
 		var user = Diveloggr.Collections.users.getOrFetch(id);
 		var editView = new Diveloggr.Views.UserEdit({ model: user });
 		this._swapView(editView);

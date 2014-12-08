@@ -20,12 +20,16 @@ class Api::UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
-    
-    if @user.update(user_params)
-      render json: @user, status: :ok
+    if params[:id].to_i != current_user.id
+      render json: ["You don't have permission to do this."], status: :forbidden
     else
-      render json: @user.errors.full_messages, status: :unprocessable_entity
+      @user = User.find(params[:id])
+    
+      if @user.update(user_params)
+        render json: @user, status: :ok
+      else
+        render json: @user.errors.full_messages, status: :unprocessable_entity
+      end
     end
   end
   

@@ -191,11 +191,14 @@ hr .blackbreak {
 
 //Entry Show Page Specific
 
+.entry_show {
+	margin-top: 5%;
+}
+
 .entry-edit, .entry-delete {
 	float: left;
-	width: 40%;
-	margin-left: 5%;
-	margin-right: 5%;
+	width: 50%;
+	height: 50px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border: 2px solid black;

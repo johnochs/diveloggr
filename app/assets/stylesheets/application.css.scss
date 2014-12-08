@@ -187,8 +187,8 @@ body {
 
 
 .profile-pic-container {
-	height: 300px;
-	width: 300px;
+	max-height: 200px;
+	max-width: 200px;
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
@@ -206,6 +206,8 @@ body {
 
 #user-show-image {
 	border-radius: 50px;
+	max-height: 200px;
+	max-width: 200px;
 }
 
 hr .blackbreak {

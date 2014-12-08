@@ -5,5 +5,5 @@ Diveloggr.Views.EntriesImage = Backbone.CompositeView.extend({
 		var renderedContent = this.template({ image: this.model });
 		this.$el.html(renderedContent);
 		return this;
-	},
+	}
 });

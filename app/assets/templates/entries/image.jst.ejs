@@ -1,5 +1,16 @@
 <div id="entry-image-thumb" data-photo-id="<%= image.get('id') %>">
-	<button type="button">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-img-<%= image.get('id') %>-modal-lg">
 		<img src="<%= image.get('m_url') %>">
 	</button>
+</div>
+
+<div class="modal fade modal-img-<%= image.get('id') %>-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+	  <div class="entry-modal-header">
+		  <h2>Filename: <%= image.get('filename') %></h2>
+	  </div>
+    <div class="modal-content">
+		<img id="image-display-modal" src="<%= image.get('l_url') %>">
+    </div>
+  </div>
 </div>

@@ -101,6 +101,17 @@ body, html {
 .entry-modal-header {
 	position: relative;
 	margin-top: 50px;
+	color: white;
+}
+
+div#images-container > .single-image-element {
+	display: inline;
+	float: left;
+	margin: 5px;
+}
+
+#entry-image-thumb {
+	display: inline;
 }
 
 //Feed Page Specific

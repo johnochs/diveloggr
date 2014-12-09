@@ -8,7 +8,7 @@
 <% } %>
 </h1>
 
-<p>Required: Title, Body, Date, Location.</p>
+<p>Required: Title, Body, Date, Location.  All additional data helps us provide a more complete snapshot of current diving conditions.</p>
 </div>
 </div>
 <hr>
@@ -29,7 +29,7 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="entrytime">Entry Date & Time</label>
-		    <input type="datetime-local" class="form-control" id="entrytime" name="entry[entrytime]" value=<%= moment(entry.get('entrytime')).format().substring(0,19) %>>
+		    <input type="datetime-local" class="form-control" id="entrytime" name="entry[entrytime]">
 		  </div>
 	  </div>
 	  <div class="col-xs-6">

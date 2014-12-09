@@ -114,10 +114,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		this.$lng.attr('value', latLng.lng());
 	},
 	parseTime: function () {
-		if (this.model.escape('entrytime')) {
-			var timeStr = this.model.escape('entrytime');
-			var parsedTime = timeStr.match(/:\d+:\d+/)[0].slice(1);
-			this.$el.find('#entrytime').attr('value', parsedTime);
+		if (this.model.has('entrytime')) {
+			var timeStr = moment(this.model.get('entrytime')).format().substring(0,19);
+			this.$el.find('#entrytime').attr('value', timeStr);
 		}
 	},
 	uploadPhotos: function (event) {

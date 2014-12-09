@@ -30,7 +30,9 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	visCalc: function () {
 		var points = [];
 		var min = null;
+		var mindate = null;
 		var max = null;
+		var maxdate = null;
 		
 		this.zoomSorted.each( function (entry) {
 			if (entry.has('vis') && entry.get('vis') != null) {
@@ -38,9 +40,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 				
 				if(min === null || entry.get('vis') < min) {
 					min = entry.get('vis');
+					mindate = entry.get('entrydate');
 				}
 				if(max === null || entry.get('vis') > max) {
 					max = entry.get('vis');
+					maxdate = entry.get('entrytime');
 				}
 			}
 		});
@@ -51,7 +55,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		}
 		var average = sum/points.length;
 		if(points.length > 0) {
-			return [points.length, average, min, max];		
+			return [points.length, average, min, mindate, max, maxdate];		
 		} else {
 			return [0,0,0,0];
 		}

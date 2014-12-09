@@ -28,9 +28,17 @@ Diveloggr.Views.EntriesShow = Backbone.CompositeView.extend({
 	},
 	deleteEntry: function (event) {
 		event.preventDefault();
+		var model = this.model
+		this.model.destroy({
+			success: function () {
+				Diveloggr.Collections.entries.remove(model);
+			}
+		});
+		var id = this.model.get('id');
+		Diveloggr.markerHash[id].setMap(null);
+		delete Diveloggr.markerHash[id];
 		Backbone.history.navigate("#feed",
 		{ trigger: true });
-		this.model.destroy();
 	},
 	panMap: function() {
 		var lL = new google.maps.LatLng(

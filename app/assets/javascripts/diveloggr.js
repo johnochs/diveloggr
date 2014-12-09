@@ -9,6 +9,7 @@ window.Diveloggr = {
   $mapEl: mapEl,
   map: new google.maps.Map(mapEl[0], mapOptions),
   markerHash: {},
+  filterJustMe: false,
   currentBounds: {},
   looseMarkers: [],
   defaultProfileImg: "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg",

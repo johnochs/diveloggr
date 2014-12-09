@@ -57,7 +57,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		if(points.length > 0) {
 			return [points.length, average, min, mindate, max, maxdate];		
 		} else {
-			return [0,0,0,0];
+			return [0,0,0,0,0,0];
 		}
 	},
 	addFeedEntryView: function (entry) {

@@ -4,12 +4,12 @@
 	<h3>
 	<h3>Visibility Statistics</h3>
 	  <ul>
-	 <li>(N= <%= stats[0] %>)</li>
+	 <li>(N=<%= stats[0] %>)</li>
 	 <li>Avg: <%= Math.round(stats[1]) %> ft.</li>
 	 <li>Min: <%= stats[2] %> ft.</li>
-	 <li>Occurred on: </li>
-	 <li>Max: <%= moment().calendar(moment(stats[3])) %> ft.</li>
-	 <li>Occurred on: </li>
+	 <li>Occurred on: <%= moment().calendar(moment(stats[3])) %></li>
+	 <li>Max: <%= stats[4] %> ft.</li>
+	 <li>Occurred on: <%= moment().calendar(moment(stats[5])) %></li>
 	 </ul>
 	 <h3>Wildlife Summary</h3>
     <ul>

@@ -17,6 +17,7 @@
 //= require backbone
 //= require jquery.serializejson.min
 //= require date.js
+//= require moment.js
 	
 //= require diveloggr
 //= require_tree ./utils

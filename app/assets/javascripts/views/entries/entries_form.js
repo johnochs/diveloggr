@@ -7,16 +7,12 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 			Diveloggr.map, 'click', this.addDragMarker.bind(this)
 		);
 		this.addGoogEL(wrapper);
-		var wrapper = google.maps.event.addListener(
-			Diveloggr.map, 'idle', this.render.bind(this)
-		);
-		this.addGoogEL(wrapper);
 	},
 	template: JST['entries/new_form'],
 	className: "new_entry_form container",
 	events: {
 		"submit": "submitForm",
-		"click #form-upload-photos": "uploadPhotos"
+		"click #form-upload-photos": "uploadPhotos"	
 	},
 	render: function () {
 		var renderedContent = this.template({ entry: this.model });

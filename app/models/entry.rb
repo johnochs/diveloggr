@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  validates :user_id, :title, :body, :entrydate, presence: true
+  validates :user_id, :title, :body, :entrytime, presence: true
   
   belongs_to :user
   

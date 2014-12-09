@@ -40,7 +40,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 				
 				if(min === null || entry.get('vis') < min) {
 					min = entry.get('vis');
-					mindate = entry.get('entrydate');
+					mindate = entry.get('entrytime');
 				}
 				if(max === null || entry.get('vis') > max) {
 					max = entry.get('vis');
@@ -60,39 +60,6 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			return [0,0,0,0];
 		}
 	},
-	// doCalculations: function () {
-	// 	var nVis = 0;
-	// 	var nATemp = 0;
-	// 	var nWTemp = 0;
-	// 	var nDiveTime = 0;
-	// 	var visTot = 0;
-	// 	var nATempTot = 0;
-	// 	var nWTempTot = 0;
-	// 	var nDiveTimeTot = 0;
-	//
-	//
-	// 	this.zoomSorted.each( function(entry) {
-	// 		if(entry.get('vis')){
-	// 			nVis = nVis + 1;
-	// 			visTot = visTot + entry.get('vis');
-	// 		}
-	// 		if(entry.get('airtemp')){
-	// 			nATemp = nATemp + 1;
-	// 			nATempTot = nATempTot + entry.get('airtemp');
-	// 		}
-	// 		if(entry.get('watertemp')){
-	// 			nWTemp = nWTemp + 1;
-	// 			nWTempTot = nWTempTot + entry.get('watertemp');
-	// 		}
-	// 		if(entry.get('divetime')){
-	// 			nDiveTime = nDiveTime + 1;
-	// 			nDiveTimeTot = nDiveTimeTot + entry.get('divetime');
-	// 		}
-	// 	})
-	//
-	// 	return [(visTot/nVis),(nATempTot/nATemp),(nWTempTot/nWTemp),(nDiveTimeTot/nDiveTime)];
-	// },
-
 	addFeedEntryView: function (entry) {
 		var entrySubview = new Diveloggr.Views.FeedEntry({ model: entry });
 		this.addSubview("#entry-table-elements", entrySubview);
@@ -135,9 +102,12 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 					if(Diveloggr.filterJustMe) {
 						if(entry.get('user_id') === CURRENT_USER_ID) {
 							that.zoomSorted.add(entry);
+							Diveloggr.markerHash[entry.get('id')].setMap(Diveloggr.map);
 						}
 					} else {
 						that.zoomSorted.add(entry);
+						Diveloggr.markerHash[entry.get('id')].setMap(Diveloggr.map);
+						
 					}
 				}
 			}
@@ -146,11 +116,11 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	},
 	filterJustMe: function () {
 		Diveloggr.filterJustMe = true;
-		this.render();
+		this.filterByMapZoom();
 	},
 	filterNone: function () {
 		Diveloggr.filterJustMe = false;
-		this.render();
+		this.filterByMapZoom();
 	},
 	removeLooseMarkers: function () {
 		Diveloggr.looseMarkers.forEach( function (marker) {

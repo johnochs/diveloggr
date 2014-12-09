@@ -41,7 +41,7 @@
 		<h2><%= entry.escape("divenum") %></h2>
 		</center>
 		<dl class="dl-horizontal">
-			<dt>Entry Date: </dt><dd><%= moment(entry.escape("entrydate")).format('dddd, MMMM Do YYYY') %></dd>
+			<dt>Entry Date: </dt><dd><%= moment(entry.escape("entrytime")).format('dddd, MMMM Do YYYY') %></dd>
 			<dt>Entry Time: </dt><dd><%= moment(entry.escape("entrytime")).format('h:mm a') %></dd>
 			<dt>Location Name: </dt><dd><%= entry.escape("location_name") %></dd>
 			<dt>Dive Type: </dt><dd><%= entry.escape("divetype") %></dd>

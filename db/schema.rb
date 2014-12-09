@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208100409) do
+ActiveRecord::Schema.define(version: 20141209173843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,8 @@ ActiveRecord::Schema.define(version: 20141208100409) do
     t.string   "current"
     t.string   "weather"
     t.integer  "avgdepth"
-    t.time     "entrytime"
-    t.date     "entrydate"
     t.string   "surface"
+    t.datetime "entrytime"
   end
 
   add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree

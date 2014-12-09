@@ -28,12 +28,8 @@
 		    <input type="text" class="form-control" id="divenum" name="entry[divenum]" placeholder="No." value="<%= entry.escape('divenum') %>">
 		  </div>
 		  <div class="form-group">
-		    <label for="divedate">Entry Date</label>
-		    <input type="date" class="form-control" id="divedate" name="entry[entrydate]" value="<%= entry.escape('entrydate') %>">
-		  </div>
-		  <div class="form-group">
-		    <label for="entrytime">Entry Time</label>
-		    <input type="time" class="form-control" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
+		    <label for="entrytime">Entry Date & Time</label>
+		    <input type="datetime" class="form-control" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
 		  </div>
 	  </div>
 	  <div class="col-xs-6">

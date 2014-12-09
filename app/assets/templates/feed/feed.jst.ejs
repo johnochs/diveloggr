@@ -1,12 +1,12 @@
 
 <div class="row">
 <div class="col-sm-3 col-md-2 sidebar">
-  <ul class="nav nav-sidebar">
-	 <li><a href="#/feed">General Statistics</a></li>
-	 <li>n: <%= stats[0] %></li>
-	 <li>avg: <%= stats[1] %></li>
-	 <li>min: <%= stats[2] %></li>
-	 <li>max: <%= stats[3] %></li>
+  <ul>
+	 <li>Visibility Statistics</li>
+	 <li>n: <%= stats[0] %> data points.</li>
+	 <li>avg: <%= Math.round(stats[1]) %> ft.</li>
+	 <li>min: <%= stats[2] %> ft.</li>
+	 <li>max: <%= stats[3] %> ft.</li>
     <li class="active"><a href="#">Visibility Summary<span class="sr-only">(current)</span></a></li>
     <li><a href="#/feed">Wildlife Summary</a></li>
     <li><a href="#/feed">Dive Profiles</a></li>
@@ -15,7 +15,24 @@
 </div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 <h1 class="page-header">Diveloggr Feed</h1>
+  <div class="btn-group dive-filter" role="group" aria-label="...">
+    <button type="button" class="btn btn-default" id="filter-none">All Dives</button>
+    <button type="button" class="btn btn-default" id="filter-just-me">Only My Dives</button>
 
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        Filter
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Today</a></li>
+        <li><a href="#">Last Three Days</a></li>
+        <li><a href="#">Last Week</a></li>
+        <li><a href="#">Last Month</a></li>
+        <li><a href="#">No Time Filter</a></li>
+      </ul>
+    </div>
+  </div>
 <div class="row" id="map-container">
 	<div id="map-canvas"></div>
 </div>
@@ -25,7 +42,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-			<th id="feed-view-user-pic-header"></th>
+		<th id="feed-view-user-pic-header"></th>
           <th>Author</th>
 		  <th>Title</th>
           <th>Date</th>

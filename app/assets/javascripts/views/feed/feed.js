@@ -13,6 +13,10 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		// this.collection.once("sync", this.renderMap, this);
 		// this.filteredCollection = new Backbone.Collection;
 	},
+	events: {
+		"click #filter-just-me": "filterJustMe",
+		"click #filter-none": "filterNone"
+	},
 	render: function () {
 		// this.collection.trigger('sync');
 		this.removeLooseMarkers();
@@ -124,11 +128,25 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			
 			if ( that.currentBounds.sLat < entryLat && entryLat < that.currentBounds.nLat ) {
 				if (that.currentBounds.wLng < entryLng && entryLng < that.currentBounds.eLng) {
-					that.zoomSorted.add(entry);
+					if(Diveloggr.filterJustMe) {
+						if(entry.get('user_id') === CURRENT_USER_ID) {
+							that.zoomSorted.add(entry);
+						}
+					} else {
+						that.zoomSorted.add(entry);
+					}
 				}
 			}
 		});
 		this.zoomSorted.trigger('sync');
+	},
+	filterJustMe: function () {
+		Diveloggr.filterJustMe = true;
+		this.render();
+	},
+	filterNone: function () {
+		Diveloggr.filterJustMe = false;
+		this.render();
 	},
 	removeLooseMarkers: function () {
 		Diveloggr.looseMarkers.forEach( function (marker) {

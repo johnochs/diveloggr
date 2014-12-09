@@ -29,7 +29,7 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="entrytime">Entry Date & Time</label>
-		    <input type="datetime-local" class="form-control" id="entrytime" name="entry[entrytime]" value="<%= entry.escape('entrytime') %>">
+		    <input type="datetime-local" class="form-control" id="entrytime" name="entry[entrytime]" value=<%= moment(entry.get('entrytime')).format().substring(0,19) %>>
 		  </div>
 	  </div>
 	  <div class="col-xs-6">
@@ -120,7 +120,7 @@
 			<div class="row">
 				<div class="form-group">
 				  	<label>Air Temp
-				  		<input type="text" id="smalldig" name="entry[airtemp]" placeholder="°F">
+				  		<input type="text" id="smalldig" name="entry[airtemp]" placeholder="°F" value=<%= entry.escape('airtemp') %>>
 				  	</label>
 				</div>
 			</div>
@@ -180,10 +180,10 @@
 				<div class="col-xs-4">
 				    <div class="form-group">
 				  	<label>Visibility
-				  		<input type="text" id="smalldig" name="entry[vis]" placeholder="ft.">
+				  		<input type="text" id="smalldig" name="entry[vis]" placeholder="ft." value=<%= entry.escape('vis') %>>
 				  	</label>
 				  	<label>Water Temp
-				  		<input type="text" id="smalldig" name="entry[watertemp]" placeholder="°F">
+				  		<input type="text" id="smalldig" name="entry[watertemp]" placeholder="°F" value=<%= entry.escape('watertemp') %>>
 				  	</label>
 				    </div>
 				</div>

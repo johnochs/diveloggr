@@ -8,7 +8,7 @@
 	 <li>Avg: <%= Math.round(stats[1]) %> ft.</li>
 	 <li>Min: <%= stats[2] %> ft.</li>
 	 <li>Occurred on: </li>
-	 <li>Max: <%= stats[3] %> ft.</li>
+	 <li>Max: <%= moment().calendar(moment(stats[3])) %> ft.</li>
 	 <li>Occurred on: </li>
 	 </ul>
 	 <h3>Wildlife Summary</h3>
@@ -48,7 +48,7 @@
 		<th id="feed-view-user-pic-header"></th>
           <th>Author</th>
 		  <th>Title</th>
-          <th>Date</th>
+          <th>Posted</th>
           <th>Location</th>
         </tr>
       </thead>

@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209173843) do
+ActiveRecord::Schema.define(version: 20141215232127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "divetype_taggings", force: true do |t|
+    t.integer  "entry_id",    null: false
+    t.integer  "divetype_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "divetype_taggings", ["divetype_id"], name: "index_divetype_taggings_on_divetype_id", using: :btree
+  add_index "divetype_taggings", ["entry_id", "divetype_id"], name: "index_divetype_taggings_on_entry_id_and_divetype_id", unique: true, using: :btree
+  add_index "divetype_taggings", ["entry_id"], name: "index_divetype_taggings_on_entry_id", using: :btree
+
+  create_table "divetypes", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "divetypes", ["name"], name: "index_divetypes_on_name", unique: true, using: :btree
 
   create_table "entries", force: true do |t|
     t.integer  "user_id",       null: false

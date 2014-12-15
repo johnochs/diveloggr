@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   
   after_initialize :ensure_token
   
-  has_many :entries
+  has_many :entries, dependent: :destroy
   
-  has_many :images, as: :imageable  #has_many association for possible later "tagging"
+  has_many :images, as: :imageable, dependent: :destroy  #has_many association for possible later "tagging"
   
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

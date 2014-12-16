@@ -5,7 +5,7 @@ class Entry < ActiveRecord::Base
   
   has_many :images, as: :imageable, dependent: :destroy
   
-  has_many :divetype_taggings, dependent: :destroy
+  has_many :divetype_taggings, dependent: :destroy, inverse_of: :entry
   
   has_many :divetypes, through: :divetype_taggings
 end

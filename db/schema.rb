@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215232127) do
+ActiveRecord::Schema.define(version: 20141216001518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20141215232127) do
     t.integer  "maxdepth"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "divetype"
     t.string   "current"
     t.string   "weather"
     t.integer  "avgdepth"

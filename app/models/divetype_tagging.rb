@@ -1,4 +1,4 @@
-class Divetype_Tagging < ActiveRecord::Base
+class DivetypeTagging < ActiveRecord::Base
   belongs_to :divetype
   belongs_to :entry
   

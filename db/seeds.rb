@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+divetypes = Divetype.create([{ name: "Fun" }, { name: "Night" }, { name: "Drift" }, { name: "Cave" },
+  { name: "Photography" }, { name: "Ice" }, { name: "Research" }, { name: "Search"}, { name: "Rescue" },
+  { name: "Retrieval" }, { name: "Instruction" }, { name: "Exploration" } ])

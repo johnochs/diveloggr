@@ -9,6 +9,7 @@ class Api::EntriesController < ApplicationController
   
   def create
     @entry = Entry.new(entry_params)
+    @entry.divetype_tagging_ids = entry_params.divetype_tagging
     @entry.user_id = current_user.id.to_i
     
     if @entry.save
@@ -20,6 +21,7 @@ class Api::EntriesController < ApplicationController
   
   def update
     @entry = Entry.find(params[:id])
+    @entry.divetype_tagging_ids = entry_params.divetype_tagging
     
     if @entry.update(entry_params)
       render "show"
@@ -46,9 +48,8 @@ class Api::EntriesController < ApplicationController
   def entry_params
     params.require(:entry).permit(
       :title, :body, :divenum, :location_name, :longitude, :latitude, :vis,
-      :watertemp, :airtemp, :divetime, :maxdepth, :divetype, :current, :weather,
-      :avgdepth, :entrytime, :surface
-    )
+      :watertemp, :airtemp, :divetime, :maxdepth, :divetype_tagging, :current, :weather,
+      :avgdepth, :entrytime, :surface)
   end
   
 end

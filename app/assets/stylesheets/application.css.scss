@@ -33,15 +33,16 @@
 #dialogbox{
 	display: none;
 	position: fixed;
-	background: #000;
+	background: black;
 	border-radius:7px; 
 	width:550px;
 	z-index: 10;
 }
-#dialogbox > div{ background:#FFF; margin:8px; }
-#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
-#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
-#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
+#dialogbox > div{ background: white; margin:2px; }
+#dialogbox > div > #dialogboxhead{ background-color: black; font-size:19px; padding:10px; color: white; }
+#dialogbox > div > #dialogboxbody{ background-color: white; padding:20px; color: black; }
+#dialogbox > div > ul { background-color: white; padding:20px; color: black; }
+#dialogbox > div > #dialogboxfoot{ background-color: black; padding:10px; text-align:right; }
 
 
 //Navbar Formatting

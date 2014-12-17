@@ -12,6 +12,7 @@ class Api::EntriesController < ApplicationController
     @entry.user_id = current_user.id.to_i
     
     if @entry.save
+      @entry.divetype_ids = params[:divetype_ids]
       render json: @entry
     else
       render json: @entry.errors.full_messages, status: :unprocessable_entity

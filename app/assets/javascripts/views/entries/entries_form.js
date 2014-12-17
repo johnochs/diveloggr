@@ -44,7 +44,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 					window.currentCAlert = new Diveloggr.Alert();
 					window.currentCAlert.render(
 						"Ooops...",
-						"There's a problem with your input.  Take a look at these errors: ",
+						"There's a problem with your input.  These things need to be fixed: ",
 						response.responseJSON
 					);
 				}

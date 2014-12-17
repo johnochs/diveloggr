@@ -35,8 +35,19 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		var entry = this.model.set(formInput.entry);
 				
 		if (entry.isNew()) {
-			this.collection.create(entry, {
-				success: success
+			entry.save({}, {
+				success: function (model, response, options) {
+					this.collection.add(model);
+				}.bind(this),
+				error: function (model, response, options) {
+					console.log(response.responseJSON);
+					window.currentCAlert = new Diveloggr.Alert();
+					window.currentCAlert.render(
+						"Ooops...",
+						"There's a problem with your input.  Take a look at these errors: ",
+						response.responseJSON
+					);
+				}
 			});
 		} else {
 			entry.save({}, {

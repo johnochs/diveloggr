@@ -18,7 +18,7 @@ Diveloggr.Alert = function () {
 		_(items).each( function (item) {
 			errorlist.append("<li>" + item + "</li>");
 		})
-		document.getElementById('dialogboxfoot').innerHTML = '<button onclick="window.currentCAlert.ok()">OK</button>';
+		document.getElementById('dialogboxfoot').innerHTML = '<button class="btn-default btn" onclick="window.currentCAlert.ok()">Dismiss</button>';
 	}
 	this.ok = function(){
 		document.getElementById('dialogbox').style.display = "none";

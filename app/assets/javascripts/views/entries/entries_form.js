@@ -19,6 +19,7 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 		"click #form-upload-photos": "uploadPhotos"	
 	},
 	render: function () {
+		debugger
 		var renderedContent = this.template({ entry: this.model });
 		this.$el.html(renderedContent);
 		this.$('#map-container').html(Diveloggr.$mapEl);

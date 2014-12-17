@@ -29,8 +29,9 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	},
 	submitForm: function (event) {
 		event.preventDefault();
+		debugger
 		var formInput = $('#entry_form_el').serializeJSON();
-		var entry = this.model.set(formInput);
+		var entry = this.model.set(formInput.entry);
 				
 		if (entry.isNew()) {
 			this.collection.create(entry, {

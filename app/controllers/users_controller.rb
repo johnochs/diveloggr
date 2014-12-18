@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   
   def create
     
-    if user_params.empty?
-      @user = User.new_guest
-    else
+    if params[:user]
       @user = User.new(user_params)
+    else
+      @user = User.new_guest
     end
     
     if @user.save

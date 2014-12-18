@@ -5,14 +5,11 @@ class UsersController < ApplicationController
   end
   
   def create
+    
     if user_params.empty?
-      @user = User.new(user_params)
+      @user = User.new_guest
     else
-      @user = User.new(
-        email: "guest@diveloggr.com", 
-        fname: "Diveloggr", 
-        lname: "Guest", 
-        guest: true)
+      @user = User.new(user_params)
     end
     
     if @user.save

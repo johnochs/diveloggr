@@ -17,8 +17,10 @@
 #
 
 class User < ActiveRecord::Base
-  validates :email, :pwdigest, :session_token, presence: true
-  validates :email, :session_token, uniqueness: true
+  validates :email, :pwdigest, presence: true, unless: :guest?
+  validates :session_token, presence: true
+  validates :email, uniqueness: true, unless: :guest?
+  validates :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   
   attr_reader :password
@@ -62,6 +64,10 @@ class User < ActiveRecord::Base
       return self.images.last.m_url
     end
     "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg"
+  end
+  
+  def self.new_guest
+    new { |u| u.guest = true; u.fname = "Guest"; u.lname = "User" }
   end
   
   private

@@ -6,7 +6,7 @@
 				<% if (!user.isNew()) { %>
 					<button class="change-profile-pic btn btn-default">Change Photo</button>
 				<% } %>
-				<% if (user.image()) { %>
+				<% if (user.image().m_url != null) { %>
 						<img id="user-show-image" src="<%= user.image().get('m_url') %>">
 				<% } else { %>
 						<img id="user-show-image" src=<%= Diveloggr.defaultProfileImg %>>

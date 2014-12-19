@@ -1,9 +1,9 @@
 Diveloggr.Routers.Router = Backbone.Router.extend({
 	initialize: function (options) {
-		this.$rootEl = options.$rootEl
+		this.$rootEl = options.$rootEl;
+		this.listenTo(this, "route", this.clearSplash);
 	},
 	routes: {
-		// "" : "splashPage",
 		"feed": "feedPage",
 		"users": "usersIndex",
 		"users/:id/edit": "userEdit",
@@ -11,7 +11,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		"entries/new": "entriesNew",
 		"entries": "entriesIndex",
 		"entries/:id/edit": "entriesEdit",
-		"entries/:id": "entriesShow",
+		"entries/:id": "entriesShow"
 	},
 	splashPage: function () {
 		alert('backbone');
@@ -68,4 +68,7 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 		this._currentView = view;
 		this.$rootEl.html(view.render().$el);
 	},
+	clearSplash: function() {
+		$('#splashscreentotal').empty();
+	}
 })

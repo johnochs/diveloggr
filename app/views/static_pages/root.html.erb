@@ -22,7 +22,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<%= button_to "Preview (Guest Account)", users_path, method: :post %>
+			<%= button_to "Preview (Guest Account)", { controller: :users, :action => :create }, { :class => "btn-lg btn-default guest-log-in"} %>
 	      <!-- <button type="button" class="btn btn-default btn-lg guest-log-in"> -->
         <!-- Preview -->
       </a>

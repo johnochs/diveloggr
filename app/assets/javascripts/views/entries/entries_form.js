@@ -30,7 +30,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 	},
 	submitForm: function (event) {
 		event.preventDefault();
-		debugger
 		var formInput = $('#entry_form_el').serializeJSON();
 		var entry = this.model.set(formInput.entry);
 				
@@ -40,7 +39,6 @@ Diveloggr.Views.EntriesForm = Backbone.CompositeView.extend({
 					this.collection.add(model);
 				}.bind(this),
 				error: function (model, response, options) {
-					console.log(response.responseJSON);
 					window.currentCAlert = new Diveloggr.Alert();
 					window.currentCAlert.render(
 						"Ooops...",

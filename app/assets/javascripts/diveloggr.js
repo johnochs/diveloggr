@@ -12,6 +12,7 @@ window.Diveloggr = {
   filterJustMe: false,
   currentBounds: {},
   looseMarkers: [],
+  firstView: true,
   defaultProfileImg: "https://s3-us-west-1.amazonaws.com/diveloggrimagable/default-profile.jpg",
   Models: {},
   Collections: {},

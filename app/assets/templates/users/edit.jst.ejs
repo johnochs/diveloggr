@@ -29,6 +29,11 @@
 	<div class="row entfield">
 		<div class="col-xs-12">
 			<div class="dl-horizontal" id="user-info-def">
+				<% if(user.get('guest') === true) { %>
+					<hr>
+					<h3>Your account is a guest account.  Please update your name, email address, and password to be transitioned into a full member.</h3>
+					<hr>
+				<% } %>
 				<form id="user-edit-form">
 					<h3><dt>First Name: </dt></h3>
 					<dd><input type="text" value="<%= user.escape('fname') %>" name="user[fname]" placeholder="First Name"></dd>
@@ -42,6 +47,12 @@
 					<dd><input type="text" value="<%= user.escape('exp') %>" name="user[exp]" placeholder="Highest Certification Levels"></dd>
 					<h3><dt>Total Dives: </dt></h3>
 					<dd><input type="text" value="<%= user.escape('numdives') %>" name="user[numdives]" placeholder="Total Number of Dives"></dd>
+					<h3><dt>Email: </dt></h3>
+					<dd><input type="text" value="<%= user.escape('email') %>" name="user[email]" placeholder="Email Address"></dd>
+					<h3><dt>Change Password: </dt></h3>
+					<dd><input type="password" name="user[password]" placeholder="New Password"></dd>
+					<h3><dt>Confirm Password: </dt></h3>
+					<dd><input type="password" name="user[password_check]" placeholder="Confirm Password"></dd>
 				</form>
 			</div>
 		</div>

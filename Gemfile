@@ -20,6 +20,7 @@ gem 'bootstrap-sass'
 gem 'aws-sdk'
 gem 'foreman'
 gem 'filepicker-rails'
+gem 'whenever', require: false
 
 
 group :development do

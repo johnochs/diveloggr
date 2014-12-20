@@ -254,6 +254,8 @@ body {
 	max-width: 200px;
 	margin-top: 25px;
 	margin-bottom: 25px;
+	overflow: hidden;
+	border-radius: 25px;
 }
 
 .change-profile-pic {
@@ -268,9 +270,8 @@ body {
 }
 
 #user-show-image {
-	border-radius: 50px;
-	max-height: 200px;
-	max-width: 200px;
+	width: 200px;
+
 }
 
 hr .blackbreak {

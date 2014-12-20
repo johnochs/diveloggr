@@ -20,8 +20,17 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 		this.model.set(formInput.user);
 		debugger
 		this.model.save({},{
-			success: function(model, response, options) { Backbone.history.navigate('/users/' + model.get('id'), { trigger: true }) },
-			error: function (model, response, options) { console.log(response) }
+			success: function(model, response, options) { 
+				Backbone.history.navigate('/users/' + model.get('id'), { trigger: true });
+			 },
+			error: function (model, response, options) {
+				window.currentCAlert = new Diveloggr.Alert();
+				window.currentCAlert.render(
+					"Ooops...",
+					"There were some problems with your request: ",
+					response.responseJSON
+				);
+			}
 		});
 	},
 	rollBack: function (event) {

@@ -287,10 +287,12 @@ hr .blackbreak {
 
 .entry-edit, .entry-delete {
 	float: left;
-	width: 50%;
+	width: 40%;
 	height: 50px;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
 	border: 2px solid black;
 	
 }

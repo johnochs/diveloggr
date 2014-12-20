@@ -70,5 +70,6 @@ Diveloggr.Routers.Router = Backbone.Router.extend({
 	},
 	clearSplash: function() {
 		$('#splashscreentotal').empty();
+		$('#splashscreentotal').css({height: 0});
 	}
 })

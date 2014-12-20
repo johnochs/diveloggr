@@ -74,12 +74,11 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 										//Calls FP conversion to medium sized image
 										filepicker.convert(imageObj, 
 											{
-											width: 200,
-											height: 200,
-											fit: 'crop',
+											width: 300,
+											fit: 'clip',
 											align: 'faces',
 											format: 'jpg',
-											quality: 80,
+											quality: 90,
 											},
 											{location: 'S3'},
 											function (new_Blob) {
@@ -98,11 +97,10 @@ Diveloggr.Views.UserEdit = Backbone.CompositeView.extend({
 										filepicker.convert(imageObj, 
 											{
 											width: 100,
-											height: 100,
-											fit: 'crop',
+											fit: 'clip',
 											align: 'faces',
 											format: 'jpg',
-											quality: 80,
+											quality: 90,
 											},
 											{location: 'S3'},
 											function (new_Blob) {

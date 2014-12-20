@@ -1,7 +1,6 @@
 <div class="user-show-container">	
 	<div class="row entdiv" id="show_header">
 		<div class="col-xs-4">
-			<center>
 			<div class="profile-pic-container">
 			<!-- <button class="change-profile-pic btn btn-default">Change Photo</button> -->
 			<% if (user.image().has('m_url')) { %>
@@ -10,7 +9,6 @@
 					<img id="user-show-image" src=<%= Diveloggr.defaultProfileImg %>>
 			<% } %>
 			</div>
-		</center>
 		</div>
 		<div class="col-xs-8">
 			<span id="user-title"><%= user.escape("fname") %> <%= user.escape("lname") %></span>

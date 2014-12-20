@@ -25,6 +25,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
+		this.firstViewCheck();
 		return this;
 	},
 	visCalc: function () {
@@ -128,4 +129,30 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		});
 		Diveloggr.looseMarkers.pop();
 	},
+	firstViewCheck: function () {
+		if(Diveloggr.firstView) {
+			var current_user = new Diveloggr.Models.User({ id: CURRENT_USER_ID });
+			current_user.fetch({
+				wait: true,
+				success: function () {
+					if (current_user.get('guest') === true) {
+						window.currentCAlert = new Diveloggr.Alert();
+						window.currentCAlert.render(
+							"Guest Reminder",
+							"You are currently logged in with a guest user account." +
+							"  You may log dives and see other users' logged dives, " +
+							"but your dives will not be visible to other users or added " +
+							"to Divelogger statistics until you create a full account.  " +
+							"Remember: if you do not transition to a full account within 10 days " +
+							"of creating your guest user account, it will be deleted.  To create a " +
+							"full account, please visit the 'Register Full Account' link in the " +
+							"dropdown menu at top.  Also, if you clear your cookies before you register "+
+							"a full account, you will no longer have access to this guest user account."
+						);
+					}
+				}
+			});
+			Diveloggr.firstView = false;
+		}
+	}
 });

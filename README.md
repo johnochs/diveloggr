@@ -32,4 +32,4 @@ diveloggr is based on these technologies:
 
 ###Contact
 
-If you have questions, comments, etc., contact me [here](mailto:john.ochs@gmail.com).  Bugs, issues, and feature ideas may be submitted [here](https://github.com/johnochs/URLShortener/issues).
+If you have questions, comments, etc., contact me [here](mailto:john.ochs@gmail.com).  Bugs, issues, and feature ideas may be submitted [here](https://github.com/johnochs/diveloggr/issues).

@@ -2,13 +2,13 @@
 
 ##diveloggr Basics
 
->**diveloggr** is intended to be an online platform for users to log their scuba dives.  The platform at this time is mostly a proof-of-concept.  Over the course of developing diveloggr, I have received input from many of my dive buddies on what would be useful in terms of features, and I have plans for revisiting this project and overhauling it extensively to incorporate these recommendations.
+**diveloggr** is intended to be an online platform for users to log their scuba dives.  The platform at this time is mostly a proof-of-concept.  Over the course of developing diveloggr, I have received input from many of my dive buddies on what would be useful in terms of features, and I have plans for revisiting this project and overhauling it extensively to incorporate these recommendations.
 
->The power of diveloggr comes from user data.  Users' logged dives contain time-based data on conditions and environmental trends which can be aggregated and formed into useful summaries which are of interest to the diving community.  Simple statistics can be performed to indicate the trending conditions of a dive locale or region.  An additional feature which may be coming soon is the ability to tag wildlife sightings to a post (and thus a location) to allow diveloggr to show users where the good things are.
+The power of diveloggr comes from user data.  Users' logged dives contain time-based data on conditions and environmental trends which can be aggregated and formed into useful summaries which are of interest to the diving community.  Simple statistics can be performed to indicate the trending conditions of a dive locale or region.  An additional feature which may be coming soon is the ability to tag wildlife sightings to a post (and thus a location) to allow diveloggr to show users where the good things are.
 
->The stripped down version which I have plans for will be entirely mobile-friendly.  Since envinronmental conditions are entirely time-sensitive, I want users to be able to log data as soon as they get out of the water.  In addition to making the site mobile oriented, some of the unnecessary features will be stripped out and emphasis will be given to the data that truly matters: entry conditions (i.e. surf and swell), water temp, and visibility (water clarity).  The ability to upload photos from dives may be retained, but is not as important from a data aggreataion standpoint.
+The stripped down version which I have plans for will be entirely mobile-friendly.  Since envinronmental conditions are entirely time-sensitive, I want users to be able to log data as soon as they get out of the water.  In addition to making the site mobile oriented, some of the unnecessary features will be stripped out and emphasis will be given to the data that truly matters: entry conditions (i.e. surf and swell), water temp, and visibility (water clarity).  The ability to upload photos from dives may be retained, but is not as important from a data aggreataion standpoint.
 
->Additionally, a new Location model will be implemented.  Since dive sites are generally well-established locations, it makes sense to allow users to associate an entry with an established dive site.  This will also allow for better data clarity.
+Additionally, a new Location model will be implemented.  Since dive sites are generally well-established locations, it makes sense to allow users to associate an entry with an established dive site.  This will also allow for better data clarity.
 
 ###diveloggr Implementation
 

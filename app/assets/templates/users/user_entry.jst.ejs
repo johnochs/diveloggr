@@ -1,4 +1,4 @@
 <td><%= entry.escape('divenum') %></td>
 <td><%= entry.escape('title') %></td>
 <td><%= entry.escape('location_name') %></td>
-<td><%= entry.escape('entrytime') %></td>
+<td><%= moment(entry.escape('entrytime'), 'YYYYMMDD').fromNow() %></td>

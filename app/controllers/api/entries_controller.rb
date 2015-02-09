@@ -4,6 +4,19 @@ class Api::EntriesController < ApplicationController
   
   def index
     @entries = Entry.all
+    
+    if params[:timescale]
+      @entries = @entries.where("entrytime >= :date", {
+            date: (params[:timescale].to_i).hours.ago
+            })
+    end
+
+    if params[:onlyme] == "true"
+      @entries = @entries.where("user_id = :user_id", {
+        user_id: current_user.id
+      })
+    end
+    
     render "index"
   end
   

@@ -188,6 +188,25 @@ div#images-container > .single-image-element {
 
 //Feed Page Specific
 
+#feed-image-thumb {
+	margin: 2px;
+	border-radius: 2px;
+}
+
+#feed-thumb-img {
+	float: left;
+	width: 50px;
+	margin: -4px;
+}
+
+.photo-timeline {
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 100%;
+	min-height: 500px;
+	overflow-y: scroll;
+}
+
 #feed-view-user-pic {
 	height: 40px;
 	width: 40px;

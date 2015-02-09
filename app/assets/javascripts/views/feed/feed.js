@@ -26,6 +26,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.$('#map-container').html(Diveloggr.$mapEl);
 		google.maps.event.trigger(Diveloggr.map, 'resize');
 		this.firstViewCheck();
+		this.addPhotoFeed();
 		return this;
 	},
 	visCalc: function () {
@@ -90,9 +91,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		this.getCurrentMapBounds();
 		var that = this;
 		
-		this.zoomSorted.each( function (entry) {
-			that.zoomSorted.remove(entry);
-		});
+		this.zoomSorted.reset();
 
 		this.collection.each( function(entry) {
 			var entryLat = parseFloat( entry.get('latitude') );
@@ -100,7 +99,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			
 			if ( that.currentBounds.sLat < entryLat && entryLat < that.currentBounds.nLat ) {
 				if (that.currentBounds.wLng < entryLng && entryLng < that.currentBounds.eLng) {
-					if(Diveloggr.filterJustMe) {
+					if (Diveloggr.filterJustMe) {
 						if(entry.get('user_id') === CURRENT_USER_ID) {
 							that.zoomSorted.add(entry);
 							Diveloggr.markerHash[entry.get('id')].setMap(Diveloggr.map);
@@ -129,7 +128,7 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 		Diveloggr.looseMarkers.forEach( function (marker) {
 			marker.setMap(null);
 		});
-		Diveloggr.looseMarkers.pop();
+		Diveloggr.looseMarkers = [];
 	},
 	firstViewCheck: function () {
 		if(Diveloggr.firstView) {
@@ -156,5 +155,37 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 			});
 			Diveloggr.firstView = false;
 		}
+	},
+	addPhotoFeed: function () {
+		_(this.subviews('.photo-timeline')).each( function (view) {
+			view.remove();
+		});
+		
+		var allImages = [];
+		this.zoomSorted.each ( function (model) {
+			images = model.images()
+			images.each ( function (imgModel) {
+				if (imgModel.has('m_url')) {
+					allImages.push(imgModel)
+				}
+			});
+		});
+		
+		var that = this;
+		
+		_(allImages).each( function (img) {
+			var photoSubview = new Diveloggr.Views.FeedImage({ model: img });
+			that.addSubview('.photo-timeline', photoSubview);
+		});
 	}
 });
+
+Diveloggr.Views.FeedImage = Backbone.CompositeView.extend({
+	template: JST['feed/image'],
+	render: function () {
+		var renderedContent = this.template({ image: this.model });
+		debugger
+		this.$el.html(renderedContent);
+		return this;
+	}
+})

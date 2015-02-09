@@ -118,10 +118,12 @@ Diveloggr.Views.FeedView = Backbone.CompositeView.extend({
 	filterJustMe: function () {
 		Diveloggr.filterJustMe = true;
 		this.filterByMapZoom();
+		this.render();
 	},
 	filterNone: function () {
 		Diveloggr.filterJustMe = false;
 		this.filterByMapZoom();
+		this.render();
 	},
 	removeLooseMarkers: function () {
 		Diveloggr.looseMarkers.forEach( function (marker) {

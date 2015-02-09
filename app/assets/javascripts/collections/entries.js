@@ -1,6 +1,18 @@
 Diveloggr.Collections.Entries = Backbone.Collection.extend({
-	url: "api/entries",
+	url: function () {
+		var qString = "?"
+		if (this.timescale) {
+			qString = qString + "timescale=" + this.timescale.toString() + "&";
+		}
+		if (this.onlyMe) {
+			qString = qString + "onlyme=true"
+		}
+		return 'api/entries' + qString;
+	},
 	initialize: function(options) {
+		this.timescale = 24 * 90;
+		this.onlyMe = false;
+		
 		if(options && options.user_id) {
 			this.user_id = options.user_id;
 			this.fetch({ success: function(data) {
@@ -8,20 +20,20 @@ Diveloggr.Collections.Entries = Backbone.Collection.extend({
 			}.bind(this)});
 		}
 	},
-  model: Diveloggr.Models.Entry,
-	getOrFetch: function (id) {
-		var entries = this;
-		var entry;
-		if (entry = this.get(id)) {
-			entry.fetch();
-		} else {
-			entry = new Diveloggr.Models.Entry({ id: id });
-			entry.fetch({
-				success: function () { entries.add(entry); }
-			});
-		}
-		return entry;
-	},
+	  model: Diveloggr.Models.Entry,
+	  getOrFetch: function (id) {
+	    var entries = this;
+	  	var entry;
+	  	if (entry = this.get(id)) {
+	  		entry.fetch();
+	  	} else {
+	  		entry = new Diveloggr.Models.Entry({ id: id });
+	  		entry.fetch({
+	  			success: function () { entries.add(entry); }
+	  		});
+	  	}
+	  	return entry;
+		},
 	mfetch: function() {
 		this.fetch({
 		success: function() {

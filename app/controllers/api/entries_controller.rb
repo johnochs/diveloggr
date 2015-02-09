@@ -17,7 +17,7 @@ class Api::EntriesController < ApplicationController
       })
     end
     
-    render "index"
+    render "index", status: :ok
   end
   
   def create

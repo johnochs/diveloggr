@@ -7,5 +7,4 @@ Diveloggr.Collections.SortedEntries = Backbone.Collection.extend({
 	
 	url: 'api/entries',
 	
-	
 })

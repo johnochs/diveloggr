@@ -152,6 +152,10 @@ body, html {
 
 //Entry Page Specific
 
+.subtext {
+	font-style: italic;
+}
+
 #cat-header{
 	background: black;
 	color: white;
@@ -198,10 +202,16 @@ body {
   padding-top: 50px;
 }
 
-#map-viewport {
-	height: 400px;
+#map-canvas {
+	min-height: 600px;
+	height: 100%;
 	width: 100%;
 	border: 4px solid black;
+}
+
+.dive-table {
+	width: 100%;
+	min-height: 570px;
 }
 
 //User Show Page Specific

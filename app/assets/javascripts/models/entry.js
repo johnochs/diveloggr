@@ -1,5 +1,7 @@
 Diveloggr.Models.Entry = Backbone.Model.extend({
+	
 	urlRoot: "api/entries",
+	
 	images: function () {
 		if (!this._images) {
 			this._images = new Diveloggr.Collections.Images;
@@ -22,6 +24,16 @@ Diveloggr.Models.Entry = Backbone.Model.extend({
 			this.images().set(jsonResp.images, { parse: true });
 			delete jsonResp.images
 		}
+		
+		this.set('marker', new google.maps.Marker({
+			position: new google.maps.LatLng(
+				parseFloat(jsonResp.latitude), parseFloat(jsonResp.longitude)
+			),
+			map: null,
+			title: jsonResp.title,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+						})
+						);
 		return jsonResp;
 	}
 });

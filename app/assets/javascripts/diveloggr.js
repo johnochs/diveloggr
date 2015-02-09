@@ -1,10 +1,10 @@
-var mapEl = $('<div id="map-viewport"></div>');
+var mapEl = $('<div id="map-canvas"></div>');
 var mapOptions = {
-    center: {lat: 33.567139, lng: -97.118325},
+    center: {lat: 33.397129, lng: -118.421196},
 	zoom: 5,
 	mapTypeId: google.maps.MapTypeId.TERRAIN,
     };
-
+	
 window.Diveloggr = {
   $mapEl: mapEl,
   map: new google.maps.Map(mapEl[0], mapOptions),

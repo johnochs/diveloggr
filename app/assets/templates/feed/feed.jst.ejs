@@ -1,60 +1,64 @@
-
 <div class="row">
-<div class="col-sm-3 col-md-2 sidebar">
-	<h3>
-	<h3>Visibility Statistics</h3>
-	  <ul>
-	 <li>(N=<%= stats[0] %>)</li>
-	 <li>Avg: <%= Math.round(stats[1]) %> ft.</li>
-	 <li>Min: <%= stats[2] %> ft.</li>
-	 <li>Occurred on: <%= moment().calendar(moment(stats[3])) %></li>
-	 <li>Max: <%= stats[4] %> ft.</li>
-	 <li>Occurred on: <%= moment().calendar(moment(stats[5])) %></li>
-	 </ul>
-	 <h3>Wildlife Summary</h3>
-    <ul>
-    <li>Not yet implemented.</li>
-	</ul>
-</div>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<h1 class="page-header">Diveloggr Feed</h1>
-  <div class="btn-group dive-filter" role="group" aria-label="...">
-    <button type="button" class="btn btn-default" id="filter-none">All Dives</button>
-    <button type="button" class="btn btn-default" id="filter-just-me">Only My Dives</button>
+	<div class="col-sm-2 sidebar">
+		<h3>Visibility Statistics</h3>
+		  <ul>
+		 <li>(N=<%= stats[0] %>)</li>
+		 <li>Avg: <%= Math.round(stats[1]) %> ft.</li>
+		 <li>Min: <%= stats[2] %> ft.</li>
+		 <li>Occurred on: <%= moment().calendar(moment(stats[3])) %></li>
+		 <li>Max: <%= stats[4] %> ft.</li>
+		 <li>Occurred on: <%= moment().calendar(moment(stats[5])) %></li>
+		 </ul>
+		 <h3>Wildlife Summary</h3>
+	    <ul>
+	    <li>Not yet implemented.</li>
+		</ul>
+	</div>
+	<div class="col-sm-10 col-sm-offset-2 main">
+		<h1 class="page-header">Diveloggr Feed</h1>
+		<p class="subtext">Zoom in on the map to isolate a particular subset of dives.  Click on an entry in the table to visit its show page.</p>
+	<div class="row">
+		<div class="col-xs-4">
+	  		<div class="btn-group dive-filter" role="group" aria-label="...">
+	  		    <button type="button" class="btn btn-default" id="filter-none">All Dives</button>
+	  		    <button type="button" class="btn btn-default" id="filter-just-me">Only My Dives</button>
 
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-        Filter
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Today</a></li>
-        <li><a href="#">Last Three Days</a></li>
-        <li><a href="#">Last Week</a></li>
-        <li><a href="#">Last Month</a></li>
-        <li><a href="#">No Time Filter</a></li>
-      </ul>
-    </div>
-  </div>
-<div class="row" id="map-container">
-	<div id="map-canvas"></div>
-</div>
-
-  <h2 class="sub-header">Filtered Dives (<%= filtered %>)</h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-		<th id="feed-view-user-pic-header"></th>
-          <th>Author</th>
-		  <th>Title</th>
-          <th>Posted</th>
-          <th>Location</th>
-        </tr>
-      </thead>
-      <tbody id="entry-table-elements">
-      </tbody>
-    </table>
-  </div>
-</div>
+	  	    <div class="btn-group" role="group">
+	  	        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	  		          Filter
+	  		          <span class="caret"></span>
+	  		      </button>
+	  		      <ul class="dropdown-menu" role="menu">
+	  		          <li><a href="#">Today</a></li>
+	  		          <li><a href="#">Last Three Days</a></li>
+	  		          <li><a href="#">Last Week</a></li>
+	  		          <li><a href="#">Last Month</a></li>
+	  		          <li><a href="#">No Time Filter</a></li>
+	  		      </ul>
+	  	    </div>
+	  	  </div>
+		<div id="map-container">
+			<div id="map-canvas"></div>
+		</div>
+		</div>
+		<div class="col-xs-8">
+		    <h2 class="sub-header">Filtered Dives (<%= filtered %>)</h2>
+		    <div class="table-responsive dive-table">
+		      <table class="table table-striped">
+		        <thead>
+		          <tr>
+		  		    <th id="feed-view-user-pic-header"></th>
+		            <th>Author</th>
+		  		    <th>Title</th>
+		            <th>Posted</th>
+		            <th>Location</th>
+		          </tr>
+		        </thead>
+		        <tbody id="entry-table-elements">
+		        </tbody>
+		      </table>
+		    </div>
+		</div>
+		</div>
+	</div>
 </div>
